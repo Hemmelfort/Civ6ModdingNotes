@@ -169,13 +169,13 @@
 ### Mod 只支持 DLC 的设置
 @Hajee:
 I think if you have a mod that is using a Ruleset based on Vallina Game play you need to add this line to your modinfo file
-
+```
 <ActionCriteria>
     <Criteria id="Expansion1">
         <GameCoreInUse>Expansion1</GameCoreInUse>
     </Criteria>
 </ActionCriteria>
-
+```
 
 --------
 ### About Adding LeaderFallback
