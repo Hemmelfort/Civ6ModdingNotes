@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GameData>
+	<!-- Create a custom ability. -->
+	<Types>
+		<Row Type="ABILITY_CUSTOM" Kind="KIND_ABILITY"/>
+	</Types>
+
+	<!-- Create a custom class. -->
+	<Tags>
+        <Row Tag="CLASS_CUSTOM" Vocabulary="ABILITY_CLASS"/>
+    </Tags>
+  
+	<!-- Define your custom ability. -->
+    <UnitAbilities>
+        <Row UnitAbilityType="ABILITY_CUSTOM" Name="LOC_ABILITY_CUSTOM_NAME" Description="LOC_ABILITY_CUSTOM_DESCRIPTION" Inactive="false" ShowFloatTextWhenEarned="true"/>
+    </UnitAbilities>
+
+	<!-- Give an ability to your unit. -->
+	<TypeTags>
+		<Row Type="ABILITY_CUSTOM" Tag="CLASS_CUSTOM"/>
+        <Row Type="YOUR_UNIT" Tag="CLASS_CUSTOM"/>
+	</TypeTags>
+	
+</GameData>
