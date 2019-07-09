@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<GameData>
+	<DistrictModifiers>
+        <Row>
+            <DistrictType>DISTRICT_CITY_CENTER</DistrictType>
+            <ModifierId>CC_More_Trade_Route</ModifierId>
+        </Row>
+	</DistrictModifiers>
+	
+	<Modifiers>
+        <Row>
+            <ModifierId>CC_More_Trade_Route</ModifierId>
+            <ModifierType>MODIFIER_PLAYER_ADJUST_TRADE_ROUTE_CAPACITY</ModifierType>
+            <SubjectRequirementSetId>ReqSet</SubjectRequirementSetId>
+        </Row>
+	</Modifiers>
+	
+	<ModifierArguments>
+        <Row>
+            <ModifierId>CC_More_Trade_Route</ModifierId>
+            <Name>Amount</Name>
+            <Value>1</Value>
+        </Row>
+	</ModifierArguments>
+	
+	
+    <Requirements>
+        <Row>
+            <RequirementId>Is_Human</RequirementId>
+            <RequirementType>REQUIREMENT_PLAYER_IS_HUMAN</RequirementType>
+        </Row>
+        <Row>
+            <RequirementId>Has_Tech</RequirementId>
+            <RequirementType>REQUIREMENT_PLAYER_HAS_TECHNOLOGY</RequirementType>
+        </Row>
+    </Requirements>
+    
+	<RequirementArguments>
+        <Row>
+            <RequirementId>Has_Tech</RequirementId>
+            <Name>TechnologyType</Name>
+            <Value>TECH_POTTERY</Value>
+        </Row>
+    </RequirementArguments>
+    
+    
+	<RequirementSets>
+        <Row>
+            <RequirementSetId>ReqSet</RequirementSetId>
+            <RequirementSetType>REQUIREMENTSET_TEST_ALL</RequirementSetType>
+        </Row>
+	</RequirementSets>
+        
+	<RequirementSetRequirements>
+        <Row>
+            <RequirementSetId>ReqSet</RequirementSetId>
+            <RequirementId>Is_Human</RequirementId>
+        </Row>
+        <Row>
+            <RequirementSetId>ReqSet</RequirementSetId>
+            <RequirementId>Has_Tech</RequirementId>
+        </Row>
+	</RequirementSetRequirements>
+        
+	
+</GameData>

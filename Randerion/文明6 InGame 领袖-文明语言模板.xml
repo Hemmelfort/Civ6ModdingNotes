@@ -1,0 +1,493 @@
+<!-- 文明6 InGame 领袖-文明语言模板 -->
+<!-- 作者：兰德里奥（HaoJun0823） -->
+<!-- https://steamcommunity.com/id/HaoJun0823 -->
+<!-- 模板创建时间：2018年12月30日 版本号：1-->
+<!-- 默认数据为：Fate 秦始皇和 Fate 查理曼-->
+<!-- 可转载，修改，分享，不可去除以上信息 -->
+
+<!-- 麻烦填写以下信息用于标记 -->
+
+<!-- 内容： -->
+<!-- 作者： -->	
+<!-- 日期： -->
+<!-- 描述： -->
+
+	<!--   从 <LocalizedText> 到 </LocalizedText> 复制一个到末尾然后再把 Language里面的内容批量修改成别的就是另一种语言的内容了 -->
+	<!--   繁体直接转换： http://www.aies.cn/ -->
+	<!--   英文可查询： https://translate.google.cn/ -->
+	
+<!--
+rowid	Locale	Name	Collator	PluralRule	SupportsSmallCaps
+1		en_US	English		2	True
+2		fr_FR	Français		3	True
+3		de_DE	Deutsch		2	True
+4		it_IT	Italiano		2	True
+5		es_ES	Español		2	True
+6		ja_JP	日本語 (Japanese)		1	False
+7		ru_RU	Русский (Russian)		8	True
+8		pl_PL	polski		10	True
+9		ko_KR	한국어/조선말 (Korean)		1	False
+10		zh_Hant_HK	汉语/漢語 (Traditional Chinese)		1	False
+11		zh_Hans_CN	汉语/漢語 (Simplified Chinese)		1	False
+12		pt_BR	Português do Brasil		3	True
+-->
+
+<!-- Locale中的内容替换到Language里就是该语言的文本信息 -->
+	
+	<!-- 简体中文 -->
+	<LocalizedText>
+
+		<!-- 文明信息开始 这段不需要可以删掉-->
+			
+		<Row Tag="LOC_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_DESCRIPTION" Language="zh_Hans_CN"> <!-- 文明信息：载入界面头部的文明名称 -->
+			<Text>大秦帝国</Text>
+		</Row>
+		<Row Tag="LOC_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_ADJECTIVE" Language="zh_Hans_CN">  <!-- 文明信息：用于描述群众 例如 England Chinese 等 -->
+			<Text>始皇帝的子民</Text>
+		</Row>
+		
+		<Row Tag="LOC_PEDIA_CIVILIZATIONS_PAGE_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_CHAPTER_HISTORY_PARA_1" Language="zh_Hans_CN">  <!-- 文明百科信息: 这是文明的百科信息，也可以有2,3等？-->
+			<Text>这是嬴政穿越空间所带来的部队组成的国家，他通晓千古历史，所以可以使用任何能力。</Text>
+		</Row>
+		
+		
+		
+		<Row Tag="LOC_CIVINFO_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_LOCATION" Language="zh_Hans_CN">  <!-- 文明信息: 所属地点-->
+			<Text>SE.RA.PH</Text>
+		</Row>
+		<Row Tag="LOC_CIVINFO_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_SIZE" Language="zh_Hans_CN">  <!-- 文明信息: 所属地点的大小-->
+			<Text>无法计算大小</Text>
+		</Row>
+		<Row Tag="LOC_CIVINFO_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_POPULATION" Language="zh_Hans_CN">  <!-- 文明信息: 所属地点的人口-->
+			<Text>无法计算人口</Text>
+		</Row> 
+		<Row Tag="LOC_CIVINFO_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_CAPITAL" Language="zh_Hans_CN">  <!-- 文明信息: 所属地点的首都-->
+			<Text>无法计算首都</Text>
+		</Row>
+		
+		
+		<!-- 城市名称开始 -->
+		<Row Tag="LOC_CITY_NAME_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_REAL_CAPITAL" Language="zh_Hans_CN">
+			<Text>查理曼的亚琛</Text>
+		</Row>
+
+
+		<Row Tag="LOC_CITY_NAME_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_FGO_1" Language="zh_Hans_CN">
+			<Text>卫宫的冬木</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_FGO_2" Language="zh_Hans_CN">
+			<Text>贞德的奥尔良</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_FGO_3" Language="zh_Hans_CN">
+			<Text>德雷克的无尽之海</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_FGO_4" Language="zh_Hans_CN">
+			<Text>尼禄的罗马</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_FGO_5" Language="zh_Hans_CN">
+			<Text>福尔摩斯的伦敦</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_FGO_6" Language="zh_Hans_CN">
+			<Text>爱迪生的美利坚</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_FGO_7" Language="zh_Hans_CN">
+			<Text>阿尔托莉雅的卡美洛</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_FGO_8" Language="zh_Hans_CN">
+			<Text>吉尔伽美什的巴比伦</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_FGO_9" Language="zh_Hans_CN">
+			<Text>所罗门的神殿</Text>
+		</Row>
+
+
+
+		<Row Tag="LOC_CITY_NAME_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_FGO_10" Language="zh_Hans_CN">
+			<Text>伊斯坎达尔的马其顿</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_FGO_11" Language="zh_Hans_CN">
+			<Text>奥兹曼迪亚斯的埃及</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_FGO_12" Language="zh_Hans_CN">
+			<Text>拿破仑的法兰西</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_FGO_13" Language="zh_Hans_CN">
+			<Text>武则天的中国</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_FGO_14" Language="zh_Hans_CN">
+			<Text>大卫的以色列</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_FGO_15" Language="zh_Hans_CN">
+			<Text>大流士三世的波斯</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_FGO_16" Language="zh_Hans_CN">
+			<Text>赛米拉米斯的亚述</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_FGO_17" Language="zh_Hans_CN">
+			<Text>阿提拉的匈奴</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_FGO_18" Language="zh_Hans_CN">
+			<Text>艾蕾什基伽尔的冥界</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_FGO_19" Language="zh_Hans_CN">
+			<Text>BB的SE.RA.PH</Text>
+		</Row>
+		<!-- 城市名称结束 -->
+		
+		
+		<!-- 古代短消息开始 -->
+		<!-- 男的 -->
+		<Row Tag="LOC_CITIZEN_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_MALE_1" Language="zh_Hans_CN">
+			<Text>罗兰</Text>
+			<!-- 罗兰 -->
+		</Row>
+		<Row Tag="LOC_CITIZEN_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_MALE_2" Language="zh_Hans_CN">
+			<Text>李拿度</Text>
+			<!-- 李拿度 -->
+		</Row>
+		<Row Tag="LOC_CITIZEN_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_MALE_3" Language="zh_Hans_CN">
+			<Text>托宾</Text>
+			<!-- 托宾 -->
+		</Row>
+		<Row Tag="LOC_CITIZEN_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_MALE_4" Language="zh_Hans_CN">
+			<Text>马拉吉吉</Text>
+			<!-- 马拉吉吉 -->
+		</Row>
+		<Row Tag="LOC_CITIZEN_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_MALE_5" Language="zh_Hans_CN">
+			<Text>奥吉尔</Text>
+			<!-- 奥吉尔 -->
+		</Row>
+		<Row Tag="LOC_CITIZEN_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_MALE_6" Language="zh_Hans_CN">
+			<Text>所罗门</Text>
+			<!-- 所罗门 -->
+		</Row>
+		<Row Tag="LOC_CITIZEN_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_MALE_7" Language="zh_Hans_CN">
+			<Text>阿斯托尔福</Text>
+			<!-- 阿斯托尔福 -->
+		</Row>
+		<Row Tag="LOC_CITIZEN_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_MALE_8" Language="zh_Hans_CN">
+			<Text>法华利亚</Text>
+			<!-- 法华利亚 -->
+		</Row>
+		<Row Tag="LOC_CITIZEN_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_MALE_9" Language="zh_Hans_CN">
+			<Text>斐兰巴拉斯</Text>
+			<!-- 斐兰巴拉斯 -->
+		</Row>
+		<Row Tag="LOC_CITIZEN_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_MALE_10" Language="zh_Hans_CN">
+			<Text>弗雷罗斯马特</Text>
+			<!-- 弗雷罗斯马特 -->
+		</Row>
+		<Row Tag="LOC_CITIZEN_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_MALE_11" Language="zh_Hans_CN">
+			<Text>奥利弗</Text>
+			<!-- 奥利弗 -->
+		</Row>
+		<Row Tag="LOC_CITIZEN_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_MALE_12" Language="zh_Hans_CN">
+			<Text>加尼隆</Text>
+			<!-- 加尼隆 -->
+		</Row>	
+		
+		<!-- 女的 -->
+		
+		<Row Tag="LOC_CITIZEN_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_FEMALE_1" Language="zh_Hans_CN">
+			<Text> 赫罗特鲁德</Text>
+			<!-- 赫罗特鲁德 -->
+		</Row>
+		<Row Tag="LOC_CITIZEN_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_FEMALE_2" Language="zh_Hans_CN">
+			<Text>德西德里他</Text>
+			<!-- 德西德里他 -->
+		</Row>
+		<Row Tag="LOC_CITIZEN_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_FEMALE_3" Language="zh_Hans_CN">
+			<Text>希尔迪加尔德</Text>
+			<!-- 希尔迪加尔德 -->
+		</Row>
+		<Row Tag="LOC_CITIZEN_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_FEMALE_4" Language="zh_Hans_CN">
+			<Text>法斯特拉达</Text>
+			<!-- 法斯特拉达 -->
+		</Row>
+		<Row Tag="LOC_CITIZEN_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_FEMALE_5" Language="zh_Hans_CN">
+			<Text>柳特加尔德</Text>
+			<!-- 柳特加尔德 -->
+		</Row>
+		<!-- 古代短消息结束-->
+		
+		<!-- 现代短消息开始-->
+		<!-- 男的 -->
+
+
+		<Row Tag="LOC_CITIZEN_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_MODERN_MALE_1" Language="zh_Hans_CN">
+			<Text>卫宫</Text>
+			<!-- 卫宫 -->
+		</Row>
+		<Row Tag="LOC_CITIZEN_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_MODERN_MALE_2" Language="zh_Hans_CN">
+			<Text>罗宾汉</Text>
+			<!-- 罗宾汉 -->
+		</Row>
+		<Row Tag="LOC_CITIZEN_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_MODERN_MALE_3" Language="zh_Hans_CN">
+			<Text>阿周那</Text>
+			<!-- 阿周那 -->
+		</Row>
+		<Row Tag="LOC_CITIZEN_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_MODERN_MALE_4" Language="zh_Hans_CN">
+			<Text>兰斯洛特</Text>
+			<!-- 兰斯洛特 -->
+		</Row>
+		<Row Tag="LOC_CITIZEN_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_MODERN_MALE_5" Language="zh_Hans_CN">
+			<Text>库丘林</Text>
+			<!-- 库·丘林 -->
+		</Row>
+		<Row Tag="LOC_CITIZEN_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_MODERN_MALE_6" Language="zh_Hans_CN">
+			<Text>李书文</Text>
+			<!-- 李书文 -->
+		</Row>
+		<Row Tag="LOC_CITIZEN_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_MODERN_MALE_7" Language="zh_Hans_CN">
+			<Text>吕布奉先</Text>
+			<!-- 吕布奉先 -->
+		</Row>
+		<Row Tag="LOC_CITIZEN_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_MODERN_MALE_8" Language="zh_Hans_CN">
+			<Text>吉尔伽美什</Text>
+			<!-- 吉尔伽美什 -->
+		</Row>
+		<Row Tag="LOC_CITIZEN_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_MODERN_MALE_9" Language="zh_Hans_CN">
+			<Text>伊斯坎达尔</Text>
+			<!-- 伊斯坎达尔 -->
+		</Row>
+		<Row Tag="LOC_CITIZEN_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_MODERN_MALE_10" Language="zh_Hans_CN">
+			<Text>大流士三世</Text>
+			<!-- 大流士三世 -->
+		</Row>
+		<Row Tag="LOC_CITIZEN_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_MODERN_MALE_11" Language="zh_Hans_CN">
+			<Text>吉尔·德·雷</Text>
+			<!-- 吉尔·德·雷 -->
+		</Row>
+		<Row Tag="LOC_CITIZEN_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_MODERN_MALE_12" Language="zh_Hans_CN">
+			<Text>阿基米德</Text>
+			<!-- 阿基米德 -->
+		</Row>
+
+		<Row Tag="LOC_CITIZEN_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_MODERN_FEMALE_1" Language="zh_Hans_CN">
+			<Text>尼禄·克劳狄乌斯</Text>
+			<!-- 尼禄·克劳狄乌斯 -->
+		</Row>
+		<Row Tag="LOC_CITIZEN_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_MODERN_FEMALE_2" Language="zh_Hans_CN">
+			<Text>玉藻前</Text>
+			<!-- 玉藻前 -->
+		</Row>
+		<Row Tag="LOC_CITIZEN_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_MODERN_FEMALE_3" Language="zh_Hans_CN">
+			<Text>阿提拉</Text>
+			<!-- 阿提拉 -->
+		</Row>
+		<Row Tag="LOC_CITIZEN_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_MODERN_FEMALE_4" Language="zh_Hans_CN">
+			<Text>阿尔托莉雅·潘德拉贡</Text>
+			<!-- 阿尔托莉雅·潘德拉贡 -->
+		</Row>
+		<Row Tag="LOC_CITIZEN_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_MODERN_FEMALE_5" Language="zh_Hans_CN">
+			<Text>伊丽莎白·巴托里</Text>
+			<!-- 伊丽莎白·巴托里 -->
+		</Row>
+
+		<!-- 女的 -->
+		
+		<Row Tag="LOC_CITIZEN_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_MODERN_FEMALE_6" Language="zh_Hans_CN">
+			<Text>贞德</Text>
+			<!-- 贞德 -->
+		</Row>
+
+		<Row Tag="LOC_CITIZEN_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_MODERN_FEMALE_7" Language="zh_Hans_CN">
+			<Text>斯卡哈</Text>
+			<!-- 斯卡哈 -->
+		</Row>
+
+		<Row Tag="LOC_CITIZEN_CIVILIZATION_YYYYY_XXXXX_ZZZZZ_MODERN_FEMALE_8" Language="zh_Hans_CN">
+			<Text>弗朗西斯·德雷克</Text>
+			<!-- 弗朗西斯·德雷克 -->
+		</Row>
+		
+		<!-- 现代短消息结束 -->
+		
+		
+		
+		
+		<!-- 文明信息结束-->
+
+		<!-- 领袖信息开始 这段不需要可以删掉-->
+		<Row Tag="LOC_LOADING_INFO_LEADER_YYYYY_XXXXX_ZZZZZ" Language="zh_Hans_CN">  <!-- 领袖信息: 加载界面词汇 -->
+			<Text>
+				没有任何伟大能够与您的功业相提并论，始皇帝嬴政。您觅得了仙道，以永世帝皇之姿，统合亿兆之智，创造了泛人类史所难以企及的千年帝国。折冲宇宙，长城万里亘焉，骊山的英雄们让您的威强永固；您为了子民鞠躬尽瘁，用最先进的技术，以纵横的星舰将恩泽被覆四海。愿您的子民不要堕入儒的圈套，自由的卑劣阴谋终将在核子虎蹲炮的咆哮中粉碎。聆听田野中子民的赞颂，玩赏宫廷匠师的奇巧作品吧，您的帝国将万世恒伫。
+			</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_ACCEPT_DECLARE_FRIEND_FROM_HUMAN_LEADER_YYYYY_XXXXX_ZZZZZ_ANY" Language="zh_Hans_CN"> <!-- 领袖外交信息: 你对AI宣布友谊允许的时候 -->
+			<Text>唔姆，朕许了。</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_REJECT_DECLARE_FRIEND_FROM_HUMAN_LEADER_YYYYY_XXXXX_ZZZZZ_ANY" Language="zh_Hans_CN"> <!-- 领袖外交信息: 你对AI宣布友谊被拒绝的时候 -->
+			<Text>朕不悦于与尔等同行。</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_DECLARE_FRIEND_FROM_AI_LEADER_YYYYY_XXXXX_ZZZZZ_ANY" Language="zh_Hans_CN"> <!-- 领袖外交信息: 当AI对你宣布友谊的时候 -->
+			<Text>天下之大无奇不有，想与朕一同前去吗？</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_ACCEPT_DECLARE_FRIEND_FROM_AI_LEADER_YYYYY_XXXXX_ZZZZZ_ANY" Language="zh_Hans_CN"> <!-- 领袖外交信息: 当你同意AI对你的宣布友谊 -->
+			<Text>唔。有劳了！</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_REJECT_DECLARE_FRIEND_FROM_AI_LEADER_YYYYY_XXXXX_ZZZZZ_ANY" Language="zh_Hans_CN"><!-- 领袖外交信息: 当你拒绝AI对你的宣布友谊 -->
+			<Text>唔，再议……</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_DECLARE_WAR_FROM_HUMAN_LEADER_YYYYY_XXXXX_ZZZZZ_ANY" Language="zh_Hans_CN"> <!-- 领袖外交信息: 当你对这个AI宣战？ -->
+			<Text>国家昌盛离不开天下太平，朕自始至终明白这一点，但若不能清除外敌，消灭威胁，又怎能在乱世之中统一天下？</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_DECLARE_WAR_FROM_AI_LEADER_YYYYY_XXXXX_ZZZZZ_ANY" Language="zh_Hans_CN"> <!-- 领袖外交信息: 当这个AI向你宣战？ -->
+			<Text>大胆！</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_DEFEAT_FROM_AI_LEADER_YYYYY_XXXXX_ZZZZZ_ANY" Language="zh_Hans_CN">  <!-- 领袖外交信息: 当AI被其他AI击败会说这些话？ -->
+			<Text>没想到……这小兵小卒倒是引起朕的兴致来了，尔与我的纷争，下次再议吧！</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_DEFEAT_FROM_HUMAN_LEADER_YYYYY_XXXXX_ZZZZZ_ANY" Language="zh_Hans_CN">  <!-- 领袖外交信息: 当你击败AI他会说这些话？-->
+			<Text>哼！这才只是三分力气！下次见面可修怪朕不留情面！</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_ACCEPT_DELEGATION_FROM_HUMAN_LEADER_YYYYY_XXXXX_ZZZZZ_ANY" Language="zh_Hans_CN">  <!-- 领袖外交信息: 当AI同意你的代表团-->
+			<Text>唔姆唔姆……朕有点想去你那里游览一番了。</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_REJECT_DELEGATION_FROM_HUMAN_LEADER_YYYYY_XXXXX_ZZZZZ_ANY" Language="zh_Hans_CN">  <!-- 领袖外交信息: 当AI拒绝你的代表团-->
+			<Text>这种简单的东西，不需要。</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_DELEGATION_FROM_AI_LEADER_YYYYY_XXXXX_ZZZZZ_ANY" Language="zh_Hans_CN">
+			<Text>这是朕最新生产的超级量子聚变反应堆核心！就送给你吧！怎么……不会用吗？那就当暖炉用吧！</Text>   <!-- 领袖外交信息: 当AI派遣代表团的时候-->
+		</Row>
+
+		<Row Tag="LOC_DIPLO_DENOUNCE_FROM_HUMAN_LEADER_YYYYY_XXXXX_ZZZZZ_ANY" Language="zh_Hans_CN">   <!-- 领袖外交信息: 当你公开指责AI-->
+			<Text>放肆！竟然敢侮辱朕！</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_DENOUNCE_FROM_AI_LEADER_YYYYY_XXXXX_ZZZZZ_ANY" Language="zh_Hans_CN">    <!-- 领袖外交信息: 当AI公开指责你-->
+			<Text>朕早就知道你的事情了，下次，就是朕来惩罚你的时候！[NEWLINE]（谴责你）</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_FIRST_MEET_LEADER_YYYYY_XXXXX_ZZZZZ_ANY" Language="zh_Hans_CN">    <!-- 领袖外交信息: 当你第一次遇到AI-->
+			<Text>朕乃天命之子，中华之主，嬴政！你有什么事要上奏吗？</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_FIRST_MEET_VISIT_RECIPIENT_LEADER_YYYYY_XXXXX_ZZZZZ_ANY" Language="zh_Hans_CN">    <!-- 领袖外交信息: 当你第一次遇到AI并且他对你有好感的时候？-->
+			<Text>这是朕的太空站，过来看看吧！</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_FIRST_MEET_NEAR_INITIATOR_POSITIVE_LEADER_YYYYY_XXXXX_ZZZZZ_ANY" Language="zh_Hans_CN">  
+		<Row Tag="LOC_DIPLO_FIRST_MEET_VISIT_RECIPIENT_LEADER_YYYYY_XXXXX_ZZZZZ_ANY" Language="zh_Hans_CN">    <!-- 领袖外交信息: 当你第一次遇到AI并且他离你比较近的时候？-->
+			<Text>朕对你的民族越来越感兴趣了呢，能不能和朕讲一讲？</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_GREETING_LEADER_YYYYY_XXXXX_ZZZZZ_ANY" Language="zh_Hans_CN"> <!-- 领袖外交信息: 一般打招呼用-->
+			<Text>早安。</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_KUDO_EXIT_LEADER_YYYYY_XXXXX_ZZZZZ_ANY" Language="zh_Hans_CN">  <!-- 领袖外交信息: AI对你的好感增加了的前置-->
+			<Text>唔姆唔姆，朕要表扬你。</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_KUDO_LEADER_YYYYY_XXXXX_ZZZZZ_REASON_ANY" Language="zh_Hans_CN"> <!-- 领袖外交信息: AI对你的好感增加了的描述-->
+			<Text>（嬴政对您的好感增加了）</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_WARNING_EXIT_LEADER_YYYYY_XXXXX_ZZZZZ_ANY" Language="zh_Hans_CN">  <!-- 领袖外交信息: AI对你的好感减少了的前置-->
+			<Text>真是无可救药……</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_WARNING_LEADER_YYYYY_XXXXX_ZZZZZ_REASON_ANY" Language="zh_Hans_CN"> <!-- 领袖外交信息: AI对你的好感减少了的描述-->
+			<Text>（嬴政对您的好感减少了）</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_MAKE_ALLIANCE_FROM_AI_LEADER_YYYYY_XXXXX_ZZZZZ_ANY" Language="zh_Hans_CN"> <!-- 领袖外交信息: AI允许你同盟-->
+			<Text>朕允你与我同盟。</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_MAKE_PEACE_AI_ACCEPT_DEAL_LEADER_YYYYY_XXXXX_ZZZZZ_ANY" Language="zh_Hans_CN"> <!-- 领袖外交信息: AI答应你和平的请求-->
+			<Text>哼，下次，朕就没有这么宽宏大量了！</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_MAKE_PEACE_AI_REFUSE_DEAL_LEADER_YYYYY_XXXXX_ZZZZZ_ANY" Language="zh_Hans_CN"> <!-- 领袖外交信息: AI拒绝你和平的请求-->
+			<Text>想要临阵脱逃？无耻之徒！</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_MAKE_PEACE_FROM_AI_LEADER_YYYYY_XXXXX_ZZZZZ_ANY" Language="zh_Hans_CN"> <!-- 领袖外交信息: AI主动提出和平的请求-->
+			<Text>休战休战！</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_ACCEPT_OPEN_BORDERS_FROM_HUMAN_LEADER_YYYYY_XXXXX_ZZZZZ_ANY" Language="zh_Hans_CN"> <!-- 领袖外交信息: AI答应你通过他的领地-->
+			<Text>朕准了。</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_REJECT_OPEN_BORDERS_FROM_HUMAN_LEADER_YYYYY_XXXXX_ZZZZZ_ANY" Language="zh_Hans_CN">  <!-- 领袖外交信息: AI拒绝你通过他的领地-->
+			<Text>唔姆……此时不可。</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_OPEN_BORDERS_FROM_AI_LEADER_YYYYY_XXXXX_ZZZZZ_ANY" Language="zh_Hans_CN">  <!-- 领袖外交信息: AI询问你是否愿意让他的部队通过你的领地-->
+			<Text>朕需要通过你的领域，可否？</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_WARNING_TOO_MANY_TROOPS_NEAR_ME_LEADER_YYYYY_XXXXX_ZZZZZ_ANY" Language="zh_Hans_CN"> <!-- 领袖外交信息: AI说你军队差劲-->
+			<Text>唔姆，真是一群老旧的军队呢……</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_ACCEPT_MAKE_DEAL_FROM_AI_LEADER_YYYYY_XXXXX_ZZZZZ_ANY" Language="zh_Hans_CN"> <!-- 领袖外交信息: AI他提出一个交易？-->
+			<Text>{LOC_DIPLO_ACCEPT_DECLARE_FRIEND_FROM_AI_LEADER_YYYYY_XXXXX_ZZZZZ_ANY}</Text> 
+		</Row>
+
+		<Row Tag="LOC_DIPLO_REJECT_MAKE_DEAL_FROM_AI_LEADER_YYYYY_XXXXX_ZZZZZ_ANY" Language="zh_Hans_CN">  <!-- 领袖外交信息: AI他拒绝你的一个交易？-->
+			<Text>{LOC_DIPLO_REJECT_DECLARE_FRIEND_FROM_AI_LEADER_YYYYY_XXXXX_ZZZZZ_ANY}</Text>
+		</Row>
+
+
+
+
+
+		<Row Tag="LOC_PEDIA_LEADERS_PAGE_LEADER_YYYYY_XXXXX_ZZZZZ_TITLE" Language="zh_Hans_CN">  <!-- 领袖百科信息: 名字-->
+			<Text>嬴政</Text>
+		</Row>
+ 
+		<Row Tag="LOC_PEDIA_LEADERS_PAGE_LEADER_YYYYY_XXXXX_ZZZZZ_SUBTITLE" Language="zh_Hans_CN">   <!-- 领袖百科信息: 描述-->
+			<Text>来自异闻带的永生皇帝</Text>
+		</Row>
+
+		<Row Tag="LOC_PEDIA_LEADERS_PAGE_LEADER_YYYYY_XXXXX_ZZZZZ_QUOTE" Language="zh_Hans_CN">   <!-- 领袖百科信息: 一段有语音的词，单独被展示出来-->
+			<Text>唔姆！</Text>
+		</Row>
+
+		<Row Tag="LOC_PEDIA_LEADERS_PAGE_LEADER_YYYYY_XXXXX_ZZZZZ_CHAPTER_HISTORY_PARA_1" Language="zh_Hans_CN">   <!-- 领袖百科信息: 历史1段，还可以有2,3？-->
+			<Text>{LOC_LOADING_INFO_LEADER_YYYYY_XXXXX_ZZZZZ}</Text>
+		</Row>
+
+		<Row Tag="LOC_PEDIA_LEADERS_PAGE_LEADER_YYYYY_XXXXX_ZZZZZ_CHAPTER_CAPSULE_BODY" Language="zh_Hans_CN">  <!-- 领袖百科信息:描述你怎么解决这个领袖-->
+			<Text>嬴政是一个复杂的领袖，没有良好的对策。</Text>
+		</Row>
+
+		<Row Tag="LOC_PEDIA_LEADERS_PAGE_LEADER_YYYYY_XXXXX_ZZZZZ_CHAPTER_DETAILED_BODY" Language="zh_Hans_CN">  <!-- 领袖百科信息: 描述你该怎么玩这个领袖-->
+			<Text>嬴政适合多种方向发展。</Text>
+		</Row>
+		<!-- 领袖信息结束-->
+
+
+		<!-- 信仰信息开始 这段不需要可以删掉-->
+		<Row Tag="LOC_PEDIA_RELIGIONS_PAGE_RELIGION_ZHEN_CHAPTER_HISTORY_PARA_1" Language ="zh_Hans_CN">  <!-- 信仰: 信仰描述-->
+			<Text>很奇妙的……信仰？</Text>
+		</Row>
+
+		<Row Tag="LOC_RELIGION_ZHEN" Language ="zh_Hans_CN">  <!-- 信仰: 信仰名称-->
+			<Text>朕</Text>
+		</Row>
+		<!-- 信仰信息结束-->
+		
+
+	</LocalizedText>
+	<!-- 简体中文结束 -->
+	<!-- 写完了吗？麻烦复制一下写英文和繁体中文的吧 -->
+	<!--   从 简体中文的<LocalizedText> 到 </LocalizedText> 复制一个到末尾然后再把 Language里面的内容批量修改成别的就是另一种语言的内容了 -->
+	<!--   繁体直接转换： http://www.aies.cn/ -->
+	<!--   英文可查询： https://translate.google.cn/ -->

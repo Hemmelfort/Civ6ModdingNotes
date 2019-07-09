@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameInfo>
+
+	<Types>
+		<Row Type="TRAIT_HILLS_WALKER" Kind="KIND_TRAIT"/>
+		<Row Type="MODIFIER_UNITS_IGNORE_HILLS" Kind="KIND_MODIFIER"/>
+	</Types>
+
+	<Traits>
+		<Row TraitType="TRAIT_HILLS_WALKER" Name="印加忽视丘陵" Description="让印加文明可以在丘陵地带畅通无阻"/>
+	</Traits>
+
+	<CivilizationTraits>
+		<Row CivilizationType="CIVILIZATION_INCA" TraitType="TRAIT_HILLS_WALKER"/>
+	</CivilizationTraits>
+	
+	
+    <DynamicModifiers>
+        <Row>
+            <ModifierType>MODIFIER_UNITS_IGNORE_HILLS</ModifierType>
+            <EffectType>EFFECT_ADJUST_UNIT_IGNORE_TERRAIN_COST</EffectType>
+            <CollectionType>COLLECTION_PLAYER_UNITS</CollectionType>
+        </Row>
+    </DynamicModifiers>
+    
+	<TraitModifiers>
+		<Row>
+			<TraitType>TRAIT_HILLS_WALKER</TraitType>
+			<ModifierId>MOD_ID_HILLS_WALKER</ModifierId>
+		</Row>
+	</TraitModifiers>
+
+	<Modifiers>
+		<Row>
+			<ModifierId>MOD_ID_HILLS_WALKER</ModifierId>
+			<ModifierType>MODIFIER_UNITS_IGNORE_HILLS</ModifierType>
+		</Row>
+	</Modifiers>
+
+	<ModifierArguments>
+		<Row>
+			<ModifierId>MOD_ID_HILLS_WALKER</ModifierId>
+			<Name>Ignore</Name>
+			<Value>true</Value>
+		</Row>
+		<Row>
+			<ModifierId>MOD_ID_HILLS_WALKER</ModifierId>
+			<Name>Type</Name>
+			<Value>HILLS</Value>
+		</Row>
+	</ModifierArguments>
+
+
+
+	
+	<GlobalParameters>
+        <Replace Name="CITY_MIN_RANGE" Value="4" />
+	</GlobalParameters>
+		
+</GameInfo>
