@@ -49,12 +49,5 @@
 			<Value>HILLS</Value>
 		</Row>
 	</ModifierArguments>
-
-
-
-	
-	<GlobalParameters>
-        <Replace Name="CITY_MIN_RANGE" Value="4" />
-	</GlobalParameters>
 		
 </GameInfo>
