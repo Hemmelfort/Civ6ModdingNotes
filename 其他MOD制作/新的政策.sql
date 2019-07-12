@@ -5,7 +5,7 @@ INSERT INTO Types (Type, Kind) VALUES
 
 -- 2. 政策的名称、描述、需要的槽位类型
 INSERT INTO Policies (PolicyType, Name, Description, GovernmentSlotType) VALUES
-("Policy_Welfare", "Welfare", "+5 identities", "SLOT_MILITARY");
+("Policy_Welfare", "Welfare", "+10 identities for each city.", "SLOT_MILITARY");
 
 /*
 槽位类型：（详见 GovernmentSlots 表中）
@@ -19,8 +19,8 @@ INSERT INTO Policies (PolicyType, Name, Description, GovernmentSlotType) VALUES
 
 
 -----------------------------------------
-
 -- 为该政策添加修改器 Modifier 
+-----------------------------------------
 
 INSERT INTO PolicyModifiers (PolicyType, ModifierId) VALUES 
 ("Policy_Welfare", "Modifier_Welfare_Change_Cities_Identity");
