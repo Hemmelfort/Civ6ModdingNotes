@@ -1,4 +1,9 @@
 
+-- 如果要给某个特定的单位添加“+1攻击次数”的特性，一般是先给它赋予一项能力（ability），然后用这个ability绑定一个修改器。
+
+-- 以下是简单粗暴地给自己所有单位都加攻击次数的情况。
+
+
 INSERT INTO TraitModifiers (TraitType, ModifierId) VALUES 
 ("TRAIT_UNIT_SCOIA_TAEL", "expert_marksman_scoia_tael");
 
