@@ -3,7 +3,7 @@
 
 以单位为例，弓箭手没有 TraitType，所以谁都可以造；战象有一个属于印度的 TraitType，所以只有印度能造。
 
-## TraitType 的定义
+## TraitType 的定义 （必需）
 
 以印度战象为例：
 ```xml
@@ -34,7 +34,7 @@
 ```
 
 
-## TraitType 的使用
+## TraitType 的使用 （非必需）
 
 在定义单位的 Units 表中可以插入 TraitType:
 ```xml
