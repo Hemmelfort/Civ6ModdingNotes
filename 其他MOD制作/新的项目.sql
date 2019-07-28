@@ -1,4 +1,7 @@
 
+-- 注意：如果不限制该项目，那么电脑AI也能使用
+
+
 -- 1. 创建新项目
 insert into Types (Type, Kind) values
 ('PROJECT_MILE_EYES', 'KIND_PROJECT');
