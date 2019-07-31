@@ -1,7 +1,7 @@
 <!-- 文明6 InGame 领袖-文明语言模板 -->
 <!-- 作者：兰德里奥（HaoJun0823） -->
 <!-- https://steamcommunity.com/id/HaoJun0823 -->
-<!-- 模板创建时间：2018年12月30日 版本号：1-->
+<!-- 模板创建时间：2018年12月30日 版本号：2-->
 <!-- 默认数据为：Fate 秦始皇和 Fate 查理曼-->
 <!-- 可转载，修改，分享，不可去除以上信息 -->
 
@@ -379,7 +379,11 @@ rowid	Locale	Name	Collator	PluralRule	SupportsSmallCaps
 			<Text>这是朕的太空站，过来看看吧！</Text>
 		</Row>
 
-		<Row Tag="LOC_DIPLO_FIRST_MEET_NEAR_INITIATOR_POSITIVE_LEADER_YYYYY_XXXXX_ZZZZZ_ANY" Language="zh_Hans_CN">  
+		<Row Tag="LOC_DIPLO_FIRST_MEET_NEAR_INITIATOR_POSITIVE_LEADER_YYYYY_XXXXX_ZZZZZ_ANY" Language="zh_Hans_CN">  <!-- 领袖外交信息: 当你第一次遇到AI并且他比较积极的时候？-->
+			<Text>朕对你的民族越来越感兴趣了呢，能不能和朕讲一讲？</Text>
+		</Row>		
+		
+		
 		<Row Tag="LOC_DIPLO_FIRST_MEET_VISIT_RECIPIENT_LEADER_YYYYY_XXXXX_ZZZZZ_ANY" Language="zh_Hans_CN">    <!-- 领袖外交信息: 当你第一次遇到AI并且他离你比较近的时候？-->
 			<Text>朕对你的民族越来越感兴趣了呢，能不能和朕讲一讲？</Text>
 		</Row>
