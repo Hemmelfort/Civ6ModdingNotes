@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Mod id="3d85fbd2-a31d-11e9-9aac-408d5ca2b12b" version="1">
+	<Properties>
+		<Name>新界面尝试</Name>
+		<Teaser>自己创建的新界面</Teaser>
+		<Description>把一个按钮和标签加入到城市面板中。</Description>
+		<Authors>Hemmelfort</Authors>
+		<AffectsSavedGames>0</AffectsSavedGames>
+		<CompatibleVersions>2.0</CompatibleVersions>
+	</Properties>
+
+	<InGameActions>
+		<AddUserInterfaces id="AddUserInterfaces">
+            <Properties>
+                <LoadOrder>100</LoadOrder>
+                <Context>InGame</Context>
+            </Properties>
+			<File>MyNewScreen.xml</File>
+		</AddUserInterfaces >
+	</InGameActions>
+
+	<Files>
+		<File>MyNewScreen.xml</File>
+		<File>MyNewScreen.lua</File>
+	</Files>
+
+</Mod>

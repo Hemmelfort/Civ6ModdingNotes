@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Context Name="MyNewScreen">
+    <Container ID="CustomArea" Anchor="L,T" Offset="0, -110" Size="parent, auto">
+        <Stack StackGrowth="Right" Anchor="L,C">
+            <Button ID="MyButton" Anchor="L,C" Size="48,48" String="Button" ToolTip="ojbk"/>
+            <Label ID="MyText" Anchor="L,C" Align="Center" Style="HeaderFont" String="My New Screen"/>
+        </Stack>
+    </Container>
+</Context>
