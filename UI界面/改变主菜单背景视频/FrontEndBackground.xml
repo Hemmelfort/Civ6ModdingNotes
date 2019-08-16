@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include File="FrontEndBackground" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="..\..\..\..\..\..\CivTech\Libs\ForgeUI\ForgeUI_Assets\Controls.xsd">
+    <Movie ID="BackgroundMovie" Movie="bg.bk2" Size="parent,parent" LoopMovie="1" StretchMode="UniformToFillCentered"/>
+</Include>

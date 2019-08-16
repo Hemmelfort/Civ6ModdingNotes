@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Mod id="8b85fbd2-a31d-11e9-9aac-408d5ca2b12b" version="1">
+	<Properties>
+		<Name>改变主菜单背景视频</Name>
+		<Teaser>改变主菜单背景视频</Teaser>
+		<Description>在当前目录下放一个名为 bg.bk2 的视频文件，即可改变主菜单背景视频。[NEWLINE]bk2 格式的视频可以用 RAD Video Tools 制作。</Description>
+		<Authors>Hemmelfort</Authors>
+		<AffectsSavedGames>0</AffectsSavedGames>
+		<CompatibleVersions>2.0</CompatibleVersions>
+	</Properties>
+
+	<FrontEndActions>        
+        <ImportFiles id="REPLACE_MOVIE">
+			<Properties>
+				<LoadOrder>10086</LoadOrder>
+			</Properties>
+			<File>FrontEndBackground.xml</File>
+			<File>bg.bk2</File>
+        </ImportFiles>		
+	</FrontEndActions>
+
+	<Files>
+		<File>FrontEndBackground.xml</File>
+		<File>bg.bk2</File>
+	</Files>
+
+</Mod>
