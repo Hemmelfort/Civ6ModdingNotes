@@ -9,3 +9,8 @@
 4. 新建 Pull Request
 
 或者直接联系我。
+
+---
+本项目地址：
+- [Gitee](https://gitee.com/Hemmelfort/Civ6ModdingNotes)
+- [Github](https://github.com/Hemmelfort/Civ6ModdingNotes)
