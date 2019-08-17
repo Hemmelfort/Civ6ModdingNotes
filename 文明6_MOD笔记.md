@@ -52,7 +52,7 @@
 2. dds 文件用 Photoshop（或者 Gimp）制作，要去英伟达官网下载一个 dds 插件。
 3. tex 文件记录了 dds 文件的相关信息，会和 dds 一起被打包成 blp 文件。 `Textures`文件夹不需要包含在 ModBuddy 项目中。
 4. xlp 文件（xml library package）定义了图像资源的变量名、类型（如 UITexture/LeaderFallback）。构建后生成 blp 文件。
-5. Mod.Art.xml 文件记录了 Mod 的相关资源的信息，必须指定 xlp 文件和 artdef 文件，可由一个小脚本自动生成。（ *但该脚本不确定是否存在一下问题：a.添加 xlp 文件到 UITexture 项；b.添加 LeaderFallbacks.blp 到 gameLibraries*）
+5. Mod.Art.xml 文件记录了 Mod 的相关资源的信息，必须指定 xlp 文件和 artdef 文件，可用辅助工具或 AssetEditor 生成。
 6. xml 文件由我们手动编写。（文件名不能与游戏自带的冲突，如“Icons_Buildings.xml”）
 
 #### 构建之后：
@@ -240,7 +240,7 @@ and background UI_LeaderScenes package or direct dds import.
 
 ### <CIVILOPEDIA TEXT>
 
-The civilopedia text has a tricky part, you have you have to start with right parameter, for intance LOC_PEDIA_UNITS_PAGE (if buildings change to BUILDINGS, etc), then concatenate with you unit type (building type, etc), and finally define chapter number (defines order, and you can add whatever paragraphs you want) => LOC_PEDIA_UNITS_PAGE_UNIT_YOURUNIQUEUNIT_CHAPTER_HISTORY_PARA_1
+The civilopedia text has a tricky part, you have to start with right parameter, for intance LOC_PEDIA_UNITS_PAGE (if buildings change to BUILDINGS, etc), then concatenate with you unit type (building type, etc), and finally define chapter number (defines order, and you can add whatever paragraphs you want) => LOC_PEDIA_UNITS_PAGE_UNIT_YOURUNIQUEUNIT_CHAPTER_HISTORY_PARA_1
 
 
 ### <ICONS>
