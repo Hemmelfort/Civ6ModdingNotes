@@ -8,9 +8,10 @@
 3. 提交代码
 4. 新建 Pull Request
 
-或者直接联系我。
+或者直接联系我:
+[Bilibili](https://space.bilibili.com/28399130)
 
----
+
 本项目地址：
 - [Gitee](https://gitee.com/Hemmelfort/Civ6ModdingNotes)
 - [Github](https://github.com/Hemmelfort/Civ6ModdingNotes)
