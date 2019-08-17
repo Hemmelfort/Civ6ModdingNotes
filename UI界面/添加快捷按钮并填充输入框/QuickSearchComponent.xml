@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Context>
+    <Stack ID="QuickSearchPanel" StackGrowth="Down" Anchor="R,C" AnchorSide="O,I">
+        <Button ID="ButtonHorses"Size="40,40" String="[ICON_RESOURCE_HORSES]" ToolTip="LOC_RESOURCE_HORSES_NAME" Texture="LaunchBar_Hook_ButtonSmall"/>
+        <Button ID="ButtonIron"Size="40,40" String="[ICON_RESOURCE_IRON]" ToolTip="LOC_RESOURCE_IRON_NAME" Texture="LaunchBar_Hook_ButtonSmall"/>
+        <Button ID="ButtonNiter"Size="40,40" String="[ICON_RESOURCE_NITER]" ToolTip="LOC_RESOURCE_NITER_NAME" Texture="LaunchBar_Hook_ButtonSmall"/>
+        <Button ID="ButtonCoal"Size="40,40" String="[ICON_RESOURCE_COAL]" ToolTip="LOC_RESOURCE_COAL_NAME" Texture="LaunchBar_Hook_ButtonSmall"/>
+        <Button ID="ButtonOil"Size="40,40" String="[ICON_RESOURCE_OIL]" ToolTip="LOC_RESOURCE_OIL_NAME" Texture="LaunchBar_Hook_ButtonSmall"/>
+        <Button ID="ButtonUranium"Size="40,40" String="[ICON_RESOURCE_URANIUM]" ToolTip="LOC_RESOURCE_URANIUM_NAME" Texture="LaunchBar_Hook_ButtonSmall"/>
+        <Button ID="ButtonAluminum"Size="40,40" String="[ICON_RESOURCE_ALUMINUM]" ToolTip="LOC_RESOURCE_ALUMINUM_NAME" Texture="LaunchBar_Hook_ButtonSmall"/>
+    </Stack>
+    
+</Context>
