@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Context>
+    <Grid ID="CustomActionGrid" Anchor="R,B" Size="auto,41" AutoSizePadding="6,0" Texture="SelectionPanel_ActionGroupSlot" SliceCorner="5,19" SliceSize="1,1" SliceTextureSize="12,41" ConsumeMouse="1" Alpha="0.75">
+        <Button ID="CustomActionButton" Anchor="C,B" Size="44,53" Texture="UnitPanel_ActionButton">
+            <Image ID="UnitActionIcon" Anchor="C,C" Offset="0,-2" Size="38,38" Icon="ICON_UNIT_BUILDER"/>
+        </Button>
+    </Grid>
+</Context>
