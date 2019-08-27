@@ -3,7 +3,7 @@
 	<Properties>
 		<Name>圈地运动</Name>
 		<Teaser>圈地运动</Teaser>
-		<Description>给勇士加了个特殊的按钮，能让脚下的单元格划分到首都城市中。</Description>
+		<Description>给勇士加了个特殊的按钮，能让脚下的单元格划分到最近的己方城市中。</Description>
 		<Authors>Hemmelfort</Authors>
 		<AffectsSavedGames>0</AffectsSavedGames>
 		<CompatibleVersions>2.0</CompatibleVersions>
