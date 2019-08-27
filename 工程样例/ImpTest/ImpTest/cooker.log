@@ -1,0 +1,13 @@
+Starting AssetCooker...
+OPENCL ACCELERATION IS NOT AVAILABLE!  Your cooks will be SLOOOOWWW!  Please inform an engineer.
+XLP cook starting...
+d:\documents\Firaxis ModBuddy\Civilization VI\ImpTest\ImpTest\XLPs\tilebases.xlp
+Opened output file: D:\Documents\My Games\Sid Meier's Civilization VI\Mods\ImpTest\Platforms\MacOS\BLPs/landmarks/tilebases.blp    For XLP: 'd:\documents\Firaxis ModBuddy\Civilization VI\ImpTest\ImpTest\XLPs\tilebases.xlp'
+Could not load digest key: ''.  Using mod key to sign BLP.
+Starting 'landmarks/tilebases'
+Load finished for: 'landmarks/tilebases' in 0.087 seconds
+Cook finished for: 'landmarks/tilebases' in 0.001 seconds
+Disk write finished for: 'landmarks/tilebases' in 0.053 seconds
+Cleanup finished for: 'landmarks/tilebases' in 0.001 seconds
+XLP cook completed with success.
+Cook completed in 0.174 seconds

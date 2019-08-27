@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- GameData1 -->
+<!-- Author: grant -->
+<!-- DateCreated: 8/24/2019 4:52:39 PM -->
+<GameData>
+	<Types>
+		<Row Type="IMP_TEST" Kind="KIND_IMPROVEMENT"/>
+	</Types>
+
+	<Improvements>
+		<Row ImprovementType="IMP_TEST" Name="测试改良设施" Description="用于测试模型导入" Buildable="1" PlunderType="PLUNDER_SCIENCE" PlunderAmount="50" Icon="ICON_IMPROVEMENT_MINE"/>
+	</Improvements>
+
+	<Improvement_ValidTerrains>
+		<Row ImprovementType="IMP_TEST" TerrainType="TERRAIN_GRASS"/>
+		<Row ImprovementType="IMP_TEST" TerrainType="TERRAIN_PLAINS"/>
+	</Improvement_ValidTerrains>
+
+	<Improvement_ValidBuildUnits>
+		<Row ImprovementType="IMP_TEST" UnitType="UNIT_BUILDER"/>
+	</Improvement_ValidBuildUnits>
+
+</GameData>
