@@ -11,6 +11,8 @@ function Enclosure()
         local PlotY = unit:GetY()
         
         ExposedMembers.MNS.ChangePlotOwner(PlotX, PlotY, CurPlayer)
+        WorldView.PlayEffectAtXY("BUILDING_CREATED", PlotX, PlotY)  -- 光环效果
+        UI.PlaySound("Confirm_Civic")   -- 声音效果
     end
 end
 
