@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Author: grant -->
+<!-- DateCreated: 08/31/19 16:58:42 Sat -->
+<GameData>
+    <Types>
+		<Delete Type="CIVILIZATION_HONG_KONG"/>
+    </Types>
+    
+	<CityNames>
+		<Row CivilizationType="CIVILIZATION_CHINA" CityName="LOC_CITY_NAME_HONG_KONG"/>
+	</CityNames>
+	
+	<Modifiers>
+        <Row>
+            <ModifierId>HONGKONG_GOLDEN_BAY</ModifierId>
+            <ModifierType>MODIFIER_CITY_PLOT_YIELDS_ADJUST_PLOT_YIELD</ModifierType>
+        </Row>
+	</Modifiers>
+	
+	<ModifierArguments>
+        <Row>
+            <ModifierId>HONGKONG_GOLDEN_BAY</ModifierId>
+            <Name>Amount</Name>
+            <Value>2</Value>
+        </Row>
+        <Row>
+            <ModifierId>HONGKONG_GOLDEN_BAY</ModifierId>
+            <Name>YieldType</Name>
+            <Value>YIELD_GOLD</Value>
+        </Row>
+	</ModifierArguments>
+
+</GameData>
