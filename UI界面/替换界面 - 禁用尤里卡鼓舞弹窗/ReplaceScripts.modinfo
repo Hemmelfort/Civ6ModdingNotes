@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Mod id="8e60404f-aa7e-46a8-8e60-b1bae93b6666" version="1">
+	<Properties>
+		<Name>ReplaceUIScript</Name>
+		<Teaser>ReplaceUIScript</Teaser>
+		<Description>ReplaceUIScript.</Description>
+		<Authors>Hemmelfort</Authors>
+		<AffectsSavedGames>0</AffectsSavedGames>
+		<CompatibleVersions>1.2,2.0</CompatibleVersions>
+	</Properties>
+
+	<Components>		
+		<ReplaceUIScript id="REPLACE_UI_SCRIPT">
+			<Properties>
+				<LoadOrder>10000</LoadOrder>
+				<LuaContext>BoostUnlockedPopup</LuaContext>
+				<LuaReplace>ReplacedScript.lua</LuaReplace>
+			</Properties>
+		</ReplaceUIScript>
+	</Components>
+	
+	<Files>
+        <File>ReplacedScript.lua</File>
+	</Files>
+</Mod>
