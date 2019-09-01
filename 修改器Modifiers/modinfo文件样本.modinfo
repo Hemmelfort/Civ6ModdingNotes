@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Mod id="9966404f-aa7e-46a8-8e60-b1bae93b6666" version="1">
+	<Properties>
+		<Name>TEST</Name>
+		<Teaser>TEST</Teaser>
+		<Description>TEST.</Description>
+		<Authors>Hemmelfort</Authors>
+		<AffectsSavedGames>0</AffectsSavedGames>
+		<CompatibleVersions>2.0</CompatibleVersions>
+	</Properties>
+
+	<Components>		
+		<UpdateDatabase id="TEST_SQL">
+			<Properties>
+				<LoadOrder>10010</LoadOrder>
+			</Properties>
+			<Items>
+                <File>TEST.sql</File>
+			</Items>
+		</UpdateDatabase>
+		<UpdateDatabase id="TEST_XML">
+			<Properties>
+				<LoadOrder>10086</LoadOrder>
+			</Properties>
+			<Items>
+                <File>TEST.xml</File>
+			</Items>
+		</UpdateDatabase>
+	</Components>
+	
+	<Files>
+		<File>TEST.sql</File>
+		<File>TEST.xml</File>
+	</Files>
+</Mod>
