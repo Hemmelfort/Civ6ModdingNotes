@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Mod id="8e60404f-aa7e-46a8-8e60-b1bae93b6666" version="1">
+	<Properties>
+		<Name>取消弹窗</Name>
+		<Teaser>取消一些不必要的弹窗</Teaser>
+		<Description>取消了以下弹窗：[NEWLINE]* 尤里卡和鼓舞的弹窗[NEWLINE]* 科技和文化研究完成的弹窗[NEWLINE]* 历史时刻的弹窗[NEWLINE]* 新巨作诞生的弹窗</Description>
+		<Authors>Hemmelfort</Authors>
+		<AffectsSavedGames>0</AffectsSavedGames>
+		<CompatibleVersions>1.2,2.0</CompatibleVersions>
+	</Properties>
+
+	<Components>
+		<ReplaceUIScript id="REMOVE_BOOST_POPUP">
+			<Properties>
+				<LoadOrder>10000</LoadOrder>
+				<LuaContext>BoostUnlockedPopup</LuaContext>
+				<LuaReplace>Replace_BoostUnlockedPopup.lua</LuaReplace>
+			</Properties>
+		</ReplaceUIScript>
+		<ReplaceUIScript id="REMOVE_COMPLETE_POPUP">
+			<Properties>
+				<LoadOrder>10001</LoadOrder>
+				<LuaContext>TechCivicCompletedPopup</LuaContext>
+				<LuaReplace>Replace_TechCivicCompletedPopup.lua</LuaReplace>
+			</Properties>
+		</ReplaceUIScript>
+		<ReplaceUIScript id="REMOVE_MOMENTS_POPUP">
+			<Properties>
+				<LoadOrder>10002</LoadOrder>
+				<LuaContext>HistoricMoments</LuaContext>
+				<LuaReplace>Replace_HistoricMoments.lua</LuaReplace>
+			</Properties>
+		</ReplaceUIScript>
+		<ReplaceUIScript id="REMOVE_GREATWORK_POPUP">
+			<Properties>
+				<LoadOrder>10003</LoadOrder>
+				<LuaContext>GreatWorkShowcase</LuaContext>
+				<LuaReplace>Replace_GreatWorkShowcase.lua</LuaReplace>
+			</Properties>
+		</ReplaceUIScript>
+	</Components>
+	
+	<Files>
+        <File>Replace_BoostUnlockedPopup.lua</File>
+        <File>Replace_TechCivicCompletedPopup.lua</File>
+        <File>Replace_HistoricMoments.lua</File>
+        <File>Replace_GreatWorkShowcase.lua</File>
+	</Files>
+</Mod>
