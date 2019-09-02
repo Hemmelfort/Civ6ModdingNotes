@@ -7,21 +7,27 @@
 		<Authors>Hemmelfort</Authors>
 		<CompatibleVersions>1.2,2.0</CompatibleVersions>
 	</Properties>
+	
+	<ActionCriteria>
+        <Criteria id="NormalRuleset" any="1">
+            <RuleSetInUse>RULESET_STANDARD,RULESET_EXPANSION_1,RULESET_EXPANSION_2</RuleSetInUse>
+        </Criteria>
+	</ActionCriteria>
 
 	<Components>
-		<UpdateDatabase id="HK_DATA">            
+		<UpdateDatabase id="HK_DATA" criteria="NormalRuleset">            
 			<Properties>
 				<LoadOrder>9707</LoadOrder>
 			</Properties>
 			<File>Data.Xml</File>
 		</UpdateDatabase>
-		<UpdateText id="HK_TEXT">   
+		<UpdateText id="HK_TEXT" criteria="NormalRuleset">   
 			<Properties>
 				<LoadOrder>9707</LoadOrder>
 			</Properties>
             <File>Text.Xml</File>
 		</UpdateText>		
-		<AddGameplayScripts id="HK_SCRIPT">
+		<AddGameplayScripts id="HK_SCRIPT" criteria="NormalRuleset">
             <File>Buff.Lua</File>
 		</AddGameplayScripts>
 	</Components>
