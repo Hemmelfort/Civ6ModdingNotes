@@ -1,35 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Mod id="9966404f-aa7e-46a8-8e60-b1bae93b6666" version="1">
 	<Properties>
-		<Name>TEST</Name>
-		<Teaser>TEST</Teaser>
-		<Description>TEST.</Description>
+		<Name>Modinfo 文件样例</Name>
+		<Teaser>Modinfo 文件样例</Teaser>
+		<Description>Modinfo 文件样例。把下面的 “Test.Sql” 换成你自己的文件，Xml 和 Sql 文件的加载方式是一样的。</Description>
 		<Authors>Hemmelfort</Authors>
-		<AffectsSavedGames>0</AffectsSavedGames>
-		<CompatibleVersions>2.0</CompatibleVersions>
+		<CompatibleVersions>1.2,2.0</CompatibleVersions>
 	</Properties>
 
 	<Components>		
 		<UpdateDatabase id="TEST_SQL">
 			<Properties>
-				<LoadOrder>10010</LoadOrder>
-			</Properties>
-			<Items>
-                <File>TEST.sql</File>
-			</Items>
-		</UpdateDatabase>
-		<UpdateDatabase id="TEST_XML">
-			<Properties>
 				<LoadOrder>10086</LoadOrder>
 			</Properties>
-			<Items>
-                <File>TEST.xml</File>
-			</Items>
+			<File>Test.Sql</File>
 		</UpdateDatabase>
 	</Components>
 	
 	<Files>
-		<File>TEST.sql</File>
-		<File>TEST.xml</File>
+		<File>Test.Sql</File>
 	</Files>
 </Mod>
