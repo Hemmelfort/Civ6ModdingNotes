@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<AssetObjects..ArtDefSet>
+	<m_Version>
+		<major>4</major>
+		<minor>0</minor>
+		<build>415</build>
+		<revision>990</revision>
+	</m_Version>
+	<m_TemplateName text="SkyBox"/>
+	<m_RootCollections>
+		<Element>
+			<m_CollectionName text="SkyBox"/>
+			<m_ReplaceMergedCollectionElements>false</m_ReplaceMergedCollectionElements>
+			<Element>
+				<m_Fields>
+					<m_Values>
+						<Element class="AssetObjects..BLPEntryValue">
+							<m_EntryName text="NewSkybox"/>
+							<m_XLPClass text="SkyBoxTexture"/>
+							<m_XLPPath text="skybox.xlp"/>
+							<m_BLPPackage text="SkyBox"/>
+							<m_LibraryName text="SkyBoxTexture"/>
+							<m_ParamName text="SkyBoxTexture"/>
+						</Element>
+					</m_Values>
+				</m_Fields>
+				<m_ChildCollections/>
+				<m_Name text="SkyPlane"/>
+				<m_AppendMergedParameterCollections>false</m_AppendMergedParameterCollections>
+			</Element>
+		</Element>
+	</m_RootCollections>
+</AssetObjects..ArtDefSet>
+
