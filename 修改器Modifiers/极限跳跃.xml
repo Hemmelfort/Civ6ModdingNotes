@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Author: Hemmelfort -->
+<!-- DateCreated: 8/11/2019 2:39:32 PM -->
+<GameData>
+	<Types>
+		<Row Type="ABL_JUMP_JUMP" Kind="KIND_ABILITY"/>
+	</Types>
+	
+	<Tags>
+        <Row Tag="CLASS_JUMP_JUMP" Vocabulary="ABILITY_CLASS"/>
+    </Tags>
+
+	<TypeTags>
+		<Row Type="ABL_JUMP_JUMP" Tag="CLASS_JUMP_JUMP"/>
+	</TypeTags>
+
+    <UnitAbilities>
+        <Row UnitAbilityType="ABL_JUMP_JUMP" Name="极限跳跃" Description="心有多高，跳得多远" Inactive="false" ShowFloatTextWhenEarned="false"/>
+    </UnitAbilities>
+    
+	
+	<UnitAbilityModifiers>	
+		<Row>
+			<UnitAbilityType>ABL_JUMP_JUMP</UnitAbilityType>
+			<ModifierId>JUMP_JUMP</ModifierId>
+		</Row>
+	</UnitAbilityModifiers>
+	
+	<Modifiers>
+        <Row>
+            <ModifierId>JUMP_JUMP</ModifierId>
+            <ModifierType>MODIFIER_SINGLE_UNIT_ADJUST_JUMP_DISTANCE</ModifierType>
+        </Row>
+	</Modifiers>
+	
+	<ModifierArguments>
+        <Row>
+			<ModifierId>JUMP_JUMP</ModifierId>
+			<Name>Range</Name>
+			<Value>30</Value>
+		</Row>
+	</ModifierArguments>
+
+</GameData>
