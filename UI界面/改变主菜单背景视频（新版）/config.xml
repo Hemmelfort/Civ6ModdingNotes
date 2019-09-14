@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<GameInfo>
+	<Logos>
+		<Row LogoTexture="Shell_LogoEXP2.dds" LogoMovie="bg.bk2" Priority="2019" />
+	</Logos>
+</GameInfo>

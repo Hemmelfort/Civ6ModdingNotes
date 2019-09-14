@@ -3,7 +3,7 @@
 	<Properties>
 		<Name>改变主菜单背景视频</Name>
 		<Teaser>改变主菜单背景视频</Teaser>
-		<Description>在当前目录下放一个名为 bg.bk2 的视频文件，即可改变主菜单背景视频。[NEWLINE]bk2 格式的视频可以用 RAD Video Tools 制作。</Description>
+		<Description>在当前目录下放一个名为 bg.bk2 的视频文件，即可改变主菜单背景视频。[NEWLINE]bk2 格式的视频可以用 RAD Video Tools 制作。[NEWLINE][NEWLINE]（注意：本方法自2019年九月份秋更之后失效。）</Description>
 		<Authors>Hemmelfort</Authors>
 		<AffectsSavedGames>0</AffectsSavedGames>
 		<CompatibleVersions>2.0</CompatibleVersions>
