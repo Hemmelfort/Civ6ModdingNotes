@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mod id="072d2ea0-d31c-4d2f-959a-1c4fac7efd68" version="1">
   <Properties>
-    <Name>My Custom Sky</Name>
-    <Description>This is a brief description of the mod.</Description>
-    <Teaser>This is a brief description of the mod.</Teaser>
+    <Name>红色星空背景</Name>
+    <Description>替换了游戏中的背景图。</Description>
+    <Teaser>红色星空背景</Teaser>
     <Authors>Hemmelfort</Authors>
     <AffectsSavedGames>0</AffectsSavedGames>
     <CompatibleVersions>1.2,2.0</CompatibleVersions>
