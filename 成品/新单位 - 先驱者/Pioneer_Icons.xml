@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Pioneer_Icons -->
+<!-- Author: grant -->
+<!-- DateCreated: 8/11/2019 2:46:14 PM -->
+<GameData>
+	<IconTextureAtlases>
+		<Row Name="ATLAS_UNIT_PIONEER" IconSize="256" IconsPerRow="1" IconsPerColumn="1" Filename="ICON_UNIT_PIONEER_256.dds"/>
+		<Row Name="ATLAS_UNIT_PIONEER" IconSize="80" IconsPerRow="1" IconsPerColumn="1" Filename="ICON_UNIT_PIONEER_80.dds"/>
+		<Row Name="ATLAS_UNIT_PIONEER" IconSize="50" IconsPerRow="1" IconsPerColumn="1" Filename="ICON_UNIT_PIONEER_50.dds"/>
+		<Row Name="ATLAS_UNIT_PIONEER" IconSize="38" IconsPerRow="1" IconsPerColumn="1" Filename="ICON_UNIT_PIONEER_38.dds"/>
+		<Row Name="ATLAS_UNIT_PIONEER" IconSize="32" IconsPerRow="1" IconsPerColumn="1" Filename="ICON_UNIT_PIONEER_32.dds"/>
+		<Row Name="ATLAS_UNIT_PIONEER" IconSize="22" IconsPerRow="1" IconsPerColumn="1" Filename="ICON_UNIT_PIONEER_22.dds"/>
+		
+		<Row Name="ATLAS_UNIT_PIONEER_PORTRAIT" IconSize="256" IconsPerRow="1" IconsPerColumn="1" Filename="ICON_UNIT_PIONEER_PORTRAIT_256.dds"/>
+		<Row Name="ATLAS_UNIT_PIONEER_PORTRAIT" IconSize="200" IconsPerRow="1" IconsPerColumn="1" Filename="ICON_UNIT_PIONEER_PORTRAIT_200.dds"/>
+		<Row Name="ATLAS_UNIT_PIONEER_PORTRAIT" IconSize="95" IconsPerRow="1" IconsPerColumn="1" Filename="ICON_UNIT_PIONEER_PORTRAIT_95.dds"/>
+		<Row Name="ATLAS_UNIT_PIONEER_PORTRAIT" IconSize="70" IconsPerRow="1" IconsPerColumn="1" Filename="ICON_UNIT_PIONEER_PORTRAIT_70.dds"/>
+		<Row Name="ATLAS_UNIT_PIONEER_PORTRAIT" IconSize="50" IconsPerRow="1" IconsPerColumn="1" Filename="ICON_UNIT_PIONEER_PORTRAIT_50.dds"/>
+		<Row Name="ATLAS_UNIT_PIONEER_PORTRAIT" IconSize="38" IconsPerRow="1" IconsPerColumn="1" Filename="ICON_UNIT_PIONEER_PORTRAIT_38.dds"/>
+	</IconTextureAtlases>
+
+
+
+	<IconDefinitions>
+		<Row Name="ICON_UNIT_PIONEER" Atlas="ATLAS_UNIT_PIONEER" index="0"/>
+		<Row Name="ICON_UNIT_PIONEER_PORTRAIT" Atlas="ATLAS_UNIT_PIONEER_PORTRAIT" index="0"/>
+	</IconDefinitions>
+
+</GameData>
