@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<GameData>
+    
+    <!-- 例子：纪念碑让单城每个地块+2金币 -->
+    <BuildingModifiers>
+        <Row>
+            <BuildingType>BUILDING_MONUMENT</BuildingType>
+            <ModifierId>GOLDEN_CITY</ModifierId>
+        </Row>
+    </BuildingModifiers>
+    
+	<Modifiers>
+        <Row>
+            <ModifierId>GOLDEN_CITY</ModifierId>
+            <ModifierType>MODIFIER_CITY_PLOT_YIELDS_ADJUST_PLOT_YIELD</ModifierType>
+        </Row>
+	</Modifiers>
+	
+	<ModifierArguments>
+        <Row>
+            <ModifierId>GOLDEN_CITY</ModifierId>
+            <Name>Amount</Name>
+            <Value>2</Value>
+        </Row>
+        <Row>
+            <ModifierId>GOLDEN_CITY</ModifierId>
+            <Name>YieldType</Name>
+            <Value>YIELD_GOLD</Value>
+        </Row>
+	</ModifierArguments>
+
+</GameData>
