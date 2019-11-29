@@ -502,13 +502,13 @@ WorldBuilder.CityManager():CreateDistrict(pCity, idis, 100, iPlot)    -- 100可�
 【2】  BreathtakingPlots, CharmingPlots, AveragePlots, UninvitingPlots, DisgustingPlots = Map.GetContinentPlotsAppeal();  
 【3】 FullWaterPlots, CoastalWaterPlots, NoWaterPlots, NoSettlePlots = Map.GetContinentPlotsWaterAvailability();
 
-### 改变地形与地貌（未测试）
+### 改变地形与地貌
 
 ```lua
-TerrainBuilder.CanHaveFeature(iPlot, eFeatureType)
-TerrainBuilder.GetAdjacentFeatureCount(iPlot, eFeatureType)
-TerrainBuilder.SetFeatureType(iPlot, eFeatureType)
-TerrainBuilder.SetTerrainType(iPlot, eTerrainType)
+TerrainBuilder.CanHaveFeature(pPlot, eFeatureType)
+TerrainBuilder.GetAdjacentFeatureCount(pPlot, eFeatureType)
+TerrainBuilder.SetFeatureType(pPlot, eFeatureType)
+TerrainBuilder.SetTerrainType(pPlot, eTerrainType)
 ```
 
 
