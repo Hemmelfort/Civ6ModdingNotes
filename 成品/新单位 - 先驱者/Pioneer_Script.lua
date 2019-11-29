@@ -44,6 +44,10 @@ function SummonBarbarian(PlotX, PlotY)
     if (PlotX > -1) and (PlotY > -1) then
         local sUnitType = RandomUnitType()
         UnitManager.InitUnitValidAdjacentHex(63, sUnitType, PlotX, PlotY, 1)
+        sUnitType = RandomUnitType()
+        UnitManager.InitUnitValidAdjacentHex(63, sUnitType, PlotX, PlotY, 1)
+        sUnitType = RandomUnitType()
+        UnitManager.InitUnitValidAdjacentHex(63, sUnitType, PlotX, PlotY, 1)        
     end
 
 end
