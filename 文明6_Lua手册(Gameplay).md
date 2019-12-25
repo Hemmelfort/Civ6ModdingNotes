@@ -158,17 +158,19 @@ end
 AddGreatMerchant(playerID, "GREAT_PERSON_INDIVIDUAL_ZHANG_QIAN")
 ```
 
-### 宣战（待测试）
+### 宣战
+
+判断能否宣战（只能用在 UI 环境）：
 
 ```lua
-local pPlayer = Players[g_TunerSelectedPlayer];
-if (pPlayer ~= nil) then
-	local otherPlayerID = 1;
-	if (myTeamID ~= otherPlayerID) then
-		pPlayer:GetDiplomacy():SetAtWarWith(otherTeamID, true);
-		Players[otherPlayerID]:GetDiplomacy():SetAtWarWith(pPlayer:GetID(), true);
-	end
-end
+if Players[player1]:GetDiplomacy():CanDeclareWarOn(player2) then
+    ExposedMembers.MNS.PerformFighting(player1, player2)
+```
+
+正式宣战（只能用于 Gameplay 环境）:
+
+```lua
+Players[player1]:GetDiplomacy():DeclareWarOn(player2, WarTypes.FORMAL_WAR, true)
 ```
 
 ### 观察者视角
@@ -269,6 +271,12 @@ local exps = pUnit:GetExperience():GetExperienceForNextLevel()
 pUnit:GetExperience():ChangeExperience(exps);
 ```
 
+### 添加能力(待测试)
+
+```lua
+pUnit:GetAbility():ChangeAbilityCount("ABILITY_XXX", 1)
+pUnit:GetAbility():ChangeAbilityCount("ABILITY_XXX", -1)
+```
 
 ### 禁止造某单位
 ```lua
@@ -511,6 +519,14 @@ TerrainBuilder.SetFeatureType(pPlot, eFeatureType)
 TerrainBuilder.SetTerrainType(pPlot, eTerrainType)
 ```
 
+
+### 添加改良设施
+
+```lua
+ImprovementBuilder.SetImprovementType(pPlot, iImprovement)
+```
+
+注：若 `iImprovement` 为 -1 则移除改良。
 
 ### 格位所有者变更
 
