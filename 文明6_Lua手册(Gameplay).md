@@ -99,7 +99,7 @@ local admiral = GameInfo.GreatPersonClasses['GREAT_PERSON_CLASS_ADMIRAL']
 player:GetGreatPeoplePoints():ChangePointsTotal(admiral.Index, 5)
 ```
 
-### 根据名称获取科技
+### 根据名称完成科技
 
 ```lua
 local playerTechs = pPlayer:GetTechs();
@@ -196,9 +196,9 @@ end
 |       功能       |                                  代码                                   |              说明               |
 | ---------------- | ----------------------------------------------------------------------- | ------------------------------ |
 | 获取单位（方法1）  | `local pUnit = UnitManager.GetUnit(iPlayerID, iUnitID);`                |                                |
-| 获取单位（方法2）  | `local pUnit = pPlayer:GetUnits():FindID(iUnitID);`                      |                                |
+| 获取单位（方法2）  | `local pUnit = pPlayer:GetUnits():FindID(iUnitID);`                     |                                |
 | 获取剩余移动力     | `pUnit:GetMovesRemaining()`                                             |                                |
-| 加移动力          | `pUnit:ChangeExtraMoves(-1)`                                            | 永久，升级后无效                 |
+| 加移动力          | `pUnit:ChangeExtraMoves(-1)`                                            | 永久，但升级后无效               |
 | 加移动力          | `UnitManager.ChangeMovesRemaining(pUnit, 4)`                            | 本回合有效                      |
 | 恢复移动力        | `UnitManager.RestoreMovement(pUnit)`                                    | 进入zoc之后无法移动              |
 | 恢复移动力        | `UnitManager.RestoreMovementToFormation(pUnit)`                         | 进入zoc之后可以逃离              |
@@ -229,13 +229,13 @@ end
 
 ### 获取单位类型需要注意的事情
 
-|                   方法                    |              效果               |
-| ----------------------------------------- | ------------------------------ |
-| `pUnit:GetType()`                         | 返回一个数字                    |
-| `pUnit.TypeName()`                        | 返回的是 "Unit"                 |
-| `pUnit.GetUnitType()`                     | ❌无效                         |
-| `UnitManager.GetTypeName()`               | 返回 "LOC_UNIT_SCOUT_NAME" 这种 |
-| `GameInfo.Units[unit:GetType()].UnitType` | ✔正确                        |
+|                    方法                    |              效果               |
+| ------------------------------------------ | ------------------------------ |
+| `pUnit:GetType()`                          | 返回一个数字（即Index）          |
+| `pUnit.TypeName()`                         | 返回的是 "Unit"                 |
+| `pUnit.GetUnitType()`                      | ❌无效                         |
+| `UnitManager.GetTypeName()`                | 返回 "LOC_UNIT_SCOUT_NAME" 这种 |
+| `GameInfo.Units[pUnit:GetType()].UnitType` | ✔ 返回"UNIT_BUILDER"这种        |
 
 
 ### 单位的遍历
@@ -523,6 +523,7 @@ TerrainBuilder.SetTerrainType(pPlot, eTerrainType)
 ### 添加改良设施
 
 ```lua
+ImprovementBuilder.CanHaveImprovement(pPlot, iImprovement, -1) -- 最后一个参数 -1 不明
 ImprovementBuilder.SetImprovementType(pPlot, iImprovement)
 ```
 
@@ -587,7 +588,7 @@ for i, eContinent in ipairs(tContinents) do
 local pBarbManager = Game.GetBarbarianManager()
 ```
 
-#### 待验证 
+#### 待验证
 ```lua
 -- 用法未知
 pBarbManager:CreateSpecificTribe()
@@ -596,8 +597,10 @@ pBarbManager:CreateSpecificTribe()
 #### 创建蛮族营地
 
 ```lua
-pBarbManager:CreateTribeOfType(BarbarianTribes DB Index, iPlotIndex)
+pBarbManager:CreateTribeOfType(iBarb, iPlotIndex)
 ```
+
+第一个数字可能是不同蛮族阵营的编号，用于指挥它们攻击不同的城市。该方法来自 DLC *雅德维加的遗产*。
 
 #### 根据升级类型召唤单位
 
