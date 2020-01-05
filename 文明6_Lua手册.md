@@ -1,7 +1,8 @@
 
 # Civ6 Lua 手册
 
-> 本文内容适用于 Gameplay 环境
+
+> 如果没有特别说明能用于 UI 环境，那本文大部分功能主要用在 Gameplay 环境。
 
 
 ## Player
@@ -15,22 +16,22 @@ local pPlayer = Players[playerID]
 
 ### 常用功能
 
-|       功能       |                            代码                            |    说明     |
-| ---------------- | ---------------------------------------------------------- | ----------- |
-| 设置金币          | `pPlayer:GetTreasury():SetGoldBalance(100)`                |             |
-| 加减金币          | `pPlayer:GetTreasury():ChangeGoldBalance(-5)`              |             |
-| 根据百分比加减金币 | `pPlayer:GetTreasury():ChangeGoldBalanceByPercentage(10)`  |             |
-| 加总督点数        | `pPlayer:GetGovernors():ChangeGovernorPoints(1)`           |             |
-| 加外交决议        | `pPlayer:GetDiplomacy():ChangeFavor(10)`                   |             |
-| 加外交胜利点数     | `pPlayer:GetStats():ChangeDiplomaticVictoryPoints(1)`      | ❌无效      |
-| 加影响力点数      | `pPlayer:GetInfluence():ChangeTokensToGive(1)`             |             |
-| 加文化            | `pPlayer:GetCulture():ChangeCurrentCulturalProgress(1000)` | 不是每回合的 |
-| 加信仰            | `pPlayer:GetReligion():ChangeFaithBalance(50)`             |             |
-| 判断是否是AI      | `pPlayer:IsAI()`                                           |             |
-| 判断是否健在      | `pPlayer:IsAlive()`                                        |             |
-| 判断是否是人类玩家 | `pPlayer:IsHuman()`                                        |             |
-| 判断是否是野蛮人   | `pPlayer:IsBarbarian()`                                    |             |
-| 判断是否是主流文明 | `pPlayer:IsMajor()`                                        |             |
+|       功能       |                            代码                            |  说明  |
+| ---------------- | ---------------------------------------------------------- | ------ |
+| 设置金币          | `pPlayer:GetTreasury():SetGoldBalance(100)`                |        |
+| 加减金币          | `pPlayer:GetTreasury():ChangeGoldBalance(-5)`              |        |
+| 根据百分比加减金币 | `pPlayer:GetTreasury():ChangeGoldBalanceByPercentage(10)`  |        |
+| 加总督点数        | `pPlayer:GetGovernors():ChangeGovernorPoints(1)`           |        |
+| 加外交决议        | `pPlayer:GetDiplomacy():ChangeFavor(10)`                   |        |
+| 加外交胜利点数     | `pPlayer:GetStats():ChangeDiplomaticVictoryPoints(1)`      | ❌无效 |
+| 加影响力点数      | `pPlayer:GetInfluence():ChangeTokensToGive(1)`             |        |
+| 加文化            | `pPlayer:GetCulture():ChangeCurrentCulturalProgress(1000)` | 一次性 |
+| 加信仰            | `pPlayer:GetReligion():ChangeFaithBalance(50)`             |        |
+| 判断是否是AI      | `pPlayer:IsAI()`                                           |        |
+| 判断是否健在      | `pPlayer:IsAlive()`                                        |        |
+| 判断是否是人类玩家 | `pPlayer:IsHuman()`                                        |        |
+| 判断是否是野蛮人   | `pPlayer:IsBarbarian()`                                    |        |
+| 判断是否是主流文明 | `pPlayer:IsMajor()`                                        |        |
 
 TODO:
 
@@ -283,6 +284,24 @@ pUnit:GetAbility():ChangeAbilityCount("ABILITY_XXX", -1)
 local m_ePlagueDoctorUnit : number = GameInfo.Units["UNIT_PLAGUE_DOCTOR"].Index;
 pPlayer:GetUnits():SetBuildDisabled(m_ePlagueDoctorUnit, true)
 ```
+
+### 适用于 UI 环境的功能
+
+#### 判断单位操作指令
+
+```
+UnitManager.CanStartOperation(pUnit, UnitOperationTypes.MOVE_TO)
+```
+
+#### 向单位发送指令
+
+```
+UnitManager.RequestOperation(pUnit, UnitOperationTypes.FORTIFY)
+```
+
+
+
+
 
 ---
 
