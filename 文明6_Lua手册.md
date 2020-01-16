@@ -1,8 +1,18 @@
 
-# Civ6 Lua 手册
+# 文明6 Lua 手册
 
+原作者：[Hemmelfort](https://space.bilibili.com/28399130)
+
+
+## 前言
+
+
+本文内容不时会更新，获取最新版本请访问项目地址：
+- [Gitee](https://gitee.com/Hemmelfort/Civ6ModdingNotes)
+- [Github](https://github.com/Hemmelfort/Civ6ModdingNotes)
 
 > 如果没有特别说明能用于 UI 环境，那本文大部分功能主要用在 Gameplay 环境。
+
 
 
 ## Player
@@ -234,7 +244,7 @@ end
 | ------------------------------------------ | ------------------------------ |
 | `pUnit:GetType()`                          | 返回一个数字（即Index）          |
 | `pUnit.TypeName()`                         | 返回的是 "Unit"                 |
-| `pUnit.GetUnitType()`                      | ❌无效                         |
+| `pUnit.GetUnitType()`                      | ❗ 只用于 UI 环境，返回 Index      |
 | `UnitManager.GetTypeName()`                | 返回 "LOC_UNIT_SCOUT_NAME" 这种 |
 | `GameInfo.Units[pUnit:GetType()].UnitType` | ✔ 返回"UNIT_BUILDER"这种        |
 
@@ -242,7 +252,7 @@ end
 ### 单位的遍历
 
 ```lua
-local function FindPossibleEventUnits( playerId )		
+function FindPossibleEventUnits( playerId )
 	local pPlayer = Players[playerId];
 	local playerUnits = pPlayer:GetUnits();
 	for i, unit in playerUnits:Members() do
@@ -250,7 +260,7 @@ local function FindPossibleEventUnits( playerId )
 		if (unitInfo) then
 			local unitTypeName = unitInfo.UnitType;
 
-			if unitTypeName ~= "UNIT_TRADER" then
+			if unitTypeName == "UNIT_TRADER" then
                 print("Do your things here.")
 			end
 		end
@@ -287,17 +297,79 @@ pPlayer:GetUnits():SetBuildDisabled(m_ePlagueDoctorUnit, true)
 
 ### 适用于 UI 环境的功能
 
-#### 判断单位操作指令
+#### 单位操作
+
+位于 `UnitOperationTypes` 表中的内容：
+
+```lua
+['AIR_ATTACK', 'BUILD_IMPROVEMENT', 'BUILD_IMPROVEMENT_ADJACENT','COASTAL_RAID',
+'DEPLOY', 'FORTIFY', 'FOUND_CITY', 'MAKE_TRADE_ROUTE', 'MOVE_TO',
+'PARAM_FLAGS', 'PARAM_IMPROVEMENT_TYPE', 'PARAM_MODIFIERS', 'PARAM_OPERATION_TYPE', 'PARAM_WMD_TYPE', 'PARAM_X', 'PARAM_X0', 'PARAM_X1', 'PARAM_Y', 'PARAM_Y0', 'PARAM_Y1',
+'RANGE_ATTACK', 'REBASE',
+'SPY_COUNTERSPY', 'SPY_GAIN_SOURCES', 'SPY_GREAT_WORK_HEIST', 'SPY_LISTENING_POST', 'SPY_SIPHON_FUNDS', 'SPY_STEAL_TECH_BOOST', 'SPY_TRAVEL_NEW_CITY',
+'SWAP_UNITS', 'TYPE', 'WMD_STRIKE']
+```
+
+注：数据库 UnitOperations 表中的操作似乎与这些指令并不相同。
+
+##### 判断指令
 
 ```
 UnitManager.CanStartOperation(pUnit, UnitOperationTypes.MOVE_TO)
 ```
 
-#### 向单位发送指令
+##### 驻扎
 
 ```
 UnitManager.RequestOperation(pUnit, UnitOperationTypes.FORTIFY)
 ```
+
+##### 发核弹
+
+```lua
+function WMDStrike( plot, unit, eWMD )
+	local tParameters = {};
+	tParameters[UnitOperationTypes.PARAM_X] = plot:GetX();
+	tParameters[UnitOperationTypes.PARAM_Y] = plot:GetY();
+	tParameters[UnitOperationTypes.PARAM_WMD_TYPE] = eWMD;
+	if (UnitManager.CanStartOperation( unit, UnitOperationTypes.WMD_STRIKE, nil, tParameters)) then
+		UnitManager.RequestOperation( unit, UnitOperationTypes.WMD_STRIKE, tParameters);
+	end
+end
+```
+
+#### 单位命令
+
+`UnitCommandTypes` 表中的内容：
+
+```lua
+['AIRLIFT', 'CANCEL', 'CONDEMN_HERETIC', 'DELETE',
+'ENTER_FORMATION', 'EXECUTE_SCRIPT', 'FORM_ARMY', 'FORM_CORPS',
+'MOVE_JUMP', 'NAME_UNIT', 'PARADROP',
+'PARAM_NAME', 'PARAM_PROMOTION_TYPE', 'PARAM_UNIT_ID', 'PARAM_UNIT_PLAYER', 'PARAM_X', 'PARAM_Y',
+'PRIORITY_TARGET', 'PROMOTE', 'TYPE', 'UPGRADE']
+```
+
+##### 组建军团/军队
+
+```lua
+local tParameters :table = {};
+tParameters[UnitCommandTypes.PARAM_UNIT_PLAYER] = pUnit:GetOwner();
+tParameters[UnitCommandTypes.PARAM_UNIT_ID] = pUnit:GetID();
+if (UnitManager.CanStartCommand( pSelectedUnit, UnitCommandTypes.FORM_CORPS, tParameters)) then
+	UnitManager.RequestCommand( pSelectedUnit, UnitCommandTypes.FORM_CORPS, tParameters);
+end
+```
+
+##### 单位晋升
+
+```lua
+local tParameters = {};
+tParameters[UnitCommandTypes.PARAM_PROMOTION_TYPE] = ePromotion;
+UnitManager.RequestCommand( pUnit, UnitCommandTypes.PROMOTE, tParameters );
+```
+
+
 
 
 
@@ -389,6 +461,28 @@ local iPlot = Map.GetPlotIndex(15, 13)
 WorldBuilder.CityManager():CreateDistrict(pCity, idis, 100, iPlot)    -- 100可能是完成度
 ```
 
+### UI 环境
+
+#### 摧毁城市
+
+毁灭城市的选项：
+
+- CityDestroyDirectives.LIBERATE_FOUNDER
+- CityDestroyDirectives.LIBERATE_PREVIOUS_OWNER
+- CityDestroyDirectives.KEEP
+- CityDestroyDirectives.RAZE
+- CityDestroyDirectives.REJECT (DLC1)
+
+```lua
+local tParameters = {};
+tParameters[UnitOperationTypes.PARAM_FLAGS] = CityDestroyDirectives.RAZE;
+if (CityManager.CanStartCommand( g_pSelectedCity, CityCommandTypes.DESTROY, tParameters)) then
+	CityManager.RequestCommand( g_pSelectedCity, CityCommandTypes.DESTROY, tParameters);
+end
+```
+
+
+
 ---
 
 ## Plot 和 Map
@@ -474,6 +568,7 @@ WorldBuilder.CityManager():CreateDistrict(pCity, idis, 100, iPlot)    -- 100可�
 |                | `pPlot:IsStartingPlot()`                                  | ❓未知                   |
 |                | `pPlot:IsValidFoundLocation()`                            | ❓未知                   |
 | 是水域          | `pPlot:IsWater()`                                         | 湖泊和海洋，非河流        |
+| 是否有单位      | `pPlot:IsUnit()`                                          |                         |
 
 
 - 判断河流与悬崖的方位
@@ -598,6 +693,62 @@ for i, eContinent in ipairs(tContinents) do
 最后似乎还有一个未知参数待确认。
 
 【2】 包含城邦、自由城市、野蛮人在内。返回一个列表，其中每一项都是 pPlayer。
+
+
+### 建立商路（仅 UI 环境）
+
+#### 从商人身上获取商路信息
+
+```lua
+local trade:table = m_selectedUnit:GetTrade();
+local prevOriginComponentID:table = trade:GetLastOriginTradeCityComponentID();
+local prevDestComponentID:table = trade:GetLastDestinationTradeCityComponentID();
+```
+
+其中 `ComponentID` 的属性：
+
+```lua
+if originCity:GetID() == prevOriginComponentID.id
+and originCity:GetOwner() == prevOriginComponentID.player then
+```
+
+#### 从城市获取商路
+
+```lua
+local owningPlayer:table = Players[pUnit:GetOwner()];
+local cities:table = owningPlayer:GetCities();
+for _, city in cities:Members() do
+	local outgoingRoutes:table = city:GetTrade():GetOutgoingRoutes();
+	for i,route in ipairs(outgoingRoutes) do
+		if unitID == route.TraderUnitID then
+			-- Find origin city
+			local originCity:table = cities:FindID(route.OriginCityID);
+
+			-- Find destination city
+			local destinationPlayer:table = Players[route.DestinationCityPlayer];
+			local destinationCities:table = destinationPlayer:GetCities();
+			local destinationCity:table = destinationCities:FindID(route.DestinationCityID);
+```
+
+
+#### 给单位建立商路
+
+```lua
+local destinationCity = GetDestinationCity();
+if destinationCity and m_selectedUnit then
+	local operationParams = {};
+	operationParams[UnitOperationTypes.PARAM_X0] = destinationCity:GetX();
+	operationParams[UnitOperationTypes.PARAM_Y0] = destinationCity:GetY();
+	operationParams[UnitOperationTypes.PARAM_X1] = m_selectedUnit:GetX();
+	operationParams[UnitOperationTypes.PARAM_Y1] = m_selectedUnit:GetY();
+	if (UnitManager.CanStartOperation(m_selectedUnit, UnitOperationTypes.MAKE_TRADE_ROUTE, nil, operationParams)) then
+		UnitManager.RequestOperation(m_selectedUnit, UnitOperationTypes.MAKE_TRADE_ROUTE, operationParams);
+		--UI.SetInterfaceMode(InterfaceModeTypes.SELECTION);
+        --UI.PlaySound("START_TRADE_ROUTE");
+	end
+end
+```
+
 
 
 ### 野蛮人管理器
