@@ -57,10 +57,15 @@
                 <LuaReplace>Popups/Replace_GreatWorkShowcase.lua</LuaReplace>
             </Properties>
         </ReplaceUIScript>
+        
+        <UpdateText id="LO_TEXT">
+            <File>lo_text.xml</File>
+        </UpdateText>
     </Components>
 
     <Files>
         <File>lo_data.sql</File>
+        <File>lo_text.xml</File>
         <File>lo_script.lua</File>
         <File>lo_ui.xml</File>
         <File>lo_ui.lua</File>
@@ -85,10 +90,10 @@
 [ICON_CheckSuccess]目前已实现的功能：[NEWLINE]
 1、建造者工作不消耗移动次数；[NEWLINE]
 2、区域增强型项目（如学院项目）可以自动重复循环进行。[NEWLINE]
-3、移除了文艺作品、历史时刻、尤里卡及鼓舞、科技文化完成时的弹窗。[NEWLINE][NEWLINE]
+3、移除了文艺作品、历史时刻、尤里卡及鼓舞、科技文化完成时的弹窗。[NEWLINE]
+4、商路[ICON_TradeRoute]完成后能自动重复，但玩家随时可以更改；[NEWLINE][NEWLINE]
 [ICON_Turn]正在研究的功能：[NEWLINE]
-1、商路[ICON_TradeRoute]完成后能自动重复，但玩家随时可以更改；[NEWLINE]
-2、单位自动驻扎、警戒。[NEWLINE]
+1、单位自动驻扎、警戒。[NEWLINE]
 </zh_Hans_CN>
         </Text>
     </LocalizedText>

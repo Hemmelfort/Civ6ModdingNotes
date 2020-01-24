@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<GameData>
+    <LocalizedText>
+        <Row Tag="LOC_LO_STOP_TRADEROUTE_ACTION" Language="en_US">
+            <Text>Back to Origin City</Text>
+        </Row>
+        
+        <Row Tag="LOC_LO_STOP_TRADEROUTE_ACTION" Language="zh_Hans_CN">
+            <Text>回到始发城市</Text>
+        </Row>
+
+    </LocalizedText>
+
+</GameData>
