@@ -3,7 +3,7 @@
 如下是游戏自带的单位能力希腊重装步兵的定义：
 首先定义了HOPLITE_NEIGHBOR_COMBAT这个修改器。
 
-```
+```xml
 <Row>
         <ModifierId>HOPLITE_NEIGHBOR_COMBAT</ModifierId>
         <ModifierType>MODIFIER_SINGLE_UNIT_ATTACH_MODIFIER</ModifierType>
@@ -16,7 +16,7 @@
 ```
 然后将这个修改器关联到一个ID为HOPLITE_NEIGHBOR_COMBAT_MODIFIER的修改器。
 
-```
+```xml
 <Row>
 		<ModifierId>HOPLITE_NEIGHBOR_COMBAT</ModifierId>
 		<Name>ModifierId</Name>
