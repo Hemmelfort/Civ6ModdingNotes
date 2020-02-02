@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- GameData1 -->
+<!-- Author: grant -->
+<!-- DateCreated: 8/21/2019 7:52:50 PM -->
+<GameData>
+	<Types>
+		<Row Type="DIS_TEST" Kind="KIND_DISTRICT"/>
+		<Row Type="BUILDING_A" Kind="KIND_BUILDING"/>
+		<Row Type="BUILDING_B" Kind="KIND_BUILDING"/>
+	</Types>
+
+	<Districts>
+		<Row DistrictType="DIS_TEST" Name="测试区域" Description="该区域内禁止喧哗打闹" PlunderType="PLUNDER_GOLD" PlunderAmount="50" AdvisorType="ADVISOR_GENERIC" Cost="5" CostProgressionModel="COST_PROGRESSION_NUM_UNDER_AVG_PLUS_TECH" CostProgressionParam1="40" RequiresPlacement="true" RequiresPopulation="true" Aqueduct="false" NoAdjacentCity="false" InternalOnly="false" ZOC="false" CaptureRemovesBuildings="false" CaptureRemovesCityDefenses="false" MilitaryDomain="NO_DOMAIN" TravelTime="3" CityStrengthModifier="2"/>
+	</Districts>
+
+	<Buildings>
+		<Row BuildingType="BUILDING_A" Name="建筑A" PrereqDistrict="DIS_TEST" PurchaseYield="YIELD_GOLD" Cost="5" AdvisorType="ADVISOR_GENERIC" CitizenSlots="1"/>
+		<Row BuildingType="BUILDING_B" Name="建筑B" PrereqDistrict="DIS_TEST" PurchaseYield="YIELD_GOLD" Cost="5" AdvisorType="ADVISOR_GENERIC" CitizenSlots="1"/>
+	</Buildings>
+
+</GameData>
