@@ -394,7 +394,7 @@ UnitManager.RequestCommand( pUnit, UnitCommandTypes.PROMOTE, tParameters );
 | 获取原始拥有者             | `pCity:GetOriginalOwner()`                                    |                                 |
 | 获取城市名                 | `pCity:GetName()`                                             |                                 |
 | 设置城市名                 | `pCity:SetName("hehe")`                                       |                                 |
-| 绑定修改器                 | `pCity.AttachModifierByID(ModifierId)`                        |                                 |
+| 绑定修改器                 | `pCity:AttachModifierByID(ModifierId)`                        |                                 |
 | 设置可以用信仰购买建筑      | `pCity:SetBuildingFaithPurchaseEnabled(building.Index, true)` | 本城有效                        |
 | 设置可以用信仰购买单位      | `pCity:SetUnitFaithPurchaseEnabled(unit.Index, true)`         | 本城有效                        |
 | 设为首都                   | `CityManager.SetAsCapital(pCity)`                             |                                 |
@@ -591,6 +591,7 @@ end
 |                      | `Map.GetPlotXY(iX, iY, dx, dy, iRange)`               | ❓未知，返回一个pPlot                        |
 |                      | `Map.GetPlotXYWithRangeCheck(iX, iY, dx, dy, iRange)` | ❓未知，返回一个pPlot                        |
 | 获取相邻格位          | `Map.GetAdjacentPlot(iX, iY, iDirection)`             | 【1】iDirection为0~5，返回一个pPlot          |
+| 获取相邻全部格位      | `Map.GetAdjacentPlots(iX, iY)`                        |                                            |
 |                      | `Map.GetCityPlots(pCity)`                             | ❓不适用于Gameplay环境？                     |
 |                      | `Map.GetContinentCoastalPlots()`                      | ❓游戏会强退？😧                            |
 | 获取该洲所有格位      | `Map.GetContinentPlots(eContinent)`                   | 参数:Type或Index? 返回:含有iPlotIndex的table |
@@ -624,6 +625,29 @@ end
 【2】  BreathtakingPlots, CharmingPlots, AveragePlots, UninvitingPlots, DisgustingPlots = Map.GetContinentPlotsAppeal();  
 【3】 FullWaterPlots, CoastalWaterPlots, NoWaterPlots, NoSettlePlots = Map.GetContinentPlotsWaterAvailability();
 
+### 获取格位上的单位
+
+```lua
+for loop, unit in ipairs(Units.GetUnitsInPlot(pPlot)) do
+	if(unit ~= nil) then
+		if unit then
+            -- do your things here.
+		end
+	end
+end
+```
+
+### 获取相邻全部格位
+
+```lua
+local tNeighborPlots = Map.GetAdjacentPlots(pCity:GetX(), pCity:GetY());
+for _, pNeighborPlot in ipairs(tNeighborPlots) do
+	if (not pNeighborPlot:IsWater() and not pNeighborPlot:IsMountain()) then
+		print(pNeighborPlot:GetIndex());
+	end
+end
+```
+
 ### 改变地形与地貌
 
 ```lua
@@ -637,8 +661,8 @@ TerrainBuilder.SetTerrainType(pPlot, eTerrainType)
 ### 添加改良设施
 
 ```lua
-ImprovementBuilder.CanHaveImprovement(pPlot, iImprovement, -1) -- 最后一个参数 -1 不明
-ImprovementBuilder.SetImprovementType(pPlot, iImprovement)
+ImprovementBuilder.CanHaveImprovement(pPlot, iImprovement, -1) -- 为什么是-1才行？
+ImprovementBuilder.SetImprovementType(pPlot, iImprovement, iPlayerID)
 ```
 
 注：若 `iImprovement` 为 -1 则移除改良。
@@ -749,6 +773,28 @@ if destinationCity and m_selectedUnit then
 end
 ```
 
+#### TradeManager
+
+```lua
+local tradeManager = Game.GetTradeManager();
+
+-- 判断能否建立商路
+tradeManager:CanStartRoute(originCity:GetOwner(), originCity:GetID(), destinationCity:GetOwner(), destinationCity:GetID())
+
+-- 获取商路
+local pathPlots:table = {};
+pathPlots, portalEntrances, portalExits = tradeManager:GetTradeRoutePath(m_originCityOwner, m_originCityID, cityOwner, cityID );
+```
+
+
+### Lua 与 Modifier 互动
+
+首先在数据库中创建一个 `ModifierId`，然后在 lua 中绑定：
+
+```
+pPlayer:AttachModifierByID(ModifierId)
+pCity:AttachModifierByID(ModifierId)
+```
 
 
 ### 野蛮人管理器
