@@ -1,12 +1,15 @@
 # 文明6 Mod笔记
---- 作者：我 ---
+
+本文用于摘录各家之所言，有些地方是还是英文的，等有空了再翻译。
+
 
 ## 准备材料
 
 ### 工具
 1. ModBuddy(附带有 AssetsEditor 和 Visual Studio 2013)
 2. Photoshop(或 Gimp、Paint.NET) + dds 插件
-> [dds 插件地址](https://developer.nvidia.com/gameworksdownload#?dn=texture-tools-for-adobe-photoshop-8-55)
+
+[dds 插件地址](https://developer.nvidia.com/gameworksdownload#?dn=texture-tools-for-adobe-photoshop-8-55)
 
 
 ### 图片资源
@@ -48,9 +51,9 @@
  - (*.xml)
 
 #### 构建之前：
-1. artdef 文件用于模型定义，可用 AssetsEditor 生成。 **文件名必须与自带的一致，且必须在根目录的 `ArtDefs` 文件夹下。** 添加后要将信息记录在 Mod.Art.xml 里面相应位置。 *由于 ModBuddy 的 Bug，可能每次构建之后都必须用 AssetsEditor 生成的 artdef 文件去替换Mod文件夹中相应的文件*。
+1. artdef 文件用于模型定义，可用 AssetsEditor 生成。 **文件名必须与自带的一致，且必须在根目录的 `ArtDefs` 文件夹下。** 添加后要将信息记录在 Mod.Art.xml 里面相应位置。 *如果没有下载过 Assets 数据包，那每次构建之后都必须用 ModBuddy 工程中的 artdef 文件去替换Mod文件夹中相应的文件*。
 2. dds 文件用 Photoshop（或者 Gimp）制作，要去英伟达官网下载一个 dds 插件。
-3. tex 文件记录了 dds 文件的相关信息，会和 dds 一起被打包成 blp 文件。 `Textures`文件夹不需要包含在 ModBuddy 项目中。
+3. tex 文件记录了 dds 文件的相关信息，会和 dds 一起被打包成 blp 文件。 `Textures` 文件夹不需要包含在 ModBuddy 项目中。
 4. xlp 文件（xml library package）定义了图像资源的变量名、类型（如 UITexture/LeaderFallback）。构建后生成 blp 文件。
 5. Mod.Art.xml 文件记录了 Mod 的相关资源的信息，必须指定 xlp 文件和 artdef 文件，可用辅助工具或 AssetEditor 生成。
 6. xml 文件由我们手动编写。（文件名不能与游戏自带的冲突，如“Icons_Buildings.xml”）
@@ -86,7 +89,7 @@
 
 
 ### 创建一个新的建筑
-与单位的创建过程基本一致
+与单位的创建过程基本一致。
 
 
 ### 添加图像资源
@@ -94,8 +97,10 @@
 2. 选择类别 （如 LeaderFallbacks/UITexture 等），在 Entries 点击“Add New”导入你的DDS文件，它们会自动被复制到项目的 Textures 目录下。
 3. 使用不同尺寸的 ICON 时需先定义 Atlas (画册、图画集)，然后再使用其中的图像。
 
-
 ### 添加地图
+
+**（注：本方法已过时）**
+
 1. 创建地图
   + （旧方法）修改 Mods.lua 的 OnShow 方法
   + 修改 AppOptions.txt 将 EnableWorldBuilder 设为 1
@@ -110,7 +115,7 @@
 3. ModifierArguments
 
 以建筑 BUILDING_SUPERMARKET 加成为例:
-```
+```xml
 <BuildingModifiers>
     <Row>
         <BuildingType>BUILDING_SUPERMARKET</BuildingType>               建筑名
@@ -145,10 +150,10 @@
 2. 在 Config.xml 的 `<Players>` 中添加： `<Portrait> something </Portrait>` 
 
 
-### 设置加载界面的图片，以及外交界面的背景图
+### 加载界面的图片、外交界面的背景图
 1. 将 LOADING_FOREGROUND.dds / LOADING_BACKGROUND.dds / DIP_BACKGROUND.dds 添加到 UITexture.xlp
 2. 在 xml 中添加一下两项：
-```
+```xml
 <LoadingInfo>
     <Row LeaderType="LEADER_YOURLEADER" ForegroundImage="LOADING_FOREGROUND.dds" BackgroundImage="LOADING_BACKGROUND.dds" EraText="LOC_LOADING_INFO" PlayDawnOfManAudio="0"/>
 </LoadingInfo>
@@ -167,30 +172,33 @@
 
 
 
-
 --------
 ### Mod 只支持 DLC 的设置
-@Hajee:
-I think if you have a mod that is using a Ruleset based on Vallina Game play you need to add this line to your modinfo file
+
+在 modinfo 文件中，先添加一项 Criteria：
+
+```xml
+    <ActionCriteria>
+        <Criteria id="Expansion_2">
+            <RuleSetInUse>RULESET_EXPANSION_2</RuleSetInUse>
+        </Criteria>
+    </ActionCriteria>
 ```
-<ActionCriteria>
-    <Criteria id="Expansion1">
-        <GameCoreInUse>Expansion1</GameCoreInUse>
-    </Criteria>
-</ActionCriteria>
+
+- RULESET_STANDARD	（本体）
+- RULESET_EXPANSION_1	（迭起兴衰）
+- RULESET_EXPANSION_2	（风云变幻）
+
+然后在需要指定 DLC 的步骤使用，例如：
+
+```xml
+        <UpdateDatabase id="MT_DB_XP2" criteria="Expansion_2">
+            <File>Data/Database_XP2.sql</File>
+        </UpdateDatabase>
 ```
 
 --------
-### About Adding LeaderFallback
-
-I see you also created Icons.xlp already, 
-so you don't have to use "ICON_ROGER_BERNARD_256.dds" in your Icons.xml. 
-Instead, just "ICON_ROGER_BERNARD_256" and make sure entries here 
-match what you entered in the xlp file.
-
-Diplomacy screen leader is the fallbacks artdef 
-and background UI_LeaderScenes package or direct dds import.
-
+### 关于外交界面的领袖图片
 
 > kingchris20:
 > 1. 你需要用AssetsEditor导入DDS文件，有两种办法：用Texture的方式导入，或者导入到XLP文件中（后者会自动生成相应的tex文件，如果同一个Category下已经有对应的XLP文件的话就用前面这种方法）。
@@ -198,20 +206,23 @@ and background UI_LeaderScenes package or direct dds import.
 > The **m_PackageName** name in .xlp needs to match the name of the file.
 > 这时候DDS文件会自动复制到Textures文件夹下，用ModBuddy将其添加到工程中，再把刚刚生成的LeaderFallbacks.xlp也添加进来。
 > 3. 用同样的方法生成artdef文件并导入。然后在Modbuddy中修改BLPEntryValue：
->   m_EntryName     XLP文件中对应的EntryID
->   m_XLPClass      固定为LeaderFallback
->   m_XLPPath       刚才保存的LeaderFallbacks.xlp
->   m_BLPPackage    XLP文件中m_PackageName，即LeaderFallbacks
->   m_LibraryName   （LeaderFallback，对应Mod.Art.xml中相应的libraryName）
->   （artdef是将dds和游戏中的对象联系在一起的地方，这里是将dds指定到游戏中对应的Leader上，而dds的定义或导入则是由xlp文件负责）
+>     m_EntryName     XLP文件中对应的EntryID
+>     m_XLPClass      固定为LeaderFallback
+>     m_XLPPath       刚才保存的LeaderFallbacks.xlp
+>     m_BLPPackage    XLP文件中m_PackageName，即LeaderFallbacks
+>     m_LibraryName   （LeaderFallback，对应Mod.Art.xml中相应的libraryName）
+>     （artdef是将dds和游戏中的对象联系在一起的地方，这里是将dds指定到游戏中对应的Leader上，而dds的定义或导入则是由xlp文件负责）
 > 4. 修改Mod.Art.xml。
 > 在 artConsumers 下 consumerName="LeaderFallback" 的地方，添加 relativeArtDefPaths 为 FallbackLeaders.artdef， 添加 libraryDependencies 为 LeaderFallback。
 > 在 gameLibraries 下 libraryName="LeaderFallback" 的地方，添加 relativePackagePaths 为 LeaderFallbacks.blp。
-```
+
+如果要手动修改 *.Art.xml 文件，那 artConsumers 的部分：
+
+```xml
 <Element>
     <consumerName text="LeaderFallback"/>
     <relativeArtDefPaths>
-        --- ADD THIS LINE to point to the artdef
+        <!-- 添加下面这一行 -->
         <Element text="FallbackLeaders.artdef"/>
     </relativeArtDefPaths>
     <libraryDependencies>
@@ -221,7 +232,10 @@ and background UI_LeaderScenes package or direct dds import.
     <loadsLibraries>true</loadsLibraries>
 </Element>
 ```
-```
+
+gameLibraries 的部分：
+
+```xml
 <Element>
     ---Tied in from the above
     <libraryName text="LeaderFallback"/>
@@ -232,43 +246,33 @@ and background UI_LeaderScenes package or direct dds import.
 </Element>
 ```
 
-
 ---
 
 
 
 
-### <CIVILOPEDIA TEXT>
+### 百科词条
 
 The civilopedia text has a tricky part, you have to start with right parameter, for intance LOC_PEDIA_UNITS_PAGE (if buildings change to BUILDINGS, etc), then concatenate with you unit type (building type, etc), and finally define chapter number (defines order, and you can add whatever paragraphs you want) => LOC_PEDIA_UNITS_PAGE_UNIT_YOURUNIQUEUNIT_CHAPTER_HISTORY_PARA_1
 
 
-### <ICONS>
-
-Icon type has a tricky part, you have always to start bit ICON and then concatenate with your unit type name => "ICON_UNIT_YOURUNIQUEUNIT
-
-
-### <ARTDEFS>
-
-Important note: In the case of artdef files you must maintain the original names (including its folder: ArtDefs), for example units.artdef.
-
-Artdefs are about animations in game, so it is no that easy to make your own. Once more you reuse existent ones. There is a catch, for instance if you want to use a building as an improvement no can do (at least without modifying it, which is a hard task), or a wonder like a building, besides all belonging to buildings table in this last case.
 
 
 
 -------------------
 ### 一个完整文明的 XML 文件
 
-> Witcher_Config.xml        显示在文明选择界面的信息
-> Witcher_Civilization.xml  定义文明的特性、颜色、城市名等等
-> Witcher_Leaders.xml       定义领袖
-> Witcher_Units.xml         定义单位
-> Witcher_Buildings.xml     定义建筑
-> Witcher_Icons.xml         定义图标
-> Witcher_Text.xml          定义文本
+- Config.xml        显示在文明选择界面的信息
+- Civilization.xml  定义文明的特性、颜色、城市名等等
+- Leaders.xml       定义领袖
+- Units.xml         定义单位
+- Buildings.xml     定义建筑
+- Icons.xml         定义图标
+- Text.xml          定义文本
 
 
-Witcher_Civilization.xml
+其中 Civilization.xml 包含以下内容：
+
   - Types
   - Civilizations
   - CivilizationLeaders
@@ -283,10 +287,16 @@ Witcher_Civilization.xml
   - LoadingInfo
   - DiplomacyInfo
 
-> ETHNICITY_ASIAN, ETHNICITY_AFRICAN, ETHNICITY_MEDIT, ETHNICITY_SOUTHAM
-> CIVILIZATION_LEVEL_TRIBE      部落，野蛮人
-> CIVILIZATION_LEVEL_CITY_STATE 城邦
-> CIVILIZATION_LEVEL_FULL_CIV   完整国家
+种族：
+- ETHNICITY_ASIAN
+- ETHNICITY_AFRICAN
+- ETHNICITY_MEDIT
+- ETHNICITY_SOUTHAM
+
+文明类型：
+- CIVILIZATION_LEVEL_TRIBE      部落，野蛮人
+- CIVILIZATION_LEVEL_CITY_STATE 城邦
+- CIVILIZATION_LEVEL_FULL_CIV   完整国家
 
 
 
@@ -294,7 +304,7 @@ Witcher_Civilization.xml
 
 
 
-
+```
     ╭╯☆★☆★╭╯ 
 　　╰╮★☆★╭╯ 
 　　　│☆╭─╯ 
@@ -303,8 +313,10 @@ Witcher_Civilization.xml
 　║★☆★║╔═══╗　╔═══╗　╔═══╗  ╔═══╗
 　║☆★☆║║★　☆║　║★　☆║　║★　☆║  ║★　☆║
 ◢◎══◎╚╝◎═◎╝═╚◎═◎╝═╚◎═◎╝═╚◎═◎╝.........
+```
+
 --------
-## Firaxis官方SDK开发者：
+### Firaxis官方SDK开发者的发言
 
 - **FrontEndActions** are things the mod does when it's enabled to adjust the setup screen. 
 - **InGameActions** are things the mod does when the game is started.
@@ -375,17 +387,14 @@ In asset editor, click on the toolbar button that says Open Existing Art Def.
 
 From there navigate to the civ6 SDK assets and open Resources.artdef then do it again for Clutter.artdef
 you'll see Resources.artdef specifies the resource type and expanded the base clutter ID along with variants
-clutter == stuff on the map
-
-in clutter.artdef you can see the clutter entry for gold which expanded shows that it uses several models for planets of varying scales and rotations
--------------------------------------------------------------
+clutter == stuff on the map in clutter.artdef you can see the clutter entry for gold which expanded shows that it uses several models for planets of varying scales and rotations.
 
 
 
 
 
 
-
+```
              * 
             /.\
            /..'\
@@ -394,9 +403,14 @@ in clutter.artdef you can see the clutter entry for gold which expanded shows th
           /.'.'.\
    "'""""/'.''.'.\""'"'"
          ^^^[_]^^^
- 
- 
-## Audio with Wwise 2015.1.9
+
+```
+
+## 音频
+
+### 来自官方
+
+软件：Audio with Wwise 2015.1.9
 
 [下载地址](https://www.audiokinetic.com/downloads/previous/)     
 [或者](https://www.audiokinetic.com/files/?get=2015.1.9_5624/Wwise_v2015.1.9_Setup.exe)
@@ -404,11 +418,13 @@ in clutter.artdef you can see the clutter entry for gold which expanded shows th
 (search 'wwise adpcm to pcm' if you want to convert wem to wav)
 
 版本不能有错，2016/17都不行。
-> Firaxis：
+
+> Firaxis说：
 > 要覆盖已存在的音频，只需建立一个同名的 event ，mod的优先级会比游戏更高。
 > 要添加新的音频，就要取一个唯一的前缀（give it a unique prefix），然后把 event 添加到新的 sound bank （参考波兰和澳大利亚的DLC）。最后在 lua 脚本中添加 UI.PlaySound() 即可。
 
 Civ6 music for new civs: if the game doesn't recognize a civ, it'll issue events with the civ's name in them as follows:
+
 `Start_Music_NAME` to force the civ's main theme to play (e.g. Waltzing Matilda for Aus).
 `Play_Music_NAME` to play a random piece for the current era (more later), 
 `Stop_Music_NAME` to stop both Play_Music & Start_Music.
@@ -429,7 +445,8 @@ Finally, **all Wwise events are NOT case sensitive**. Unit_Select_Dingo and Unit
 
 
 
-### Infixo Edition ###
+### 来自 Infixo Edition
+
 @[Infixo](https://forums.civfanatics.com/members/infixo.276284/)
 
 All sounds in the game are routed thorugh sound buses organized in a hierarchical tree.At the top there's always Master Audio Bus created by WWise and cannot be changed or removed.
@@ -443,10 +460,12 @@ All sounds in the game are routed thorugh sound buses organized in a hierarchica
 2. Then assign sounds to buses. Again, 'Audio' tab, Actor-Mixer Hierarchy, select your sound. On the right there will be a window and in the middle a section 'Output Bus'. Click '...' to select a desired bus. Repeat for all your sounds.
 
 
-### NerdByFate ###
+### 来自 NerdByFate
+
 [NerdByFate](https://forums.civfanatics.com/members/nerdbyfate.286744/)
 
 A few notes for anyone attempting to follow this guide:
+
 1. See Eras.artdef in the base game's files for all of the switches you can use. Not every era has its own switch in the game. Classical uses Ancient's switch, Renaissance uses Medieval's switch, Modern uses Industrial's switch (weirdly). and both Atomic and Informational use Modern's switch (meaning that whatever you assign to modern won't actually play until Atomic). This means you can't assign a playlist to every era, some will simply carry over to the next era(s).
 2. Your playlists will not loop throughout their respective eras by default. To accomplish this, visit this [link](https://www.audiokinetic.com/courses/wwise201/?id=looping_music_segment_using_playlist_container).
 3. If you have already linked a Civilizations.artdef to use base game music and you want to switch over to this, you MUST remove this link as it overrides the custom SoundBank. If you don't, the music you selected in Civilizations.artdef will play, not your music. 如果你在 Civilizations.artdef 中使用了自带文明的音乐，而你想用自己的音乐时，必须删除在 Civilizations.artdef 中的引用。否则游戏不会播放你的音乐。
@@ -457,16 +476,15 @@ A few notes for anyone attempting to follow this guide:
 > Modern_Era:       Atomic      &   Information
 
 
-### FurionHuang Edition ###
+### 来自 Furion Huang
 @[FurionHuang](https://forums.civfanatics.com/members/furionhuang.301776/)
 [Tutorial: Adding Music to Your MOD Civilization](https://forums.civfanatics.com/threads/tutorial-adding-music-to-your-mod-civilization.621830/) 
 
 
 
-
-### Ewok-Bacon-Bits Edition ###
+### 来自 Ewok-Bacon-Bits
 @[Ewok-Bacon-Bits](https://forums.civfanatics.com/members/ewok-bacon-bits.291823/)
- 
+
 1. 首先下载安装 Wwise，用来生成需要的3个文件（bnk, xml, txt）。
 2. 打开后在左上角 `Project Explorer` 的 `Audio` 选项卡中右键选择 `Import audio files` 导入wav文件。
 3. 在 `Events` 选项卡中点击 `Create new event`。
@@ -478,12 +496,14 @@ A few notes for anyone attempting to follow this guide:
 9. 现在可以在资源管理器中看到刚刚生成的文件了。
 10. 我们需要把3个文件复制到 mod 文件夹中（bnk, xml, txt）。
 11. 打开 xml 文件把 `SoundBank Language` 标签删掉或注释掉。比如：
-```
+
+```xml
 <SoundBank Language="SFX" Id="1355168291">
     <ShortName>Init</ShortName>
     <Path>Init.bnk</Path>
 </SoundBank>
 ```
+
 12. 现在还需要一个 ini 文件（可以在游戏目录中找到类似的），比如：
 ```
 [Global]
@@ -499,10 +519,10 @@ Event.bnk   ; 这里就是你的 bnk 文件加载的时机
 15. 在游戏脚本中添加一行命令 `UI.PlaySound("Your_Event_Name")` 到一个你想要指定的函数中就可以了。如果你想替换游戏自带的 event 可以跳过这一步，我还没试过, it should just play instead of whatever audio was there before when it is called.
 
  
+
  
- 
- 
- 
+
+```
                . 
                |
            \   *  ./
@@ -513,22 +533,17 @@ Event.bnk   ; 这里就是你的 bnk 文件加载的时机
                |  
                .     
 
+```
 
+## 关于 Artdef
 
-## ArtDef with AssetEditor
+### ArtDef with AssetEditor
 
 The Armor geometries come with different attachment points for accessories and bodies and etc. Most of the attachments will go in a point called “Root”, but there are some specifics. In order to place attachments in the Asset Previewer you must find the tab corresponding our current asset.
 护甲的几何图形通过不同的接触点连接到身体和其他附件？！大部分的附件都汇聚到一个叫“Root”的地方，但也有例外。为了放置这些附件，你必须找到当前asset相关的选项卡。
 
 
-
-artdef reload Camera 
-
- 
- 
-
-
-## CAMERA.ARTDEF 
+### CAMERA.ARTDEF 
 [12@!n](https://forums.civfanatics.com/resources/kinetikam.25487/)
 
 **HeightCurve** is the CollectionName for all variables relating to height, of which there are 4.
@@ -560,6 +575,8 @@ The two variables are:
  + "Tilt" - appears to control the pitch, with lower values pitching down and higher values pitching up, in accordance with the six degrees of freedom. The default value is 55.000000.
 
 
+> 假设你要在不关闭游戏的情况下重新加载 artdef： `artdef reload Camera` 
+
 -------------------------
 The yellow squares, which I call "clipping artifacts", tend to occur when:
 You're at an extreme end of the zoom spectrum (i.e. when you zoom in very close, or out very far) AND
@@ -570,7 +587,7 @@ When tweaking for this mod I did my best to minimize the occurrence of clipping 
 If you're still seeing it, aren't afraid of doing some text editing, then you can fiddle with both the zoom limits and tilt in an effort to make the clipping go away:
 Install Notepad++ or a similar text editor that isn't Notepad.
 
-Run Notepad++, and open the file:
+Open the file:
 C:\Program Files (x86)\Steam\steamapps\common\Sid Meier's Civilization VI\Base\ArtDefs\Camera.artdef
 
 Find the section that looks like this:
@@ -595,6 +612,10 @@ Other values you can play with are described in the comments (the human-friendly
 
 If you're really adventurous, you can try adjusting these values near the top of the file, although I gave up before finding values that clear up the clipping:
 Code:
+
+
+
+```xml
 <Element class="AssetObjects::FloatValue">
     <m_fValue>10.000000</m_fValue>
     <m_ParamName text="NearClip"/>
@@ -603,16 +624,19 @@ Code:
     <m_fValue>10000.000000</m_fValue>
     <m_ParamName text="FarClip"/>
 </Element>
+```
+
 If this is is still too complicated for you, I'm sure there are friendly folks around here who can give you a hand. Good luck!
--------------------------------------
 
 
 
 
 
 
-### How the different combinations of the RunOnce and Permanent flags work ?
-**RUNONCE** and **PERMANENT**
+## 关于 Modifier
+
+### RunOnce vs. Permanent
+
 @luei333
 
 1. RunOnce: A boolean that identifies whether or not this modifier applies a one-time effect, such as a free unit, an inspiration or eureka boost, etc. False by default. It is not always clear when this should be used, but when in doubt, refer to the base game files and emulate them, i.e. find a modifier with the same ModifierType as the one you’re using, and use that as a reference.
@@ -626,11 +650,7 @@ If this is is still too complicated for you, I'm sure there are friendly folks a
 Imagine adding a modifier to a city that grants 1 population (or a similar effect), and requires a builder to be in the city center's tile. The first time a builder walk onto its tile, the city will receive an extra population. If the RunOnce value isn't set to true, it will likely continue to gain extra population every turn or so, as long as the builder remains on its tile (or however often the effect would trigger). If Permanent but not RunOnce, it will likely gain extra population continuously for the rest of the game! Adding RunOnce means that the city would get extra population only one time, but without permanent it could trigger multiple times. Not sure on the exact nature there, but it might be as simple as moving the builder off of the tile and back on repeatedly to trigger the population gain again and again. With both RunOnce and Permanent set, that city would only ever be able to gain 1 extra population from having a builder on its tile, no matter how many different builders go on it throughout the course of the game.
 
 
-
-
-
-
-ATTACH TO TRAIT_LEADER_MAJOR_CIV
+### ATTACH TO TRAIT_LEADER_MAJOR_CIV
 
 - instead of attaching the Modifier to every Civilization via a Trait,
 - attach the Modifier to the following trait only:
@@ -642,7 +662,7 @@ INSERT INTO TraitModifiers (TraitType, ModifierId) VALUES
 
 This way, you don't need to duplicate the trait for each civ. TRAIT_LEADER_MAJOR_CIV will give it to the leaders of all major civs, and PLAYER_IS_HUMAN will limit it only to you, human, while you are playing a specific civ.
 
-SUBJECT vs. OWNER of MODIFIER
+### SUBJECT vs. OWNER of MODIFIER
 
 Now, as for the SubjectRequirementSetId vs OwnerRequirementSetId. The Modifier Type you used -- MODIFIER_PLAYER_UNITS_ADJUST_BUILDER_CHARGES -- refers to COLLECTION_PLAYER_UNITS.
 
@@ -652,7 +672,7 @@ And, the Owner of the Modifier is: (as a result of being attached to a Trait) ei
 As a result, PLAYER_IS_HUMAN should properly refer to the Owner of the Modifier -- you should insert it as OwnerRequirementSetId.
 Any requirement that you wish to attach to Player Units would go in as SubjectRequirementSetId.
 
-REQUIREMENTS / REQUIREMENT SETS
+### REQUIREMENTS vs. REQUIREMENT SETS
 
 Generally, you can attach two Requirement Sets to each Modifier. 
 **OwnerRequirementSet** attaches to the Owner - to the object that is the source of the modifier. 
