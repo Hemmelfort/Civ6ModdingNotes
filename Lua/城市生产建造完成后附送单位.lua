@@ -21,6 +21,8 @@ function OnCityProdComp(playerID, cityID, iConstructionType, itemID, bCancelled)
             end
         
         elseif iConstructionType == 2 then
+            -- 注意：经群友发现，Gameplay 环境下当区域建造完成时会连续触发该事件。
+            -- 因此建议在 UI 环境下使用
             local district = GameInfo.Districts[itemID]
             if district ~= nil then
                 print("区域建造完成: " .. district.Name)
