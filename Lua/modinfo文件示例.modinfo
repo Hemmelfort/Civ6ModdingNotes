@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Mod id="0126404f-aa7e-46a8-8e60-b1bae93b6666" version="1">
-	<Properties>
-		<Name>Lua 脚本引导示例</Name>
-		<Teaser>Lua 脚本引导示例</Teaser>
-		<Description>把下面的 SCRIPT.lua 换成自己的脚本文件。</Description>
-		<Authors>Hemmelfort</Authors>
-		<AffectsSavedGames>0</AffectsSavedGames>
-		<CompatibleVersions>2.0</CompatibleVersions>
-	</Properties>
-	
-	<Components>
-		<AddGameplayScripts id="TEST_LUA">
+    <Properties>
+        <Name>Lua 脚本引导示例</Name>
+        <Teaser>Lua 脚本引导示例</Teaser>
+        <Description>把下面的 SCRIPT.lua 换成自己的脚本文件。</Description>
+        <Authors>Hemmelfort</Authors>
+        <AffectsSavedGames>0</AffectsSavedGames>
+        <CompatibleVersions>2.0</CompatibleVersions>
+    </Properties>
+
+    <Components>
+        <AddGameplayScripts id="TEST_LUA">
             <File>SCRIPT.lua</File>
-		</AddGameplayScripts>
-	</Components>
-	
-	<Files>
-		<File>SCRIPT.lua</File>
-	</Files>
+        </AddGameplayScripts>
+    </Components>
+
+    <Files>
+        <File>SCRIPT.lua</File>
+    </Files>
 </Mod>

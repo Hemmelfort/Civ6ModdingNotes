@@ -8,9 +8,7 @@ function PunishForDistroyTribe(PlotX, PlotY, PlayerID)
         local iTribeNumber = 1
         local iRange = 3
         
-		pBarbManager:CreateTribeUnits(iTribeNumber, "CLASS_MELEE", 1, iPlotIndex, iRange)
-		pBarbManager:CreateTribeUnits(iTribeNumber, "CLASS_SIEGE", 1, iPlotIndex, iRange)
-		pBarbManager:CreateTribeUnits(iTribeNumber, "CLASS_RANGED", 1, iPlotIndex, iRange)
+        pBarbManager:CreateTribeUnits(iTribeNumber, "CLASS_MELEE", 1, iPlotIndex, iRange)
     end
 
 end
