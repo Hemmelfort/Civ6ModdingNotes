@@ -685,8 +685,83 @@ SubjectRequirementSet：自己拥有一个修改器，想修改另一个对象�
 
 -----------------------------------------
 
+## ModBuddy 工程中的各个文件夹
+
+### Animations
+
+- `*.anm`
+- `*.fgx`
+
+### ArtDefs
+
+- `*.artdef`
 
 
+### Assets
+
+- `*.ast`
+
+
+### Behaviors
+
+- `*.bhv`
+
+
+### DSGs
+
+- `*.dsg`
+- `*.dsgxml`
+
+
+### EnvironmentLights
+
+- `*.dds`
+- `*.env`
+
+
+### FireFX
+
+- `*.ffx`
+- `*.FXH`
+
+
+### Geometries
+
+- `*.fgx`
+- `*.geo`
+- `*.wig`
+
+
+### LightRigs
+
+- `*.lrg`
+
+
+### Lights
+
+- `*.lit`
+
+
+### Materials
+
+- `*.mtl`
+
+
+### ParticleEffects
+
+- `*.ptl`
+- `*.psb` (Fork Particle Studio)
+
+
+### Textures
+
+- `*.dds`
+- `*.tex`
+
+
+### XLPs
+
+- `*.xlp`
 
 
 

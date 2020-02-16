@@ -2,37 +2,37 @@
 <GameData>
     <!-- 技能（ability）就是。。。比如“抗骑兵”、“忽略地形移动”就是一种技能，通过 Modifier修改器 来实现特殊效果 -->
 
-	<!-- 创建一个新技能 -->
-	<Types>
-		<Row Type="ABILITY_CUSTOM" Kind="KIND_ABILITY"/>
-	</Types>
+    <!-- 创建一个新技能 -->
+    <Types>
+        <Row Type="ABILITY_CUSTOM" Kind="KIND_ABILITY"/>
+    </Types>
 
-	<!-- 创建一个新种类（class），比如“抗骑兵”就是一个种类 -->
-	<Tags>
+    <!-- 创建一个新种类（class），比如“抗骑兵”就是一个种类 -->
+    <Tags>
         <Row Tag="CLASS_CUSTOM" Vocabulary="ABILITY_CLASS"/>
     </Tags>
-  
-	<!-- 该技能的名称、描述、激活状态、文本提示等等 -->
-	<!-- 文本提示可能是类似于“高山雄心”那种会在头顶上提示，没测过 -->
+
+    <!-- 该技能的名称、描述、激活状态、文本提示等等 -->
+    <!-- 文本提示可能是类似于“高山雄心”那种会在头顶上提示，没测过 -->
     <UnitAbilities>
         <Row UnitAbilityType="ABILITY_CUSTOM" Name="LOC_ABILITY_CUSTOM_NAME" Description="LOC_ABILITY_CUSTOM_DESCRIPTION" Inactive="false" ShowFloatTextWhenEarned="false"/>
     </UnitAbilities>
 
-	<!-- 技能不能直接赋予单位，只能给一个种类。所有属于该种类的单位都具有该技能。 -->
-	<!-- 所以这里有两个步骤：技能绑定种类，单位绑定种类 -->
-	<TypeTags>
-		<Row Type="ABILITY_CUSTOM" Tag="CLASS_CUSTOM"/>
+    <!-- 技能不能直接赋予单位，只能给一个种类。所有属于该种类的单位都具有该技能。 -->
+    <!-- 所以这里有两个步骤：技能绑定种类，单位绑定种类 -->
+    <TypeTags>
+        <Row Type="ABILITY_CUSTOM" Tag="CLASS_CUSTOM"/>
         <Row Type="你的单位（比如 UNIT_CRAZY_DOG）" Tag="CLASS_CUSTOM"/>
-	</TypeTags>
-	
-	<!-- 后话：为技能添加修改器要加入到 UnitAbilityModifiers 表中。例如： -->
-	<!-- 
-	<UnitAbilityModifiers>
-		<Row>
-			<UnitAbilityType>ABILITY_CUSTOM</UnitAbilityType>
-			<ModifierId>MAKE_ME_STRONGER</ModifierId>
-		</Row>
-	</UnitAbilityModifiers>
-	 -->
-	
+    </TypeTags>
+
+    <!-- 后话：为技能添加修改器要加入到 UnitAbilityModifiers 表中。例如： -->
+    <!-- 
+    <UnitAbilityModifiers>
+        <Row>
+            <UnitAbilityType>ABILITY_CUSTOM</UnitAbilityType>
+            <ModifierId>MAKE_ME_STRONGER</ModifierId>
+        </Row>
+    </UnitAbilityModifiers>
+     -->
+
 </GameData>

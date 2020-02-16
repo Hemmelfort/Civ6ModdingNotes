@@ -116,9 +116,15 @@ player:GetGreatPeoplePoints():ChangePointsTotal(admiral.Index, 5)
 local playerTechs = pPlayer:GetTechs();
 local tech = GameInfo.Technologies["TECH_FLIGHT"];
 if (tech ~= nil) then
-	playerTechs:SetResearchProgress(tech.Index, playerTechs:GetResearchCost(tech.Index));
+    -- 方法1，UI进度会实时更新
+	-- playerTechs:SetResearchProgress(tech.Index, 
+	-- playerTechs:GetResearchCost(tech.Index));
+
+    -- 方法2，简单，但UI不会立马显示已获得该技术
+	playerTechs:SetTech(tech.Index, true)
 end
 ```
+
 
 ### 完成当前科技
 
@@ -754,6 +760,17 @@ for _, city in cities:Members() do
 			local destinationCity:table = destinationCities:FindID(route.DestinationCityID);
 ```
 
+其中 `route` 的属性：
+
+```lua
+route.OriginCityID
+route.OriginCityPlayer
+route.DestinationCityPlayer
+route.DestinationCityID
+route.TraderUnitID
+route.OriginYields
+```
+
 
 #### 给单位建立商路
 
@@ -785,6 +802,8 @@ tradeManager:CanStartRoute(originCity:GetOwner(), originCity:GetID(), destinatio
 local pathPlots:table = {};
 pathPlots, portalEntrances, portalExits = tradeManager:GetTradeRoutePath(m_originCityOwner, m_originCityID, cityOwner, cityID );
 ```
+
+
 
 
 ### Lua 与 Modifier 互动
