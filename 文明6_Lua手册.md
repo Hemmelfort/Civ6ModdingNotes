@@ -301,6 +301,12 @@ local m_ePlagueDoctorUnit : number = GameInfo.Units["UNIT_PLAGUE_DOCTOR"].Index;
 pPlayer:GetUnits():SetBuildDisabled(m_ePlagueDoctorUnit, true)
 ```
 
+### 允许用信仰购买单位
+
+```lua
+pCity:SetUnitFaithPurchaseEnabled(iUnitIndex, true)
+```
+
 ### 适用于 UI 环境的功能
 
 #### 单位操作
@@ -465,6 +471,12 @@ local pCity = CityManager.GetCityAt(15,12)
 local idis = GameInfo.Districts["DISTRICT_CAMPUS"].Index
 local iPlot = Map.GetPlotIndex(15, 13)
 WorldBuilder.CityManager():CreateDistrict(pCity, idis, 100, iPlot)    -- 100可能是完成度
+```
+
+### 允许用信仰购买建筑
+
+```lua
+pCity:SetBuildingFaithPurchaseEnabled(iBuildingIndex, true)
 ```
 
 ### UI 环境
