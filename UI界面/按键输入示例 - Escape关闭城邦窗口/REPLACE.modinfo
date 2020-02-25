@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Mod id="00A7549B-7C47-4D7D-9ECF-060315942220" version="1">
+    <Properties>
+        <Name>替换 UI 脚本</Name>
+        <Teaser>替换 UI 脚本</Teaser>
+        <Description>通过 mod 用 REPLACE.lua 替换自带界面 CityStates 的脚本 CityStates.lua，实现在该界面下按 Escape 关闭窗口（原装按 Escape 只能暂时将其隐藏）。</Description>
+        <Authors>Hemmelfort</Authors>
+        <AffectsSavedGames>0</AffectsSavedGames>
+        <CompatibleVersions>1.2,2.0</CompatibleVersions>
+    </Properties>
+
+    <Components>
+        <ReplaceUIScript id="TEST_REPLACE">
+            <Properties>
+                <LoadOrder>10086</LoadOrder>    <!--确保在原装界面加载之后加载-->
+                <LuaContext>CityStates</LuaContext>
+                <LuaReplace>REPLACE.lua</LuaReplace>
+            </Properties>
+        </ReplaceUIScript>
+    </Components>
+    
+    <Files>
+        <File>REPLACE.lua</File>
+    </Files>
+</Mod>
