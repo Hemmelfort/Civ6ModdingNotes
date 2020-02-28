@@ -309,7 +309,7 @@ pCity:SetUnitFaithPurchaseEnabled(iUnitIndex, true)
 
 ### 适用于 UI 环境的功能
 
-#### 单位操作
+#### 单位操作（Operation）
 
 位于 `UnitOperationTypes` 表中的内容：
 
@@ -350,7 +350,7 @@ function WMDStrike( plot, unit, eWMD )
 end
 ```
 
-#### 单位命令
+#### 单位命令（Command）
 
 `UnitCommandTypes` 表中的内容：
 
@@ -735,6 +735,48 @@ for i, eContinent in ipairs(tContinents) do
 最后似乎还有一个未知参数待确认。
 
 【2】 包含城邦、自由城市、野蛮人在内。返回一个列表，其中每一项都是 pPlayer。
+
+
+### 随机事件
+
+GameRandomEvents
+
+- ApplyEvent （不适用于 UI 环境）
+- GetEventForTurn
+- GetCurrentTurnEvent
+- GetCurrentAffectedCities
+
+```lua
+function DoRandomEvent()
+    local kEvent = {};
+    kEvent.EventType = 13;    -- 13 表示 RANDOM_EVENT_TORNADO_FAMILY
+    kEvent.NamedRiver = -1;
+    kEvent.NamedVolcano = -1;
+    -- 以上三项分别为事件类型、河流、火山的序号（即 index）
+
+    local kEventDef = GameInfo.RandomEvents[kEvent.EventType];
+    if kEventDef ~= nil then
+
+        -- 乞力马扎罗山和维苏威火山
+        if kEventDef.NaturalWonder ~= nil and kEventDef.NaturalWonder ~= "" then
+            kEvent.FeatureType = kEventDef.NaturalWonder;
+        end
+
+         -- 核电站事故
+         -- (EffectOperatorType: STORM, VOLCANO, DROUGHT, etc.)
+        if kEventDef.EffectOperatorType == "NUCLEAR_ACCIDENT" then
+            if g_Selected.ReactorIndex ~= nil then
+                local reactor = Game.GetFalloutManager():GetReactorByIndex(g_Selected.ReactorIndex - 1);
+                if reactor ~= nil then
+                    kEvent.Location = reactor.PlotIndex;
+                end
+            end
+        end
+    end
+
+    GameRandomEvents.ApplyEvent(kEvent)
+end
+```
 
 
 ### 建立商路（仅 UI 环境）
