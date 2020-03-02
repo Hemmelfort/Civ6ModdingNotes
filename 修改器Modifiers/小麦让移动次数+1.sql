@@ -1,12 +1,15 @@
 
-INSERT INTO DistrictModifiers (DistrictType, ModifierId) VALUES 
-("DISTRICT_CITY_CENTER", "CC_TEST"); 
+
+
+INSERT INTO TraitModifiers (TraitType, ModifierId) VALUES 
+("TRAIT_WHATEVER", "WHEAT_MAKES_ME_FASTER");
 
 INSERT INTO Modifiers (ModifierId, ModifierType, RunOnce, Permanent, NewOnly, OwnerRequirementSetId, SubjectRequirementSetId) VALUES 
-("CC_TEST", "MODIFIER_PLAYER_UNITS_ADJUST_MOVEMENT", 0, 1, 0, NULL, "ReqSet"); 
+("WHEAT_MAKES_ME_FASTER", "MODIFIER_PLAYER_UNITS_ADJUST_MOVEMENT", 0, 0, 0, NULL, "ReqSet");
 
 INSERT INTO ModifierArguments (ModifierId, Name, Value) VALUES 
-("CC_TEST", "Amount", 1); 
+("WHEAT_MAKES_ME_FASTER", "Amount", 1);
+
 
 -- Single Conditions
 
