@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameData>
+
+    <!--以特性 TRAIT_HERO_IN_TURBULENT_WORLD 以例，
+    让拥有该特性的文明或领袖每回合 +2 大将军点数-->
+    <TraitModifiers>
+        <Row>
+            <TraitType>TRAIT_HERO_IN_TURBULENT_WORLD</TraitType>
+            <ModifierId>MODIFIER_9XQRM0E2</ModifierId>
+        </Row>
+    </TraitModifiers>
+    
+    <Modifiers>
+        <Row>
+            <ModifierId>MODIFIER_9XQRM0E2</ModifierId>
+            <ModifierType>MODIFIER_PLAYER_ADJUST_GREAT_PERSON_POINTS</ModifierType>
+        </Row>
+    </Modifiers>
+    
+    <ModifierArguments>
+        <Row>
+            <ModifierId>MODIFIER_9XQRM0E2</ModifierId>
+            <Name>Amount</Name>
+            <Value>2</Value>
+        </Row>
+        <Row>
+            <ModifierId>MODIFIER_9XQRM0E2</ModifierId>
+            <Name>GreatPersonClassType</Name>
+            <Value>GREAT_PERSON_CLASS_GENERAL</Value>
+        </Row>
+    </ModifierArguments>
+
+</GameData>
