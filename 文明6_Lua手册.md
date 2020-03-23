@@ -117,7 +117,7 @@ local playerTechs = pPlayer:GetTechs();
 local tech = GameInfo.Technologies["TECH_FLIGHT"];
 if (tech ~= nil) then
     -- 方法1，UI进度会实时更新
-	-- playerTechs:SetResearchProgress(tech.Index, 
+	-- playerTechs:SetResearchProgress(tech.Index,
 	-- playerTechs:GetResearchCost(tech.Index));
 
     -- 方法2，简单，但UI不会立马显示已获得该技术
@@ -227,7 +227,7 @@ end
 | 剩余建造次数      | `pUnit:GetBuildCharges()`                                               |                                |
 | 加经验值          | `pUnit:GetExperience():ChangeExperience(10)`                            |                                |
 | 组建军团军队      | `pUnit:SetMilitaryFormation(MilitaryFormationTypes.CORPS_FORMATION)`    | 军队：ARMY_FORMATION            |
-|                  | `pUnit:GetLocation`                                                     | 未测试                          |
+| 获取位置          | `pUnit:GetLocation()`                                                   | location.x, location.y         |
 | 是否在船上        | `pUnit:IsEmbarked()`                                                    |                                |
 | 获取单位显示名称   | `pUnit:GetName()`                                                       | 返回 "LOC_UNIT_SCOUT_NAME" 这种 |
 | 获取所属玩家      | `pUnit:GetOwner()`                                                      | 返回 playerID                   |
@@ -258,7 +258,7 @@ end
 ### 单位的遍历
 
 ```lua
-function FindPossibleEventUnits( playerId )
+function FindPossibleUnits( playerId )
 	local pPlayer = Players[playerId];
 	local playerUnits = pPlayer:GetUnits();
 	for i, unit in playerUnits:Members() do
@@ -393,10 +393,13 @@ UnitManager.RequestCommand( pUnit, UnitCommandTypes.PROMOTE, tParameters );
 
 ### 常用功能
 
+
+
 |           功能            |                              代码                              |              说明               |
 | ------------------------- | ------------------------------------------------------------- | ------------------------------- |
 | 获取城市（根据ID）          | `local pCity = CityManager.GetCity(playerID, cityId)`         |                                 |
 | 获取城市（根据坐标）        | `local pCity = CityManager.GetCityAt(iX, iY)`                 | 必须是市中心坐标                 |
+| 获取城市（根据格位）        | `local pCity = Cities.GetCityInPlot(iPlotIndex)`              | Cities和下面的GetCities不一样    |
 | 创建城市                   | `pPlayer:GetCities():Create(iX, iY)`                          | 有最小城市距离限制                |
 | 改变忠诚度                 | `pCity:ChangeLoyalty(100)`                                    |                                 |
 | 改变人口                   | `pCity:ChangePopulation(1)`                                   |                                 |
@@ -499,7 +502,23 @@ if (CityManager.CanStartCommand( g_pSelectedCity, CityCommandTypes.DESTROY, tPar
 end
 ```
 
+#### 推荐建造
 
+```lua
+local m_kRecommendedItems = {}
+
+for _,kItem in ipairs(pCity:GetCityAI():GetBuildRecommendations()) do
+	m_kRecommendedItems[kItem.BuildItemHash] = kItem.BuildItemScore;
+end
+```
+
+结果：
+
+```
+InGame: 1967074475	1535
+InGame: -1188273497	1345
+InGame: -754251518	1235
+```
 
 ---
 
@@ -668,11 +687,13 @@ end
 
 ### 改变地形与地貌
 
+关于 TerrainBuilder 的更多方法：<a href="#TerrainBuilder">点我跳转</a>
+
 ```lua
-TerrainBuilder.CanHaveFeature(pPlot, eFeatureType)
-TerrainBuilder.GetAdjacentFeatureCount(pPlot, eFeatureType)
-TerrainBuilder.SetFeatureType(pPlot, eFeatureType)
-TerrainBuilder.SetTerrainType(pPlot, eTerrainType)
+TerrainBuilder.CanHaveFeature(pPlot, iFeatureType)
+TerrainBuilder.GetAdjacentFeatureCount(pPlot, iFeatureType)
+TerrainBuilder.SetFeatureType(pPlot, iFeatureType)
+TerrainBuilder.SetTerrainType(pPlot, iTerrainType)
 ```
 
 
@@ -724,11 +745,15 @@ for i, eContinent in ipairs(tContinents) do
 |              | `Game.GetPhaseName()`                                             | ❓未知      |
 | 获取全部玩家   | `Game.GetPlayers()`                                               | 见注释【2】 |
 | 获取当前时代   | `Game.GetEras():GetCurrentEra()`                                  | 返回Index  |
+| 加时代分      | `Game.GetEras():ChangePlayerEraScore(iPlayerID, 1)`               |            |
 | 获取当前回合数 | `Game.GetCurrentGameTurn()`                                       |            |
+| 存储数据？     | `Game:SetProperty('abc', '666')`                                  |            |
+| 获取存储的数据 | `Game:GetProperty('abc')`                                         |            |
+
 
 
 【1】 第一个参数（好像效果没区别）：
-* EventSubTypes.DAMAGE 
+* EventSubTypes.DAMAGE
 * EventSubTypes.PLOT
 * EventSubTypes.FOUND_CITY
 
@@ -736,15 +761,99 @@ for i, eContinent in ipairs(tContinents) do
 
 【2】 包含城邦、自由城市、野蛮人在内。返回一个列表，其中每一项都是 pPlayer。
 
+其他：
 
-### 随机事件
+- Game.GetBarbarianManager()
+- Game.GetComponentID()
+- Game.GetCurrentGameTurn()
+- Game.GetCurrentTurnPhase()
+- Game.GetCurrentTurnPhaseName()
+- Game.GetCurrentTurnSegment()
+- Game.GetCurrentTurnSegmentName()
+- Game.GetDefeatRequirements()
+- Game.GetEras()
+- Game.GetFalloutManager()
+- Game.GetGameDiplomacy()
+- Game.GetGreatPeople()
+- Game.GetLocalObserver()
+- Game.GetLocalPlayer()
+- Game.GetObjectFromComponentID()
+- Game.GetPhaseName()
+- Game.GetPlayers()
+- Game.GetProperties()
+- Game.GetProperty()
+- Game.GetQuestsManager()
+- Game.GetRandNum()
+- Game.GetRandomSeed()
+- Game.GetReligion()
+- Game.GetTradeManager()
+- Game.GetVictoryProgressForTeam()
+- Game.GetVictoryRequirements()
+- Game.GetWinningTeam()
+- Game.IsAllowStrategicCommands()
+- Game.IsAllowTacticalCommands()
+- Game.IsDefeatEnabled()
+- Game.IsVictoryEnabled()
+- Game.ObserverCanSeePlayer()
+- Game.RetirePlayer()
+- Game.SetCurrentGameTurn()
+- Game.SetProperty()
+- Game.SetRandomSeed()
+- Game.SetWinningTeam()
+- Game.UnlockAchievement()
+- Game.WriteHistoryLog()
 
-GameRandomEvents
+### StartPositioner
 
-- ApplyEvent （不适用于 UI 环境）
-- GetEventForTurn
-- GetCurrentTurnEvent
-- GetCurrentAffectedCities
+用于指定玩家出生点的功能。
+
+- StartPositioner.DivideMapIntoMajorRegions()
+- StartPositioner.DivideMapIntoMinorRegions()
+- StartPositioner.GetMajorCivStartInfo()
+- StartPositioner.GetMajorCivStartPlots()
+- StartPositioner.GetMinorCivStartInfo()
+- StartPositioner.GetMinorCivStartPlots()
+- StartPositioner.GetNumMajorCivStarts()
+- StartPositioner.GetNumMinorCivStarts()
+- StartPositioner.GetOceanStartTile()
+- StartPositioner.GetPlotFertility()
+- StartPositioner.GetTotalOceanStartCandidates()
+- StartPositioner.MarkMajorRegionUsed()
+- StartPositioner.PlaceOceanStartCivs()
+
+
+<div id="TerrainBuilder"/>
+
+### 地形编辑器 TerrainBuilder
+
+- TerrainBuilder.AddCoastalLowland()
+- TerrainBuilder.AddIce()
+- TerrainBuilder.AnalyzeChokepoints()
+- TerrainBuilder.CanHaveFeature()
+- TerrainBuilder.GenerateFloodplains()
+- TerrainBuilder.GetAdjacentFeatureCount()
+- TerrainBuilder.GetFractalFlags()
+- TerrainBuilder.GetInlandCorner()
+- TerrainBuilder.GetRandomNumber()
+- TerrainBuilder.SetContinentType()
+- TerrainBuilder.SetFeatureType()
+- TerrainBuilder.SetMultiPlotFeatureType()
+- TerrainBuilder.SetNEOfCliff()
+- TerrainBuilder.SetNEOfRiver()
+- TerrainBuilder.SetNWOfCliff()
+- TerrainBuilder.SetNWOfRiver()
+- TerrainBuilder.SetTerrainType()
+- TerrainBuilder.SetWOfCliff()
+- TerrainBuilder.SetWOfRiver()
+- TerrainBuilder.StampContinents()
+
+
+### 随机事件（自然灾害）
+
+- GameRandomEvents.ApplyEvent() （不适用于 UI 环境）
+- GameRandomEvents.GetEventForTurn()
+- GameRandomEvents.GetCurrentTurnEvent()
+- GameRandomEvents.GetCurrentAffectedCities()
 
 ```lua
 function DoRandomEvent()
