@@ -28,7 +28,7 @@ function onCombat(pCombatResult)
         --local pAttUnit = UnitManager.GetUnit(attInfo.player, attInfo.id)
         local pDefUnit = UnitManager.GetUnit(defInfo.player, defInfo.id)
         
-        pDefUnit:SetDamage(damage * 2)
+        pDefUnit:ChangeDamage(damage)
         Game.AddWorldViewText(0, "Double Kill!", location.x, location.y)
     end
     
