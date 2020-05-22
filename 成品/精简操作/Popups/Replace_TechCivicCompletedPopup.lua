@@ -9,11 +9,11 @@ local OnNotificationPanel_ShowCivicDiscovered_BAK = OnNotificationPanel_ShowCivi
 
 
 function OnNotificationPanel_ShowTechDiscovered(ePlayer, techIndex:number, isByUser:boolean)
-	--AddCompletedPopup( ePlayer, nil, techIndex, isByUser );
+    --AddCompletedPopup( ePlayer, nil, techIndex, isByUser );
 end
 
 function OnNotificationPanel_ShowCivicDiscovered(ePlayer, civicIndex, isByUser:boolean)
-	--AddCompletedPopup( ePlayer, civicIndex, nil, isByUser  );
+    --AddCompletedPopup( ePlayer, civicIndex, nil, isByUser  );
 end
 
 

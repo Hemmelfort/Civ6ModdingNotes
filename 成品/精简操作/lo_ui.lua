@@ -8,7 +8,7 @@
 local m_SelectedUnit;
 local m_LocalPlayer = Game.GetLocalPlayer()
 
-local i_TraderIndex = GameInfo.Units["UNIT_TRADER"].Index;
+local i_TraderIndex = nil;
 
 local m_UnrestOperations = {};
 local m_UnrestOperationNames = {    -- 以下操作不消耗移动力
@@ -95,9 +95,12 @@ function StopTradeRoute()
             for i, route in ipairs(pRoutes) do
                 if (iUnitID == route.TraderUnitID) then
                     local pOriginCity = pCities:FindID(route.OriginCityID)
+                    if not pOriginCity then
+                        return
+                    end
+
                     local iX = pOriginCity:GetX()
                     local iY = pOriginCity:GetY()
-                    
                     ExposedMembers.LO.KillUnit(iOwner, iUnitID)
                     ExposedMembers.LO.CreateUnit(iOwner, i_TraderIndex, iX, iY)
                 end
@@ -115,6 +118,10 @@ function TraderRewalk(pUnit)
         local pTrade = pUnit:GetTrade()
         local tDestComponentID = pTrade:GetLastDestinationTradeCityComponentID()
         local pDestCity = CityManager.GetCity(playerID, tDestComponentID.id)
+        if (not pDestCity) then
+            return
+        end
+
         local tParameters = {}
         tParameters[UnitOperationTypes.PARAM_X0] = pDestCity:GetX()
         tParameters[UnitOperationTypes.PARAM_Y0] = pDestCity:GetY()
@@ -167,6 +174,30 @@ end
 -- ====================================
 
 
+function AutoFortify()
+    local pPlayer = Players[m_LocalPlayer]
+    if not pPlayer then
+        return
+    end
+    
+    local playerUnits = pPlayer:GetUnits()
+    for i, pUnit in playerUnits:Members() do
+        -- 为什么 UnitOperationTypes.WAIT_FOR 不行呢？
+        -- TODO: 未警戒才能自动驻扎 pUnit:GetOperationType()
+        if UnitManager.CanStartOperation(pUnit, UnitOperationTypes.FORTIFY) then
+            UnitManager.RequestOperation(pUnit, UnitOperationTypes.FORTIFY)
+        end
+    end
+    UI.PlaySound("Confirm_Civic")
+end
+
+
+function OnInputActionTriggered(iActionID)
+    if (iActionID == Input.GetActionId('AutoFortify')) then
+        AutoFortify()
+    end
+end
+
 
 -- ====================================
 -- 游戏加载完成后装载界面
@@ -189,6 +220,11 @@ end
 -- 
 -- ====================================
 function Initialize()
+    local trader = GameInfo.Units["UNIT_TRADER"]
+    if trader then
+        i_TraderIndex = trader.Index
+    end
+    
     Events.LoadScreenClose.Add(Setup)
     Events.CityProductionCompleted.Add(OnCityProductionCompleted)
     Events.UnitOperationAdded.Add(OnUnitOperationAdded)
@@ -196,6 +232,7 @@ function Initialize()
     --Events.UnitActivityChanged.Add(OnUnitActivityChanged)
     Events.UnitOperationsCleared.Add(OnUnitOperationsCleared)
     --Events.LocalPlayerTurnBegin.Add(OnLocalPlayerTurnBegin)
+    Events.InputActionTriggered.Add(OnInputActionTriggered)
 
 end
 

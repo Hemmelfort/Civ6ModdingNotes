@@ -1,3 +1,3 @@
 
-update Units set BaseMoves=5 where UnitType="UNIT_BUILDER";
+update Units set BaseMoves=6 where UnitType="UNIT_BUILDER";
 

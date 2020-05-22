@@ -9,6 +9,15 @@
         <CompatibleVersions>1.2,2.0</CompatibleVersions>
     </Properties>
 
+    <Settings>
+        <UpdateDatabase id="LO_CONFIG">
+            <File>lo_config.sql</File>
+        </UpdateDatabase>
+        <UpdateText id="LO_TEXT">
+            <File>lo_text.xml</File>
+        </UpdateText>
+    </Settings>
+
     <Components>
         <UpdateDatabase id="LO_DB">
             <Properties>
@@ -33,68 +42,55 @@
             <Properties>
                 <LoadOrder>10000</LoadOrder>
                 <LuaContext>BoostUnlockedPopup</LuaContext>
-                <LuaReplace>Popups/Replace_BoostUnlockedPopup.lua</LuaReplace>
+                <LuaReplace>Popups/REPLACE_BoostUnlockedPopup.lua</LuaReplace>
             </Properties>
         </ReplaceUIScript>
         <ReplaceUIScript id="REMOVE_COMPLETE_POPUP">
             <Properties>
                 <LoadOrder>10001</LoadOrder>
                 <LuaContext>TechCivicCompletedPopup</LuaContext>
-                <LuaReplace>Popups/Replace_TechCivicCompletedPopup.lua</LuaReplace>
+                <LuaReplace>Popups/REPLACE_TechCivicCompletedPopup.lua</LuaReplace>
             </Properties>
         </ReplaceUIScript>
         <ReplaceUIScript id="REMOVE_MOMENTS_POPUP">
             <Properties>
                 <LoadOrder>10002</LoadOrder>
                 <LuaContext>HistoricMoments</LuaContext>
-                <LuaReplace>Popups/Replace_HistoricMoments.lua</LuaReplace>
+                <LuaReplace>Popups/REPLACE_HistoricMoments.lua</LuaReplace>
             </Properties>
         </ReplaceUIScript>
         <ReplaceUIScript id="REMOVE_GREATWORK_POPUP">
             <Properties>
                 <LoadOrder>10003</LoadOrder>
                 <LuaContext>GreatWorkShowcase</LuaContext>
-                <LuaReplace>Popups/Replace_GreatWorkShowcase.lua</LuaReplace>
+                <LuaReplace>Popups/REPLACE_GreatWorkShowcase.lua</LuaReplace>
             </Properties>
         </ReplaceUIScript>
         
+        <ReplaceUIScript id="TEST_REPLACE">
+            <Properties>
+                <LoadOrder>10004</LoadOrder>
+                <LuaContext>CityStates</LuaContext>
+                <LuaReplace>PartialScreens/REPLACE_CityStates.lua</LuaReplace>
+            </Properties>
+        </ReplaceUIScript>
         <UpdateText id="LO_TEXT">
             <File>lo_text.xml</File>
         </UpdateText>
     </Components>
 
     <Files>
+        <File>lo_config.sql</File>
         <File>lo_data.sql</File>
         <File>lo_text.xml</File>
         <File>lo_script.lua</File>
         <File>lo_ui.xml</File>
         <File>lo_ui.lua</File>
-        <File>Popups/Replace_BoostUnlockedPopup.lua</File>
-        <File>Popups/Replace_TechCivicCompletedPopup.lua</File>
-        <File>Popups/Replace_HistoricMoments.lua</File>
-        <File>Popups/Replace_GreatWorkShowcase.lua</File>
+        <File>PartialScreens/REPLACE_CityStates.lua</File>
+        <File>Popups/REPLACE_BoostUnlockedPopup.lua</File>
+        <File>Popups/REPLACE_TechCivicCompletedPopup.lua</File>
+        <File>Popups/REPLACE_HistoricMoments.lua</File>
+        <File>Popups/REPLACE_GreatWorkShowcase.lua</File>
     </Files>
-    
-    <LocalizedText>
-        <Text id="LOC_MOD_LESS_OPERATIONS_NAME">
-            <en_US>[COLOR_GREEN]Less[ENDCOLOR] [COLOR_FLOAT_FOOD]Operations[ENDCOLOR]</en_US>
-            <zh_Hans_CN>[COLOR_GREEN]精简[ENDCOLOR][COLOR_FLOAT_FOOD]操作[ENDCOLOR]</zh_Hans_CN>
-        </Text>
-        <Text id="LOC_MOD_LESS_OPERATIONS_TEASER">
-            <en_US>Less Operations</en_US>
-            <zh_Hans_CN>关爱鼠标和键盘</zh_Hans_CN>
-        </Text>
-        <Text id="LOC_MOD_LESS_OPERATIONS_DESCRIPTION">
-            <en_US>Less Operations.</en_US>
-            <zh_Hans_CN>减少一些繁琐的操作，尤其在游戏后期城市数量较多的时候很有帮助。[NEWLINE][NEWLINE]
-[ICON_CheckSuccess]目前已实现的功能：[NEWLINE]
-1、建造者工作不消耗移动次数；[NEWLINE]
-2、区域增强型项目（如学院项目）可以自动重复循环进行。[NEWLINE]
-3、移除了文艺作品、历史时刻、尤里卡及鼓舞、科技文化完成时的弹窗。[NEWLINE]
-4、商路[ICON_TradeRoute]完成后能自动重复，但玩家随时可以更改；[NEWLINE][NEWLINE]
-[ICON_Turn]正在研究的功能：[NEWLINE]
-1、单位自动驻扎、警戒。[NEWLINE]
-</zh_Hans_CN>
-        </Text>
-    </LocalizedText>
+
 </Mod>

@@ -1,14 +1,68 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <GameData>
     <LocalizedText>
-        <Row Tag="LOC_LO_STOP_TRADEROUTE_ACTION" Language="en_US">
-            <Text>Back to Origin City</Text>
+        <Row Tag="LOC_MOD_LESS_OPERATIONS_NAME" Language="zh_Hans_CN">
+            <Text>[COLOR_GREEN]精简[ENDCOLOR][COLOR_FLOAT_FOOD]操作[ENDCOLOR]</Text>
         </Row>
-        
+        <Row Tag="LOC_MOD_LESS_OPERATIONS_TEASER" Language="zh_Hans_CN">
+            <Text>关爱鼠标和键盘</Text>
+        </Row>
+        <Row Tag="LOC_MOD_LESS_OPERATIONS_DESCRIPTION" Language="zh_Hans_CN">
+            <Text>减少一些繁琐的操作，尤其在游戏后期城市数量较多的时候很有帮助。[NEWLINE][NEWLINE]
+[ICON_CheckSuccess]目前已实现的功能：[NEWLINE]
+1、建造者移动力增加，且工作时不消耗移动力；[NEWLINE]
+2、区域增强型项目（如学院项目）可以自动重复循环进行；[NEWLINE]
+3、移除了文艺作品、历史时刻、尤里卡及鼓舞、科技文化完成时的弹窗；[NEWLINE]
+4、玩家随时可以更改商路（请点击商人单位）；[NEWLINE]
+5、单位一键驻扎（在游戏选项中可以设置快捷键）；[NEWLINE]
+6、Esc键关闭分配使者面板。[NEWLINE][NEWLINE]
+[ICON_Turn]正在研究的功能：[NEWLINE]
+1、商路[ICON_TradeRoute]完成后能自动重复。[NEWLINE]</Text>
+        </Row>
         <Row Tag="LOC_LO_STOP_TRADEROUTE_ACTION" Language="zh_Hans_CN">
             <Text>回到始发城市</Text>
         </Row>
+        <Row Tag="LOC_OPTIONS_HOTKEYS_LO_NAME" Language="zh_Hans_CN">
+            <Text>精简操作</Text>
+        </Row>
+        <Row Tag="LOC_OPTION_AUTO_FORTIFY_NAME" Language="zh_Hans_CN">
+            <Text>自动驻扎</Text>
+        </Row>
+        <Row Tag="LOC_OPTION_AUTO_FORTIFY_DESCRIPTION" Language="zh_Hans_CN">
+            <Text>让所有军事单位全部原地驻扎</Text>
+        </Row>
 
+        <Row Tag="LOC_MOD_LESS_OPERATIONS_NAME" Language="en_US">
+            <Text>[COLOR_GREEN]Less[ENDCOLOR] [COLOR_FLOAT_FOOD]Operations[ENDCOLOR]</Text>
+        </Row>
+        <Row Tag="LOC_MOD_LESS_OPERATIONS_TEASER" Language="en_US">
+            <Text>Reduce Some Operations</Text>
+        </Row>
+        <Row Tag="LOC_MOD_LESS_OPERATIONS_DESCRIPTION" Language="en_US">
+            <Text>Reduce some operations to keep mouse and keyboard healthy.[NEWLINE][NEWLINE]
+[ICON_CheckSuccess]目前已实现的功能：[NEWLINE]
+1、建造者移动力增加，且工作时不消耗移动力；[NEWLINE]
+2、区域增强型项目（如学院项目）可以自动重复循环进行；[NEWLINE]
+3、移除了文艺作品、历史时刻、尤里卡及鼓舞、科技文化完成时的弹窗；[NEWLINE]
+4、玩家随时可以更改商路（请点击商人单位）；[NEWLINE]
+5、单位一键驻扎（在游戏选项中可以设置快捷键）；[NEWLINE]
+6、Esc键关闭分配使者面板。[NEWLINE][NEWLINE]
+[ICON_Turn]正在研究的功能：[NEWLINE]
+1、商路[ICON_TradeRoute]完成后能自动重复。[NEWLINE]</Text>
+        </Row>
+        <Row Tag="LOC_LO_STOP_TRADEROUTE_ACTION" Language="en_US">
+            <Text>Back to Origin City</Text>
+        </Row>
+        <Row Tag="LOC_OPTIONS_HOTKEYS_LO_NAME" Language="en_US">
+            <Text>Less Operations</Text>
+        </Row>
+        <Row Tag="LOC_OPTION_AUTO_FORTIFY_NAME" Language="en_US">
+            <Text>Auto Fortify</Text>
+        </Row>
+        <Row Tag="LOC_OPTION_AUTO_FORTIFY_DESCRIPTION" Language="en_US">
+            <Text>Every military unit fortifies where they are.</Text>
+        </Row>
+        
     </LocalizedText>
 
 </GameData>
