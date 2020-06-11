@@ -221,7 +221,7 @@ end
 | 恢复移动力        | `UnitManager.RestoreMovementToFormation(pUnit)`                         | 进入zoc之后可以逃离              |
 | 恢复攻击次数      | `UnitManager.RestoreUnitAttacks(pUnit)`                                 | 通常也需要同时恢复移动力          |
 | 施加伤害          | `pUnit:ChangeDamage(50)`                                                | 相对值，负数反而治疗~            |
-| 施加伤害          | `pUnit:SetDamage(50)`                                                   | 非致命                          |
+| 设置伤害          | `pUnit:SetDamage(50)`                                                   | 非致命                          |
 | 受伤值            | `pUnit:GetDamage()`                                                     |                                |
 | 剩余攻击次数      | `pUnit:GetAttacksRemaining()`                                           |                                |
 | 剩余建造次数      | `pUnit:GetBuildCharges()`                                               |                                |
@@ -677,13 +677,25 @@ end
 ### 获取相邻全部格位
 
 ```lua
-local tNeighborPlots = Map.GetAdjacentPlots(pCity:GetX(), pCity:GetY());
+local tNeighborPlots = Map.GetAdjacentPlots(iX, iY);
 for _, pNeighborPlot in ipairs(tNeighborPlots) do
 	if (not pNeighborPlot:IsWater() and not pNeighborPlot:IsMountain()) then
 		print(pNeighborPlot:GetIndex());
 	end
 end
 ```
+
+### 获取附近范围内的全部格位
+
+获得的格位中包含本格在内。
+
+```lua
+local plots = Map.GetNeighborPlots(iX, iY, iRange)
+for i, adjPlot in ipairs(plots) do
+	print(loop, adjPlot:GetIndex())
+end
+```
+
 
 ### 改变地形与地貌
 
@@ -723,6 +735,18 @@ for i, eContinent in ipairs(tContinents) do
     for _, plot in ipairs(tContinentPlots) do
         local pPlot = Map.GetPlotByIndex(plot)
         -- use pPlot here
+```
+
+
+### 获取本城所有格位
+
+注意：Map.GetCityPlots() 只在 UI 环境下生效。
+
+```lua
+local pCityPlots = Map.GetCityPlots():GetPurchasedPlots( pCity )
+for _, iPlotIndex in pairs(pCityPlots) do
+	print(_, iPlotIndex)
+end
 ```
 
 
@@ -823,7 +847,6 @@ for i, eContinent in ipairs(tContinents) do
 
 
 <div id="TerrainBuilder"/>
-
 ### 地形编辑器 TerrainBuilder
 
 - TerrainBuilder.AddCoastalLowland()
@@ -865,7 +888,6 @@ function DoRandomEvent()
 
     local kEventDef = GameInfo.RandomEvents[kEvent.EventType];
     if kEventDef ~= nil then
-
         -- 乞力马扎罗山和维苏威火山
         if kEventDef.NaturalWonder ~= nil and kEventDef.NaturalWonder ~= "" then
             kEvent.FeatureType = kEventDef.NaturalWonder;
