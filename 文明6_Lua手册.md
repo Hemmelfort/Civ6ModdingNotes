@@ -1,7 +1,7 @@
 
 # 文明6 Lua 手册
 
-原作者：[Hemmelfort](https://space.bilibili.com/28399130)
+作者：[Hemmelfort](https://space.bilibili.com/28399130)
 
 
 ## 前言
@@ -405,7 +405,7 @@ UnitManager.RequestCommand( pUnit, UnitCommandTypes.PROMOTE, tParameters );
 | 改变人口                   | `pCity:ChangePopulation(1)`                                   |                                 |
 | 获取城市位置               | ` pCity:GetX()` 和 `pCity:GetY()`                              |                                 |
 | 获取人口                   | `pCity:GetPopulation()`                                       |                                 |
-| 获取拥有者                 | `pCity:GetOwner()`                                            |                                 |
+| 获取拥有者                 | `pCity:GetOwner()`                                            | 返回 iPlayerID                  |
 | 获取原始拥有者             | `pCity:GetOriginalOwner()`                                    |                                 |
 | 获取城市名                 | `pCity:GetName()`                                             |                                 |
 | 设置城市名                 | `pCity:SetName("hehe")`                                       |                                 |
@@ -749,7 +749,6 @@ for _, iPlotIndex in pairs(pCityPlots) do
 end
 ```
 
-
 ---
 ## 其他
 
@@ -827,48 +826,6 @@ end
 - Game.UnlockAchievement()
 - Game.WriteHistoryLog()
 
-### StartPositioner
-
-用于指定玩家出生点的功能。
-
-- StartPositioner.DivideMapIntoMajorRegions()
-- StartPositioner.DivideMapIntoMinorRegions()
-- StartPositioner.GetMajorCivStartInfo()
-- StartPositioner.GetMajorCivStartPlots()
-- StartPositioner.GetMinorCivStartInfo()
-- StartPositioner.GetMinorCivStartPlots()
-- StartPositioner.GetNumMajorCivStarts()
-- StartPositioner.GetNumMinorCivStarts()
-- StartPositioner.GetOceanStartTile()
-- StartPositioner.GetPlotFertility()
-- StartPositioner.GetTotalOceanStartCandidates()
-- StartPositioner.MarkMajorRegionUsed()
-- StartPositioner.PlaceOceanStartCivs()
-
-
-<div id="TerrainBuilder"/>
-### 地形编辑器 TerrainBuilder
-
-- TerrainBuilder.AddCoastalLowland()
-- TerrainBuilder.AddIce()
-- TerrainBuilder.AnalyzeChokepoints()
-- TerrainBuilder.CanHaveFeature()
-- TerrainBuilder.GenerateFloodplains()
-- TerrainBuilder.GetAdjacentFeatureCount()
-- TerrainBuilder.GetFractalFlags()
-- TerrainBuilder.GetInlandCorner()
-- TerrainBuilder.GetRandomNumber()
-- TerrainBuilder.SetContinentType()
-- TerrainBuilder.SetFeatureType()
-- TerrainBuilder.SetMultiPlotFeatureType()
-- TerrainBuilder.SetNEOfCliff()
-- TerrainBuilder.SetNEOfRiver()
-- TerrainBuilder.SetNWOfCliff()
-- TerrainBuilder.SetNWOfRiver()
-- TerrainBuilder.SetTerrainType()
-- TerrainBuilder.SetWOfCliff()
-- TerrainBuilder.SetWOfRiver()
-- TerrainBuilder.StampContinents()
 
 
 ### 随机事件（自然灾害）
@@ -1062,6 +1019,106 @@ local szEffectText = Locale.Lookup("LOC_SCENARIO_AUSTRALIA_EVENT_DANGER_EFFECT_5
         <Text>您的{1_UnitName}已返回最近的城市{2_CityName}。</Text>
     </Replace>
 ```
+
+
+
+
+### 出生点编辑器 StartPositioner
+
+玩家出生点相关的功能。
+
+- StartPositioner.DivideMapIntoMajorRegions()
+- StartPositioner.DivideMapIntoMinorRegions()
+- StartPositioner.GetMajorCivStartInfo()
+- StartPositioner.GetMajorCivStartPlots()
+- StartPositioner.GetMinorCivStartInfo()
+- StartPositioner.GetMinorCivStartPlots()
+- StartPositioner.GetNumMajorCivStarts()
+- StartPositioner.GetNumMinorCivStarts()
+- StartPositioner.GetOceanStartTile()
+- StartPositioner.GetPlotFertility()
+- StartPositioner.GetTotalOceanStartCandidates()
+- StartPositioner.MarkMajorRegionUsed()
+- StartPositioner.PlaceOceanStartCivs()
+
+
+<div id="TerrainBuilder"/>
+### 地形编辑器 TerrainBuilder
+
+用于修改游戏地形。
+
+- TerrainBuilder.AddCoastalLowland()
+- TerrainBuilder.AddIce()
+- TerrainBuilder.AnalyzeChokepoints()
+- TerrainBuilder.CanHaveFeature()
+- TerrainBuilder.GenerateFloodplains()
+- TerrainBuilder.GetAdjacentFeatureCount()
+- TerrainBuilder.GetFractalFlags()
+- TerrainBuilder.GetInlandCorner()
+- TerrainBuilder.GetRandomNumber()
+- TerrainBuilder.SetContinentType()
+- TerrainBuilder.SetFeatureType()
+- TerrainBuilder.SetMultiPlotFeatureType()
+- TerrainBuilder.SetNEOfCliff()
+- TerrainBuilder.SetNEOfRiver()
+- TerrainBuilder.SetNWOfCliff()
+- TerrainBuilder.SetNWOfRiver()
+- TerrainBuilder.SetTerrainType()
+- TerrainBuilder.SetWOfCliff()
+- TerrainBuilder.SetWOfRiver()
+- TerrainBuilder.StampContinents()
+
+
+
+### 河流编辑器 RiverManager
+
+用于获取河流信息。
+
+
+
+常用方法：
+
+```lua
+local pRivers = RiverManager.EnumerateRivers()
+-- 返回 {1: pRiver1, 2: pRiver2, ...}
+```
+
+每条河流 `pRiver` 的属性：
+
+- pRiver.Name: string
+- pRiver.Edges: table
+- pRiver.TypeID: number （有名字的河流在GameInfo.NamedRivers中的Index）
+- pRiver.ID: number    （好像和该河流在本地图所有河流中的序号Index是一样的）
+
+其中 `Edges` 的元素数量相当于河流的长度。以 `local edges = river.Edges[1]` 举例，由于河流的每一节都是两个格位构成，所以 `edges` 是一个含有两个格位 Index 的 table。
+
+> 1）如果一条河流是另一条的支流，比如嘉陵江的长度只算到重庆就停了，不能把长江的长度算在内。
+> 2）河流可能只有一部分是有名字的，比如金沙江只在长江的上游。
+
+
+
+
+- RiverManager.GetRiverTypeAtIndex
+- RiverManager.GetRiverNameByType
+- RiverManager.GetRiverIndexByID
+- RiverManager.GetRiverTypes
+- RiverManager.GetRiverIDAtIndex
+- RiverManager.GetFloodplainLocation
+- RiverManager.GetRiverName
+- RiverManager.GetRiverForFloodplain
+- RiverManager.IsFlooded
+- RiverManager.GetRiverByIndex
+- RiverManager.GetNumRivers
+- RiverManager.GetNumFloods
+- RiverManager.GetRiverByID
+- RiverManager.EnumerateRivers
+- RiverManager.GetNumFloodableRivers
+- RiverManager.CanBeFlooded
+- RiverManager.GetRiverType
+- RiverManager.GetFloodplainPlots
+
+
+
 
 
 
