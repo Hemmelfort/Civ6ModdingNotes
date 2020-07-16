@@ -431,8 +431,8 @@ UnitManager.RequestCommand( pUnit, UnitCommandTypes.PROMOTE, tParameters );
 | 创建建筑                   | `pCity:GetBuildQueue():CreateBuilding(building.Index)`        |                                 |
 | 获得当前建造任务            | `pCity:GetBuildQueue():CurrentlyBuilding()`                   | 返回值：如 "BUILDING_MONUMENT"   |
 | **建筑**                  |                                                               |                                 |
-| 是否有该建筑               | `pCity:GetBuildings():HasBuilding("BUILDING_XX")`             |                                 |
-| 获取建筑位置               | `pCity:GetBuildings():GetBuildingLocation(building.Index)`    | 返回值：iPlotIndex （和区域不同） |
+| 是否有该建筑               | `pCity:GetBuildings():HasBuilding(iIndex)`                    |                                 |
+| 获取建筑位置               | `pCity:GetBuildings():GetBuildingLocation(iIndex)`            | 返回值：iPlotIndex （和区域不同） |
 | 设置建筑被掠夺             | `pCity:GetBuildings():SetPillaged(building.Index, true)`      |                                 |
 | 判断建筑是否被掠夺          | `pCity:GetBuildings():IsPillaged("BUILDING_XX")`              | 参数也可以是 building.Index     |
 | 移除建筑                   | `pCity:GetBuildings():RemoveBuilding("BUILDING_XX")`          |                                 |
@@ -717,6 +717,12 @@ ImprovementBuilder.SetImprovementType(pPlot, iImprovement, iPlayerID)
 ```
 
 注：若 `iImprovement` 为 -1 则移除改良。
+
+### 移除资源
+
+```lua
+ResourceBuilder.SetResourceType(pPlot, -1);
+```
 
 ### 格位所有者变更
 
