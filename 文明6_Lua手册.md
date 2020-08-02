@@ -692,7 +692,7 @@ end
 ```lua
 local plots = Map.GetNeighborPlots(iX, iY, iRange)
 for i, adjPlot in ipairs(plots) do
-	print(loop, adjPlot:GetIndex())
+	print(i, adjPlot:GetIndex())
 end
 ```
 
