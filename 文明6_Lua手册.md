@@ -1,13 +1,12 @@
 
 # 文明6 Lua 手册
 
-作者：[Hemmelfort](https://space.bilibili.com/28399130)
-
 
 ## 前言
 
 
 本文内容不时会更新，获取最新版本请访问项目地址：
+
 - [Gitee](https://gitee.com/Hemmelfort/Civ6ModdingNotes)
 - [Github](https://github.com/Hemmelfort/Civ6ModdingNotes)
 
@@ -762,7 +761,6 @@ end
 
 |     功能      |                                代码                                |            |
 | ------------ | ----------------------------------------------------------------- | ---------- |
-| 加时代分      | `Game.ChangePlayerEraScore(playerID, 10)`                         |            |
 | 解锁成就      | `Game.UnlockAchievement(pUnit:GetOwner(), "DLC3_ACHIEVEMENT_10")` |            |
 | 加核辐射      | `Game.GetFalloutManager():AddFallout(iPlotIndex, iTurns)`         |            |
 | 移除核辐射     | `Game.GetFalloutManager():RemoveFallout(iPlotIndex)`              |            |
@@ -1049,6 +1047,7 @@ local szEffectText = Locale.Lookup("LOC_SCENARIO_AUSTRALIA_EVENT_DANGER_EFFECT_5
 
 
 <div id="TerrainBuilder"/>
+
 ### 地形编辑器 TerrainBuilder
 
 用于修改游戏地形。
