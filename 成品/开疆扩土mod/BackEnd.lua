@@ -15,7 +15,7 @@ function GetNearestCity(PlotX, PlotY, PlayerID)
         end
     end
     
-    return city or pPlayerCities:GetCapitalCity()
+    return city
 end
 
 
