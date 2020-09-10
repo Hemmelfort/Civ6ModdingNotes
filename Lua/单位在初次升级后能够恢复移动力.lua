@@ -29,6 +29,7 @@ function OnUnitCommandStarted(iPlayerID, iUnitID, hCommand, iData1)
         return
     end
     
+    -- 单位最低升级经验建议从 GlobalParameters 获取 UPGRADE_MINIMUM_COST 的值
     local pUnit = UnitManager.GetUnit(iPlayerID, iUnitID)
     if  (pUnit ~= nil)
     and (pUnit:GetExperience():GetExperiencePoints() < 16) then
