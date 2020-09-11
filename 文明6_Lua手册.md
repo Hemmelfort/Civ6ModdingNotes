@@ -152,17 +152,28 @@ local playerCulture = player:GetCulture();
 
 if playerCulture ~= nil then
 	local ID = 0;
-	for tech in GameInfo.Civics() do
+	for civic in GameInfo.Civics() do
 		playerCulture:SetCivic(ID, true);
 		ID = ID + 1;
 	end
 end
 ```
 
+
+### 判断有没有政策
+
+以“纪律”（POLICY_DISCIPLINE）为例：
+
+```lua
+local i = GameInfo.Policies['POLICY_DISCIPLINE'].Index
+local a = Players[0]:GetCulture():IsPolicyActive(i)
+```
+
+
 ### 根据名字送伟人
 
 ```lua
-local function AddGreatMerchant(iPlayer, szGeneralName)
+function AddGreatMerchant(iPlayer, szGeneralName)
 	local individual = GameInfo.GreatPersonIndividuals[szGeneralName].Hash;
 	local class = GameInfo.GreatPersonClasses["GREAT_PERSON_CLASS_MERCHANT"].Hash;
 	local era = GameInfo.Eras["ERA_CLASSICAL"].Hash;
@@ -203,6 +214,7 @@ function GodSight(PlayerID)
     end
 end
 ```
+
 ---
 
 ## Unit
@@ -434,7 +446,7 @@ UnitManager.RequestCommand( pUnit, UnitCommandTypes.PROMOTE, tParameters );
 | 获取建筑位置               | `pCity:GetBuildings():GetBuildingLocation(iIndex)`            | 返回值：iPlotIndex （和区域不同） |
 | 设置建筑被掠夺             | `pCity:GetBuildings():SetPillaged(building.Index, true)`      |                                 |
 | 判断建筑是否被掠夺          | `pCity:GetBuildings():IsPillaged("BUILDING_XX")`              | 参数也可以是 building.Index     |
-| 移除建筑                   | `pCity:GetBuildings():RemoveBuilding("BUILDING_XX")`          |                                 |
+| 移除建筑                   | `pCity:GetBuildings():RemoveBuilding(building.Index)`         |                                 |
 | **区域**                  |                                                               |                                 |
 | 获取区域位置               | `pCity:GetDistricts():GetDistrictLocation(district.Index)`    | 返回值：(iX, iY)                |
 | 判断是否有该区域            | `pCity:GetDistricts():HasDistrict(district.Index)`            |                                 |
@@ -530,6 +542,7 @@ InGame: -754251518	1235
 | pPlot              | 格位对象      |
 | iPlot / iPlotIndex | 格位序号或序数 |
 | iX, iY             | 格位坐标      |
+
 
 
 ### 常用功能
