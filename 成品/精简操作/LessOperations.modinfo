@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Mod id="8a4a95c1-bc56-431b-b041-adae0b461cb4" version="1">
+<Mod id="D1F19CF2-C86A-41DD-8054-4EECBD6B3126" version="1">
     <Properties>
         <Name>LOC_MOD_LESS_OPERATIONS_NAME</Name>
         <Teaser>LOC_MOD_LESS_OPERATIONS_TEASER</Teaser>
@@ -21,7 +21,7 @@
     <Components>
         <UpdateDatabase id="LO_DB">
             <Properties>
-                <LoadOrder>10000</LoadOrder>
+                <LoadOrder>1000</LoadOrder>
             </Properties>
             <Items>
                 <File>lo_data.sql</File>
@@ -33,6 +33,7 @@
         <AddUserInterfaces id="LO_UI">
             <Properties>
                 <Context>InGame</Context>
+                <LoadOrder>1000</LoadOrder>
             </Properties>
             <File>lo_ui.xml</File>
         </AddUserInterfaces>
@@ -40,28 +41,28 @@
         <!-- Remove Popups -->
         <ReplaceUIScript id="REMOVE_BOOST_POPUP">
             <Properties>
-                <LoadOrder>10000</LoadOrder>
+                <LoadOrder>1000</LoadOrder>
                 <LuaContext>BoostUnlockedPopup</LuaContext>
                 <LuaReplace>Popups/REPLACE_BoostUnlockedPopup.lua</LuaReplace>
             </Properties>
         </ReplaceUIScript>
         <ReplaceUIScript id="REMOVE_COMPLETE_POPUP">
             <Properties>
-                <LoadOrder>10001</LoadOrder>
+                <LoadOrder>1001</LoadOrder>
                 <LuaContext>TechCivicCompletedPopup</LuaContext>
                 <LuaReplace>Popups/REPLACE_TechCivicCompletedPopup.lua</LuaReplace>
             </Properties>
         </ReplaceUIScript>
         <ReplaceUIScript id="REMOVE_MOMENTS_POPUP">
             <Properties>
-                <LoadOrder>10002</LoadOrder>
+                <LoadOrder>1002</LoadOrder>
                 <LuaContext>HistoricMoments</LuaContext>
                 <LuaReplace>Popups/REPLACE_HistoricMoments.lua</LuaReplace>
             </Properties>
         </ReplaceUIScript>
         <ReplaceUIScript id="REMOVE_GREATWORK_POPUP">
             <Properties>
-                <LoadOrder>10003</LoadOrder>
+                <LoadOrder>1003</LoadOrder>
                 <LuaContext>GreatWorkShowcase</LuaContext>
                 <LuaReplace>Popups/REPLACE_GreatWorkShowcase.lua</LuaReplace>
             </Properties>
@@ -69,7 +70,7 @@
         
         <ReplaceUIScript id="TEST_REPLACE">
             <Properties>
-                <LoadOrder>10004</LoadOrder>
+                <LoadOrder>1004</LoadOrder>
                 <LuaContext>CityStates</LuaContext>
                 <LuaReplace>PartialScreens/REPLACE_CityStates.lua</LuaReplace>
             </Properties>
@@ -93,4 +94,37 @@
         <File>Popups/REPLACE_GreatWorkShowcase.lua</File>
     </Files>
 
+
+    <LocalizedText>
+        <Text id="LOC_MOD_LESS_OPERATIONS_NAME">
+            <en_US>Less Operations</en_US>
+            <zh_Hans_CN>精简操作</zh_Hans_CN>
+        </Text>
+        <Text id="LOC_MOD_LESS_OPERATIONS_TEASER">
+            <en_US>Take care of your mouse and keyboard.</en_US>
+            <zh_Hans_CN>关爱鼠标和键盘</zh_Hans_CN>
+        </Text>
+        <Text id="LOC_MOD_LESS_OPERATIONS_DESCRIPTION">
+            <en_US>Reduce some tedious operations. Sometimes helpful especially in the late game when it's too tired to handle more and more cities.[NEWLINE][NEWLINE]
+[ICON_CheckSuccess]Functions implemented:[NEWLINE]
+1. No movement cost for builders to work.[NEWLINE]
+2. Enhancement projects of districts can be repeated automatically.[NEWLINE]
+3. Remove popups of: civics boost, tech boost, historic moments, great works created, civics completed, tech completed.[NEWLINE]
+4. Trade routes can be cancelled at anytime.[NEWLINE]
+5. Press one key to make all military units fortified (The key can be set in game options).[NEWLINE]
+6. Press Esc to close CityStates panel (No need to click the tiny close button anymore).[NEWLINE][NEWLINE]
+[ICON_Turn]Functions under working:[NEWLINE]
+1. Trade route [ICON_TradeRoute] can be repeated automatically.[NEWLINE]</en_US>
+            <zh_Hans_CN>减少一些繁琐的操作，尤其在游戏后期城市数量较多的时候很有帮助。[NEWLINE][NEWLINE]
+[ICON_CheckSuccess]目前已实现的功能：[NEWLINE]
+1、建造者移动力增加，且工作时不消耗移动力；[NEWLINE]
+2、区域增强型项目（如学院项目）可以自动重复循环进行；[NEWLINE]
+3、移除了文艺作品、历史时刻、尤里卡及鼓舞、科技文化完成时的弹窗；[NEWLINE]
+4、玩家随时可以更改商路（请点击商人单位）；[NEWLINE]
+5、单位一键驻扎（在游戏选项中可以设置快捷键）；[NEWLINE]
+6、Esc键关闭分配使者面板。[NEWLINE][NEWLINE]
+[ICON_Turn]正在研究的功能：[NEWLINE]
+1、商路[ICON_TradeRoute]完成后能自动重复。[NEWLINE]</zh_Hans_CN>
+        </Text>
+    </LocalizedText>
 </Mod>
