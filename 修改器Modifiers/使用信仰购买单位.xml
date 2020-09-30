@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameInfo>
+    <!--以纪念碑为例，当拥有纪念碑时，就可以使用信仰购买近战单位-->
+    <BuildingModifiers>
+        <Row>
+            <BuildingType>BUILDING_MONUMENT</BuildingType>
+            <ModifierId>MODIFIER_4105SHMP</ModifierId>
+        </Row>
+    </BuildingModifiers>
+    <Modifiers>
+        <Row>
+            <ModifierId>MODIFIER_4105SHMP</ModifierId>
+            <ModifierType>MODIFIER_CITY_ENABLE_UNIT_FAITH_PURCHASE</ModifierType>
+        </Row>
+    </Modifiers>
+    <ModifierArguments>
+        <Row>
+            <ModifierId>MODIFIER_4105SHMP</ModifierId>
+            <Name>Tag</Name>
+            <Value>CLASS_MELEE</Value>      <!--可以买近战单位-->
+        </Row>
+    </ModifierArguments>
+</GameInfo>
