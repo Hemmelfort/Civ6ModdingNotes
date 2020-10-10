@@ -24,7 +24,7 @@ function onCombat(pCombatResult)
     and (defInfo.type == ComponentType.UNIT)
     and (math.random() < m_CriticalRate) then
         local location = pCombatResult[CombatResultParameters.LOCATION];
-        local damage = defender[CombatResultParameters.FINAL_DAMAGE_TO]        
+        local damage = defender[CombatResultParameters.DAMAGE_TO]        
         --local pAttUnit = UnitManager.GetUnit(attInfo.player, attInfo.id)
         local pDefUnit = UnitManager.GetUnit(defInfo.player, defInfo.id)
         
