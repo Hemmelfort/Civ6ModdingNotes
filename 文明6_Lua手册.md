@@ -14,7 +14,7 @@
 
 
 
-## Player
+## 玩家 Player
 
 获取本地玩家
 
@@ -217,7 +217,7 @@ end
 
 ---
 
-## Unit
+## 单位 Unit
 
 ### 常用功能
 
@@ -400,7 +400,7 @@ UnitManager.RequestCommand( pUnit, UnitCommandTypes.PROMOTE, tParameters );
 
 ---
 
-## City
+## 城市 City
 
 ### 常用功能
 
@@ -533,7 +533,7 @@ InGame: -754251518	1235
 
 ---
 
-## Plot 和 Map
+## 格位与地图
 
 - 注意区分
 
@@ -766,6 +766,18 @@ for _, iPlotIndex in pairs(pCityPlots) do
 	print(_, iPlotIndex)
 end
 ```
+
+### 添加人造奇观
+
+```lua
+local pPlot = Map.GetPlot(8, 18)
+local pCity = CityManager.GetCityAt(9, 18)
+WorldBuilder.CityManager():CreateBuilding(pCity,
+ 'BUILDING_STONEHENGE',    -- 奇观名
+ 100,                      -- 修建的进度
+ pPlot:GetIndex());        -- 修建的位置
+```
+
 
 ---
 ## 其他
