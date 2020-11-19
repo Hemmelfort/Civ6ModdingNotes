@@ -477,15 +477,30 @@ function GetNearestCity(PlotX, PlotY, PlayerID)
 end
 ```
 
-
 ### 创建区域（WorldBuilder方式）
 
+比如要在 (15,13) 的位置建造一座学院：
+
 ```lua
-local pCity = CityManager.GetCityAt(15,12)
-local idis = GameInfo.Districts["DISTRICT_CAMPUS"].Index
+local index = GameInfo.Districts["DISTRICT_CAMPUS"].Index
 local iPlot = Map.GetPlotIndex(15, 13)
-WorldBuilder.CityManager():CreateDistrict(pCity, idis, 100, iPlot)    -- 100可能是完成度
+WorldBuilder.CityManager():CreateDistrict(pCity, index, 100, iPlot)    -- 100是完成度
 ```
+
+### 获取区域信息
+
+比如要查询某座城市里面圣地 DISTRICT_HOLY_SITE 的位置：
+
+```lua
+local index = GameInfo.Districts['DISTRICT_HOLY_SITE'].Index
+local pDistrict = pCity:GetDistricts():GetDistrict(index)
+if (pDistrict ~= nil) then
+	local x = pDistrict:GetX();
+	local y = pDistrict:GetY();
+end
+```
+
+
 
 ### 允许用信仰购买建筑
 
@@ -777,7 +792,6 @@ WorldBuilder.CityManager():CreateBuilding(pCity,
  100,                      -- 修建的进度
  pPlot:GetIndex());        -- 修建的位置
 ```
-
 
 ---
 ## 其他
@@ -1072,7 +1086,6 @@ local szEffectText = Locale.Lookup("LOC_SCENARIO_AUSTRALIA_EVENT_DANGER_EFFECT_5
 
 
 <div id="TerrainBuilder"/>
-
 ### 地形编辑器 TerrainBuilder
 
 用于修改游戏地形。
