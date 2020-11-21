@@ -692,11 +692,9 @@ InGame: -754251518	1235
 ### 获取格位上的单位
 
 ```lua
-for loop, unit in ipairs(Units.GetUnitsInPlot(pPlot)) do
-	if(unit ~= nil) then
-		if unit then
-            -- do your things here.
-		end
+for loop, pUnit in ipairs(Units.GetUnitsInPlot(pPlot)) do
+	if (pUnit ~= nil) then
+        -- 在这里对pUnit进行处理
 	end
 end
 ```
