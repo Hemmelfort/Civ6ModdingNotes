@@ -692,9 +692,11 @@ InGame: -754251518	1235
 ### 获取格位上的单位
 
 ```lua
-for loop, pUnit in ipairs(Units.GetUnitsInPlot(pPlot)) do
-	if (pUnit ~= nil) then
-        -- 在这里对pUnit进行处理
+for loop, unit in ipairs(Units.GetUnitsInPlot(pPlot)) do
+	if(unit ~= nil) then
+		if unit then
+            -- do your things here.
+		end
 	end
 end
 ```
@@ -1060,6 +1062,8 @@ local szEffectText = Locale.Lookup("LOC_SCENARIO_AUSTRALIA_EVENT_DANGER_EFFECT_5
         <Text>您的{1_UnitName}已返回最近的城市{2_CityName}。</Text>
     </Replace>
 ```
+
+>  判断有没有对应的文本：Locale.HasTextKey('LOC_XXXX')
 
 
 
