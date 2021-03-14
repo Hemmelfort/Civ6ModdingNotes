@@ -1,6 +1,7 @@
 
 # 文明6 Lua 手册
 
+[toc]
 
 ## 前言
 
@@ -745,10 +746,11 @@ ImprovementBuilder.SetImprovementType(pPlot, iImprovement, iPlayerID)
 
 注：若 `iImprovement` 为 -1 则移除改良。
 
-### 移除资源
+### 添加或移除资源
 
 ```lua
-ResourceBuilder.SetResourceType(pPlot, -1);
+ResourceBuilder.SetResourceType(pPlot, eType, 1);  --添加资源（最后的1为资源的数量）
+ResourceBuilder.SetResourceType(pPlot, -1);        --移除资源
 ```
 
 ### 格位所有者变更
@@ -781,6 +783,34 @@ for _, iPlotIndex in pairs(pCityPlots) do
 	print(_, iPlotIndex)
 end
 ```
+
+### 设置格位可见度
+
+清除格位上的战争迷雾，让本地玩家能看得到。
+
+```lua
+local pCurPlayerVisibility = PlayersVisibility[pPlayer:GetID()];
+if(pCurPlayerVisibility ~= nil) then
+    -- 设为1表示设为可见，0为不可见
+    pCurPlayerVisibility:ChangeVisibilityCount(iPlotIndex, 1);
+end
+```
+
+判断格位 pPlot 是否可见的方法：
+
+```lua
+pCurPlayerVisibility:IsRevealed(pPlot:GetX(), pPlot:GetY())
+```
+
+设置全图可见（相当于命令行输入 `reveal all`）：
+
+```lua
+for iPlotIndex = 0, Map.GetPlotCount()-1, 1 do
+    pCurPlayerVisibility:ChangeVisibilityCount(iPlotIndex, 1);
+end
+```
+
+> TODO: 还有个表是 PlayerVisibilityManager 专门负责这一块的，值得深入研究。
 
 ### 添加人造奇观
 
