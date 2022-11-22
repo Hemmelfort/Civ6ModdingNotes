@@ -2,7 +2,7 @@
 -- 注意：如果不限制该项目，那么电脑AI也能使用
 
 
--- 1. 创建新项目
+-- 1. 创建新项目，本例中的项目名为 PROJECT_MILE_EYES
 insert into Types (Type, Kind) values
 ('PROJECT_MILE_EYES', 'KIND_PROJECT');
 
@@ -12,19 +12,15 @@ insert into Projects (ProjectType, Name, ShortName, Cost, MaxPlayerInstances) va
 
 
 /*
-    给这个项目绑定一个修改器
+    项目的效果一般是通过修改器Modifier来实现的，所以往往还要给这个项目绑定一个修改器。
 */
 
--- 第一步
 insert into ProjectCompletionModifiers (ProjectType, ModifierId) values
 ('PROJECT_MILE_EYES', 'Mod_Reveal_All_Map');
 
--- 第二步
 insert into Modifiers (ModifierId, ModifierType, RunOnce, SubjectRequirementSetId) values
 ('Mod_Reveal_All_Map', 'MODIFIER_PLAYER_EXPLORE_ENTIRE_MAP', 1, NULL);
 
--- 第三步
--- 不需要参数
 
 
 
