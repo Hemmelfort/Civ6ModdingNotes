@@ -1,5 +1,15 @@
+---
+title: 文明6 Lua手册
+date: 2019-12-09
+draft: false
+author: Hemmelfort
+---
 
-# 文明6 Lua 手册
+
+
+
+
+# 文明6 Lua手册
 
 [toc]
 
@@ -170,21 +180,24 @@ local i = GameInfo.Policies['POLICY_DISCIPLINE'].Index
 local a = Players[0]:GetCulture():IsPolicyActive(i)
 ```
 
-
 ### 根据名字送伟人
+
+以下为一个添加**古典时代大商人**的方法：
 
 ```lua
 function AddGreatMerchant(iPlayer, szGeneralName)
-	local individual = GameInfo.GreatPersonIndividuals[szGeneralName].Hash;
-	local class = GameInfo.GreatPersonClasses["GREAT_PERSON_CLASS_MERCHANT"].Hash;
-	local era = GameInfo.Eras["ERA_CLASSICAL"].Hash;
-	local cost = 0;
+	local individual = GameInfo.GreatPersonIndividuals[szGeneralName].Hash;		--人名的Hash
+	local class = GameInfo.GreatPersonClasses["GREAT_PERSON_CLASS_MERCHANT"].Hash;	--大商人的Hash
+	local era = GameInfo.Eras["ERA_CLASSICAL"].Hash;		--时代的Hash
+	local cost = 0;		--出场费
 	
 	Game.GetGreatPeople():GrantPerson(individual, class, era, cost, iPlayer, false);
 end
 
-AddGreatMerchant(playerID, "GREAT_PERSON_INDIVIDUAL_ZHANG_QIAN")
+AddGreatMerchant(playerID, "GREAT_PERSON_INDIVIDUAL_ZHANG_QIAN")	--召唤张骞
 ```
+
+
 
 ### 宣战
 
@@ -300,14 +313,16 @@ local exps = pUnit:GetExperience():GetExperienceForNextLevel()
 pUnit:GetExperience():ChangeExperience(exps);
 ```
 
-### 添加能力(待测试)
+### 添加能力
 
 ```lua
 pUnit:GetAbility():ChangeAbilityCount("ABILITY_XXX", 1)
-pUnit:GetAbility():ChangeAbilityCount("ABILITY_XXX", -1)
 ```
 
+只能添加，不能移除，作用存疑。而且只能添加那些匹配的能力，也就是能力的 Tag 是否与此单位相同。比如 `ABILITY_ANTI_CAVALRY` 只能用于抗骑兵单位，不能用于其他类型。
+
 ### 禁止造某单位
+
 ```lua
 local m_ePlagueDoctorUnit : number = GameInfo.Units["UNIT_PLAGUE_DOCTOR"].Index;
 pPlayer:GetUnits():SetBuildDisabled(m_ePlagueDoctorUnit, true)
@@ -410,7 +425,7 @@ UnitManager.RequestCommand( pUnit, UnitCommandTypes.PROMOTE, tParameters );
 |           功能            |                              代码                              |              说明               |
 | ------------------------- | ------------------------------------------------------------- | ------------------------------- |
 | 获取城市（根据ID）          | `local pCity = CityManager.GetCity(playerID, cityId)`         |                                 |
-| 获取城市（根据坐标）        | `local pCity = CityManager.GetCityAt(iX, iY)`                 | 必须是市中心坐标                 |
+| 获取城市（根据坐标）        | `local pCity = CityManager.GetCityAt(iX, iY)`                 | 必须是市中心坐标   |
 | 获取城市（根据格位）        | `local pCity = Cities.GetCityInPlot(iPlotIndex)`              | Cities和下面的GetCities不一样    |
 | 创建城市                   | `pPlayer:GetCities():Create(iX, iY)`                          | 有最小城市距离限制                |
 | 改变忠诚度                 | `pCity:ChangeLoyalty(100)`                                    |                                 |
@@ -436,12 +451,12 @@ UnitManager.RequestCommand( pUnit, UnitCommandTypes.PROMOTE, tParameters );
 | 获取食物剩余               | `pCity:GetGrowth():GetFoodSurplus()`                          |                                 |
 | 获取宜居度                 | `pCity:GetGrowth():GetAmenities()`                            | ❓待验证                         |
 | **建造队列**              |                                                               |                                 |
-| 加生产进度                 | `pCity:GetBuildQueue():AddProgress(iAmount)`                  | 参数似乎是锤子数                 |
+| 加生产进度                 | `pCity:GetBuildQueue():AddProgress(iAmount)`                  | iAmount是生产力 |
 | 完成当前建造               | `pCity:GetBuildQueue():FinishProgress()`                      |                                 |
 | 获取区域花费               | `pCity:GetBuildQueue():GetDistrictCost(district.Index)`       |                                 |
 | 创建区域                   | `pCity:GetBuildQueue():CreateDistrict(district.Index, iPlot)` |                                 |
 | 创建建筑                   | `pCity:GetBuildQueue():CreateBuilding(building.Index)`        |                                 |
-| 获得当前建造任务            | `pCity:GetBuildQueue():CurrentlyBuilding()`                   | 返回值：如 "BUILDING_MONUMENT"   |
+| 获得当前建造任务            | `pCity:GetBuildQueue():CurrentlyBuilding()`                   |  |
 | **建筑**                  |                                                               |                                 |
 | 是否有该建筑               | `pCity:GetBuildings():HasBuilding(iIndex)`                    |                                 |
 | 获取建筑位置               | `pCity:GetBuildings():GetBuildingLocation(iIndex)`            | 返回值：iPlotIndex （和区域不同） |
@@ -555,8 +570,8 @@ InGame: -754251518	1235
 
 |       变量名        |     含义      |
 | ------------------ | ------------ |
-| pPlot              | 格位对象      |
-| iPlot / iPlotIndex | 格位序号或序数 |
+| pPlot              | 格位对象，通过冒号访问成员 |
+| iPlot / iPlotIndex | 格位序号或序数，从左下角开始数，序号依次增加 |
 | iX, iY             | 格位坐标      |
 
 
@@ -585,6 +600,7 @@ InGame: -754251518	1235
 | 区域类型（数字）     | `pPlot:GetDistrictType()`            | 返回Index            |
 | 地貌               | `pPlot:GetFeature()`                 |                      |
 | 地貌类型            | `pPlot:GetFeatureType()`             | 返回Index            |
+| 资源类型            | `pPlot:GetResourceType()`            | 返回Index            |
 | 改良设施所有者      | `pPlot:GetImprovementOwner()`        |                      |
 | 改良设施类型（数字） | `pPlot:GetImprovementType()`         | 返回Index            |
 | 移动力消耗          | `pPlot:GetMovementCost()`            |                      |
@@ -724,6 +740,17 @@ for i, adjPlot in ipairs(plots) do
 end
 ```
 
+### 获取格位上的奇观建筑
+
+```lua
+    local eWonderType = pPlot:GetWonderType()
+    if eWonderType and eWonderType ~= -1 then
+    	local building = GameInfo.Buildings[eWonderType].BuildingType
+    	--处理building
+    end
+```
+
+
 
 ### 改变地形与地貌
 
@@ -737,14 +764,14 @@ TerrainBuilder.SetTerrainType(pPlot, iTerrainType)
 ```
 
 
-### 添加改良设施
+### 添加或移除改良设施
 
 ```lua
-ImprovementBuilder.CanHaveImprovement(pPlot, iImprovement, -1) -- 为什么是-1才行？
-ImprovementBuilder.SetImprovementType(pPlot, iImprovement, iPlayerID)
+ImprovementBuilder.CanHaveImprovement(pPlot, iImprovement, -1) -- 判断能否添加改良（最后的参数是-1才行）
+ImprovementBuilder.SetImprovementType(pPlot, iImprovement, iPlayerID) --在地图上添加改良
+ImprovementBuilder.SetImprovementType(pPlot, -1, NO_PLAYER);   --移除改良
 ```
 
-注：若 `iImprovement` 为 -1 则移除改良。
 
 ### 添加或移除资源
 
@@ -791,7 +818,7 @@ end
 ```lua
 local pCurPlayerVisibility = PlayersVisibility[pPlayer:GetID()];
 if(pCurPlayerVisibility ~= nil) then
-    -- 设为1表示设为可见，0为不可见
+    -- 设为1表示设为可见（设 0 无作用）
     pCurPlayerVisibility:ChangeVisibilityCount(iPlotIndex, 1);
 end
 ```
@@ -810,7 +837,11 @@ for iPlotIndex = 0, Map.GetPlotCount()-1, 1 do
 end
 ```
 
-> TODO: 还有个表是 PlayerVisibilityManager 专门负责这一块的，值得深入研究。
+如果想探索全图，但又不想揭开战争迷雾，可以用这个方法：
+
+```lua
+PlayersVisibility[iPlayerID]:RevealAllPlots()
+```
 
 ### 添加人造奇观
 
@@ -1145,6 +1176,22 @@ local szEffectText = Locale.Lookup("LOC_SCENARIO_AUSTRALIA_EVENT_DANGER_EFFECT_5
 
 
 
+### 资源编辑器 ResourceBuilder
+
+- ResourceBuilder.SetResourceCount()
+- ResourceBuilder.ChangeResourceCount()
+- ResourceBuilder.CanHaveResource()
+- ResourceBuilder.GetAdjacentResourceCount()
+- ResourceBuilder.SetResourceType()
+
+在格位 pPlot 上放置一个资源：
+
+```lua
+ResourceBuilder.SetResourceType(pPlot, Resource.Index, ResourceAmount);
+```
+
+
+
 ### 河流编辑器 RiverManager
 
 用于获取河流信息。
@@ -1194,10 +1241,74 @@ local pRivers = RiverManager.EnumerateRivers()
 
 
 
+### 调谐器 TunerUtilities
 
 
 
+- TunerUtilities:FindControlFromPath()
+- TunerUtilities:FromCSV()
+- TunerUtilities:GetConsumeMouseButton()
+- TunerUtilities:GetConsumeMouseWheel()
+- TunerUtilities:GetConsumesAllMouse()
+- TunerUtilities:GetContextTree()
+- TunerUtilities:GetControlChildren()
+- TunerUtilities:GetControlString()
+- TunerUtilities:GetControlUnderMouse()
+- TunerUtilities:GetModalNavigationOptions()
+- TunerUtilities:GetMouseOverControls()
+- TunerUtilities:GetNavigationOptions()
+- TunerUtilities:GetParentContext()
+- TunerUtilities:GetParentID()
+- TunerUtilities:GetParentType()
+- TunerUtilities:GetPopupNavigationOptions()
+- TunerUtilities:GetSelectedAlpha()
+- TunerUtilities:GetSelectedAnchor()
+- TunerUtilities:GetSelectedChildren()
+- TunerUtilities:GetSelectedControlPath()
+- TunerUtilities:GetSelectedEnabled()
+- TunerUtilities:GetSelectedID()
+- TunerUtilities:GetSelectedOffset()
+- TunerUtilities:GetSelectedOffsetX()
+- TunerUtilities:GetSelectedOffsetY()
+- TunerUtilities:GetSelectedSize()
+- TunerUtilities:GetSelectedSizeX()
+- TunerUtilities:GetSelectedSizeY()
+- TunerUtilities:GetSelectedType()
+- TunerUtilities:GetSelectedVisible()
+- TunerUtilities:GetTexture()
+- TunerUtilities:modalNavOptions
+- TunerUtilities:mousePick
+- TunerUtilities:NavigateBackward()
+- TunerUtilities:NavigateForward()
+- TunerUtilities:NavigateToRoot()
+- TunerUtilities:OnContextTreeSelection()
+- TunerUtilities:OnInputHandler()
+- TunerUtilities:PlayAnimation()
+- TunerUtilities:popupNavOptions
+- TunerUtilities:ResetAnimation()
+- TunerUtilities:ReverseAnimation()
+- TunerUtilities:SetConsumeMouseButton()
+- TunerUtilities:SetConsumeMouseWheel()
+- TunerUtilities:SetConsumesAllMouse()
+- TunerUtilities:SetMousePick()
+- TunerUtilities:SetNavigationOption()
+- TunerUtilities:SetSelectedAlpha()
+- TunerUtilities:SetSelectedAnchor()
+- TunerUtilities:SetSelectedControl()
+- TunerUtilities:SetSelectedControlPath()
+- TunerUtilities:SetSelectedOffset()
+- TunerUtilities:SetSelectedOffsetX()
+- TunerUtilities:SetSelectedOffsetY()
+- TunerUtilities:SetSelectedSize()
+- TunerUtilities:SetSelectedSizeX()
+- TunerUtilities:SetSelectedSizeY()
+- TunerUtilities:SetSelectedVisible()
+- TunerUtilities:SetTexture()
+- TunerUtilities:Stringify()
 
+其他属性：
 
-
+- TunerUtilities:mousePick : bool
+- TunerUtilities:modalNavOptions : table
+- TunerUtilities:popupNavOptions : table
 
