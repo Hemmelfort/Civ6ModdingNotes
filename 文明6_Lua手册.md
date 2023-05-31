@@ -79,15 +79,10 @@ TODO:
 - GetGreatPeoplePoints
 - GetID
 - GetImprovements
-- GetInfluence
-- GetInfluenceMap
 - GetProperty
 - GetReligion
 - GetResources
 - GetScore
-- GetScoringScenario1
-- GetScoringScenario2
-- GetScoringScenario3
 - GetStartingPlot
 - GetStats
 - GetTeam
@@ -228,6 +223,26 @@ function GodSight(PlayerID)
     end
 end
 ```
+
+
+
+### 影响力点数相关
+
+获取玩家 0 的影响力：`local influence = Players[0]:GetInfluence() `
+
+这个 `influence` 的主要功能有：
+
+- `influence:GetPointsEarned()` 已获得的影响力点数
+- `influence:GetPointsPerTurn()` 每回合可获得的影响力点数
+- `influence:GetPointsThreshold()` 返回100，表示每获得100个影响力点数可获得一个使者
+- `influence:GetSuzerain()` 查询其宗主国
+- `influence:GiveFreeTokenToPlayer(iPlayerID)` 向 iPlayerID 玩家派遣一名免费的使者
+- `influence:CanReceiveInfluence()` 查询能否接收使者。给某个文明派遣使者之前要确定对方能否接收。
+- `influence:CanGiveInfluence()` 查询能否向其他文明派遣使者。
+
+
+
+
 
 ---
 
