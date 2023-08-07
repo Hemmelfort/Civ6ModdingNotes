@@ -21,9 +21,9 @@ author: Hemmelfort
 - [Gitee](https://gitee.com/Hemmelfort/Civ6ModdingNotes)
 - [Github](https://github.com/Hemmelfort/Civ6ModdingNotes)
 
-> 如果没有特别说明能用于 UI 环境，那本文大部分功能主要用在 Gameplay 环境。
+如果没有特别说明能用于 UI 环境，那本文大部分功能主要用在 Gameplay 环境。
 
-
+关于变量名的命名：一般以 p 开头的对象都是从 C++ 那边传过来的，比如 `pPlayer`、`pCity`、`pPlot` 等等，而 t 开头则是 lua 本身的 table 类型。
 
 ## 玩家 Player
 
@@ -518,6 +518,27 @@ local iPlot = Map.GetPlotIndex(15, 13)
 WorldBuilder.CityManager():CreateDistrict(pCity, index, 100, iPlot)    -- 100是完成度
 ```
 
+
+
+### 创建/移除建筑
+
+```lua
+local building = GameInfo.Buildings['BUILDING_XXXX']
+
+--添加建筑
+pCity:GetBuildQueue():CreateBuilding(building.Index)
+pCity:GetBuildQueue():CreateBuilding(building.Index, pPlot:GetIndex())
+
+--移除建筑
+pCity:GetBuildings():RemoveBuilding(building.Index)
+```
+
+修改建筑的时候可以不用指定位置，游戏会自动在合适的区域内修建。但对于奇观这样需要指定格位的建筑，还要添加一个格位序号。
+
+
+
+
+
 ### 获取区域信息
 
 比如要查询某座城市里面圣地 DISTRICT_HOLY_SITE 的位置：
@@ -758,11 +779,21 @@ end
 ### 获取格位上的奇观建筑
 
 ```lua
-    local eWonderType = pPlot:GetWonderType()
-    if eWonderType and eWonderType ~= -1 then
-    	local building = GameInfo.Buildings[eWonderType].BuildingType
-    	--处理building
-    end
+local eWonderType = pPlot:GetWonderType()	--值为建筑的序号，无奇观则为-1
+if eWonderType and eWonderType ~= -1 then
+    local building = GameInfo.Buildings[eWonderType].BuildingType
+    --此处 building 的值为奇观名，比如 BUILDING_PYRAMID
+end
+```
+
+判断格位上是是否有奇观可以通过区域 `DISTRICT_WONDER` 来实现：
+
+```lua
+local pDistIndex = pPlot:GetDistrictType()
+
+if pDistIndex == GameInfo.Districts['DISTRICT_WONDER'].Index then
+	--说明 pPlot 上有奇观
+end
 ```
 
 
@@ -799,7 +830,10 @@ ResourceBuilder.SetResourceType(pPlot, -1);        --移除资源
 
 ```lua
 WorldBuilder.CityManager():SetPlotOwner(pPlot, pCity)
+WorldBuilder.CityManager():SetPlotOwner(pPlot, false);	--移除所有者
 ```
+
+
 
 ### 获取大陆格位
 
