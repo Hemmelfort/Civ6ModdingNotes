@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Mod id="bf5fa746-400b-11ee-9b30-408d5ca2b12e" version="1">
+	<Properties>
+		<Name>LOC_MOD_LEVY_CIVILIANS_NAME</Name>
+		<Teaser>LOC_MOD_LEVY_CIVILIANS_TEASER</Teaser>
+		<Description>LOC_MOD_LEVY_CIVILIANS_DESCRIPTION</Description>
+		<Authors>HEMMELFORT</Authors>
+		<AffectsSavedGames>0</AffectsSavedGames>
+		<CompatibleVersions>2.0</CompatibleVersions>
+	</Properties>
+	<Components>
+		<AddGameplayScripts id="LC_SCRIPTS">
+			<File>LevyCivilians_gameplay.lua</File>
+		</AddGameplayScripts>
+        <AddUserInterfaces id="LC_UI">
+            <Properties>
+                <Context>InGame</Context>
+            </Properties>
+            <File>LevyCivilians_ui.xml</File>
+        </AddUserInterfaces>
+	</Components>
+	<Files>
+		<File>LevyCivilians_gameplay.lua</File>
+		<File>LevyCivilians_ui.xml</File>
+		<File>LevyCivilians_ui.lua</File>
+	</Files>
+	<LocalizedText>
+		<Text id="LOC_MOD_LEVY_CIVILIANS_NAME">
+			<zh_Hans_CN>征用城邦平民</zh_Hans_CN>
+		</Text>
+		<Text id="LOC_MOD_LEVY_CIVILIANS_TEASER">
+			<zh_Hans_CN>向城邦征兵时连同平民也一起征了</zh_Hans_CN>
+		</Text>
+		<Text id="LOC_MOD_LEVY_CIVILIANS_DESCRIPTION">
+			<zh_Hans_CN>宗主国向城邦征兵时，只能征用军事单位，对于那些被城邦抓到的平民（比如开拓者）却无可奈何。本 MOD 可以让玩家在向城邦征兵时，连同开拓者、建造者也一同征用，而且不用归还。（此效果对所有玩家均适用）</zh_Hans_CN>
+		</Text>
+	</LocalizedText>
+</Mod>
