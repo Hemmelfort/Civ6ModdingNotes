@@ -3,9 +3,9 @@
 	<Properties>
 		<Name>Modinfo 文件样例</Name>
 		<Teaser>Modinfo 文件样例</Teaser>
-		<Description>Modinfo 文件样例。把下面的 “Test.Sql” 换成你自己的文件，Xml 和 Sql 文件的加载方式是一样的。</Description>
+		<Description>Modinfo 文件样例。把下面两个 “Testmod.sql” 换成你自己的文件，xml 或者 sql 文件都可以（它们的加载方式相同）。</Description>
 		<Authors>Hemmelfort</Authors>
-		<CompatibleVersions>1.2,2.0</CompatibleVersions>
+		<CompatibleVersions>2.0</CompatibleVersions>
 	</Properties>
 
 	<Components>		
@@ -13,11 +13,11 @@
 			<Properties>
 				<LoadOrder>10086</LoadOrder>
 			</Properties>
-			<File>Test.Sql</File>
+			<File>Testmod.sql</File>
 		</UpdateDatabase>
 	</Components>
 	
 	<Files>
-		<File>Test.Sql</File>
+		<File>Testmod.sql</File>
 	</Files>
 </Mod>
