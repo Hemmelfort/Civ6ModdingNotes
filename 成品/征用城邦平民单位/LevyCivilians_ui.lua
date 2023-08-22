@@ -13,7 +13,7 @@ Events.LevyCounterChanged.Add(function (originalOwnerID : number)
     local influence = pOriginalOwner:GetInfluence()
     local suzerainID = influence:GetSuzerain()
 	local iLevyTurn = influence:GetLevyTurnCounter()
-	if iLevyTurn > 0 then
+	if iLevyTurn ~= 0 then
         -- 注意：征兵后，Events.LevyCounterChanged 事件每回合都会触发，
         -- 所以如果是城邦后面新造出来的单位就不要去征用了。
         return
