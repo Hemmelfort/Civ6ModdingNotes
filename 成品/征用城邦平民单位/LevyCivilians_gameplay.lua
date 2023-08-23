@@ -12,7 +12,12 @@ local function SetUnitOwner(iOriginalOwnerID, iUnitID, iNewOwnerID)
     
     UnitManager.Kill(pUnit)
     --pPlayer:GetUnits():Create(iUnitIndex, iX, iY) --如果在城邦市中心就创建不了！！
-    UnitManager.InitUnitValidAdjacentHex(iNewOwnerID, sUnitTypeName, iX, iY, 1)
+    
+    if sUnitTypeName == "UNIT_TRADER" then
+        --TODO: 如果是商人，就送到NewOwner的城市中
+    else
+        UnitManager.InitUnitValidAdjacentHex(iNewOwnerID, sUnitTypeName, iX, iY, 1)
+    end
 end
 
 
