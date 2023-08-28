@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Mod id="52CA068F-0010-474B-8E6F-1925250B0D4C" version="1">
+    <Properties>
+        <Name>LOC_MOD_EXCITING_ORDEAL_NAME</Name>
+        <Teaser>LOC_MOD_EXCITING_ORDEAL_TEASER</Teaser>
+        <Description>LOC_MOD_EXCITING_ORDEAL_DESCRIPTION</Description>
+        <Authors>Hemmelfort</Authors>
+        <AffectsSavedGames>0</AffectsSavedGames>
+        <CompatibleVersions>2.0</CompatibleVersions>
+    </Properties>
+    
+    <Settings>
+        <UpdateDatabase id="EO_CONFIG" criteria="Expansion2">
+            <File>eo_config.xml</File>
+        </UpdateDatabase>
+        <UpdateText id="EO_TEXT">
+            <File>eo_text.xml</File>
+        </UpdateText>
+    </Settings>
+    
+    <Components>
+        <UpdateDatabase id="EO_DATA" criteria="Expansion2">
+            <Properties>
+                <LoadOrder>2019</LoadOrder>
+            </Properties>
+            <File>eo_gameplay.sql</File>
+        </UpdateDatabase>
+
+        <AddGameplayScripts id="EO_SCRIPT" criteria="Expansion2">
+            <File>eo_script.lua</File>
+        </AddGameplayScripts>
+    </Components>
+    
+    <Files>
+        <File>eo_gameplay.sql</File>
+        <File>eo_config.xml</File>
+        <File>eo_script.lua</File>
+        <File>eo_text.xml</File>
+    </Files>
+    
+    
+    <LocalizedText>
+        <Text id="LOC_MOD_EXCITING_ORDEAL_NAME">
+            <en_US>[COLOR_GREEN]EXCITING[ENDCOLOR][COLOR_FLOAT_FOOD]ORDEAL[ENDCOLOR]</en_US>
+            <zh_Hans_CN>[COLOR_GREEN]刺激[ENDCOLOR][COLOR_FLOAT_FOOD]战场[ENDCOLOR]</zh_Hans_CN>
+        </Text>
+        <Text id="LOC_MOD_EXCITING_ORDEAL_TEASER">
+            <en_US>EXCITING ORDEAL</en_US>
+            <zh_Hans_CN>*更刺激的游戏体验*</zh_Hans_CN>
+        </Text>
+        <Text id="LOC_MOD_EXCITING_ORDEAL_DESCRIPTION">
+            <en_US>[COLOR_GREEN]EXCITING[ENDCOLOR][COLOR_FLOAT_FOOD]ORDEAL[ENDCOLOR][NEWLINE][NEWLINE]
+1. More and more and more barbarian tribes (which can be set in the advance setting screen). [NEWLINE]
+2. New tribes will spawn after one was destroyed. [NEWLINE]
+3. Barbarians will be duplicated when they finish killing. [NEWLINE]
+[NEWLINE]Keep in mind that survival is the first priority.
+            </en_US>
+            <zh_Hans_CN>[COLOR_GREEN]刺激[ENDCOLOR][COLOR_FLOAT_FOOD]战场[ENDCOLOR][NEWLINE][NEWLINE]
+1. 更多的蛮族营地（可以在开始游戏时进行设置）；[NEWLINE]
+2. 摧毁蛮族营地会刷出新的野蛮人；[NEWLINE]
+3. 蛮族完成击杀会刷出自己。[NEWLINE]
+[NEWLINE]记住，生存是第一要务。
+            </zh_Hans_CN>
+        </Text>
+    </LocalizedText>
+</Mod>

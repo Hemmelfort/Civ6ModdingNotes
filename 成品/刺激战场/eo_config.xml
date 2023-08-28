@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameInfo>
+    <DomainRanges>
+        <Row Domain="ExcitedLevelRange" MinimumValue="0" MaximumValue="9" />
+    </DomainRanges>
+    <Parameters>
+        <Row ParameterId="ExcitedLevel" Name="LOC_EXCITED_LEVEL_NAME" Description="LOC_EXCITED_LEVEL_DESC" Domain="ExcitedLevelRange" DefaultValue="5" ConfigurationGroup="Game" ConfigurationId="excited_level" GroupId="GameOptions"/>
+    </Parameters>
+</GameInfo>
