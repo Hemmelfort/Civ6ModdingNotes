@@ -3,7 +3,7 @@
 	<Properties>
 		<Name>Modinfo 文件样例</Name>
 		<Teaser>Modinfo 文件样例</Teaser>
-		<Description>Modinfo 文件样例。把下面两个 “Testmod.sql” 换成你自己的文件，xml 或者 sql 文件都可以（它们的加载方式相同）。</Description>
+		<Description>第一步，把下面两个 “Testmod.sql” 换成你自己的 xml 或者 sql 文件（它们的加载方式相同）。第二步，在 mods 目录下新建文件夹，然后把第一步中的 xml 或者 sql 文件，连同当前这个 modinfo 文件一起复制过去。</Description>
 		<Authors>Hemmelfort</Authors>
 		<CompatibleVersions>2.0</CompatibleVersions>
 	</Properties>

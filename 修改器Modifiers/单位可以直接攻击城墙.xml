@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameInfo>
+
+    <!-- 让所有单位可以直接攻击城墙（对发城墙造成全额伤害） -->
+    <!-- 本例中修改器的所有者为全部主流文明 TRAIT_LEADER_MAJOR_CIV，
+         可以根据需要换成其他的对象。
+    -->
+    
+    <TraitModifiers>
+        <Row>
+            <TraitType>TRAIT_LEADER_MAJOR_CIV</TraitType>
+            <ModifierId>ALLOW_UNIT_TO_ATTACK_WALL</ModifierId>
+        </Row>
+    </TraitModifiers>
+    <Modifiers>
+        <Row>
+            <ModifierId>ALLOW_UNIT_TO_ATTACK_WALL</ModifierId>
+            <ModifierType>MODIFIER_PLAYER_UNITS_ATTACH_MODIFIER</ModifierType>
+        </Row>
+        <Row>
+            <ModifierId>MODIFIER_FMZSAIC8</ModifierId>
+            <ModifierType>MODIFIER_PLAYER_UNIT_ADJUST_ENABLE_WALL_ATTACK</ModifierType>
+        </Row>
+    </Modifiers>
+    <ModifierArguments>
+        <Row>
+            <ModifierId>ALLOW_UNIT_TO_ATTACK_WALL</ModifierId>
+            <Name>ModifierId</Name>
+            <Value>MODIFIER_FMZSAIC8</Value>
+        </Row>
+        <Row>
+            <ModifierId>MODIFIER_FMZSAIC8</ModifierId>
+            <Name>Enable</Name>
+            <Value>true</Value>
+        </Row>
+    </ModifierArguments>    
+
+</GameInfo>
