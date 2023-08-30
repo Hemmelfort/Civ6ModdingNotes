@@ -235,12 +235,18 @@ end
 - `influence:GetPointsEarned()` 已获得的影响力点数
 - `influence:GetPointsPerTurn()` 每回合可获得的影响力点数
 - `influence:GetPointsThreshold()` 返回100，表示每获得100个影响力点数可获得一个使者
-- `influence:GetSuzerain()` 查询其宗主国
 - `influence:GiveFreeTokenToPlayer(iPlayerID)` 向 iPlayerID 玩家派遣一名免费的使者
-- `influence:CanReceiveInfluence()` 查询能否接收使者。给某个文明派遣使者之前要确定对方能否接收。
 - `influence:CanGiveInfluence()` 查询能否向其他文明派遣使者。
+- `influence:GetLevyMilitaryCost(iPlayerID)` 向 iPlayerID 城邦征兵的花费
 
 
+
+对于城邦玩家：
+
+- `influence:GetSuzerain()` 查询宗主国
+- `influence:GetLevyTurnLimit()` 【只能用于UI环境】宗主国最多可以征兵的回合数
+- `influence:GetLevyTurnCounter()` 【只能用于UI环境】宗主国征兵已过回合数
+- `influence:CanReceiveInfluence()` 查询能否接收使者（某个文明向城邦派遣使者之前要确定对方能否接收）
 
 
 
@@ -279,8 +285,9 @@ end
 | 弄死单位          | `UnitManager.Kill(pUnit)`                                               | 第二个参数见注释【1】            |
 | 移动单位          | `UnitManager.MoveUnit(pUnit, iX, iY)`                                   | 需要有剩余移动力、判断能否上船    |
 | 放置（移动）单位   | `UnitManager.PlaceUnit(pUnit, iX, iY)`                                  | 无需移动力，要判断能否上船        |
-| 放置（创造）新单位 | `UnitManager.InitUnitValidAdjacentHex(playerID, "UNIT_XX", x, y, iNum)` |                                |
-| 放置（创造）新单位 | `pPlayer:GetUnits():Create(GameInfo.Units['UNIT_XX'].Index, x, y)`      |                                |
+|创造新单位|`UnitManager.InitUnit(iPlayerID, "UNIT_XX", iX, iY)`|在指定位置创建（位置若无法创建则操作失败）|
+| 创造新单位 | `UnitManager.InitUnitValidAdjacentHex(iPlayerID, "UNIT_XX", iX, iY, iNum)` | 在相邻位置创建（一定成功） |
+| 创造新单位 | `pPlayer:GetUnits():Create(GameInfo.Units['UNIT_XX'].Index, iX, iY)`  | 在指定位置创建（位置若无法创建则操作失败） |
 
 【1】true：单位被标记为死亡状态，并被暂时移到了 (-9999, -9999)，用 `pUnit:IsDelayedDeath()` 方法判断为 true，本回合过去后则永久删除。默认为 false，立即删除。
 
@@ -298,18 +305,15 @@ end
 ### 单位的遍历
 
 ```lua
-function FindPossibleUnits( playerId )
-	local pPlayer = Players[playerId];
-	local playerUnits = pPlayer:GetUnits();
-	for i, unit in playerUnits:Members() do
+function FindPossibleUnits( iPlayerID )
+	local pPlayer = Players[iPlayerID];
+	for i, unit in pPlayer:GetUnits():Members() do
 		local unitInfo = GameInfo.Units[unit:GetType()];
-		if (unitInfo) then
-			local unitTypeName = unitInfo.UnitType;
+        local unitTypeName = unitInfo.UnitType;
 
-			if unitTypeName == "UNIT_TRADER" then
-                print("Do your things here.")
-			end
-		end
+        if unitTypeName == "UNIT_TRADER" then
+            print("找到一个商人单位")
+        end
 	end
 end
 ```
@@ -422,6 +426,10 @@ local tParameters = {};
 tParameters[UnitCommandTypes.PARAM_PROMOTION_TYPE] = ePromotion;
 UnitManager.RequestCommand( pUnit, UnitCommandTypes.PROMOTE, tParameters );
 ```
+
+
+
+
 
 
 
@@ -973,11 +981,80 @@ WorldBuilder.CityManager():CreateBuilding(pCity,
 - Game.ObserverCanSeePlayer()
 - Game.RetirePlayer()
 - Game.SetCurrentGameTurn()
-- Game.SetProperty()
+- Game:SetProperty()
 - Game.SetRandomSeed()
 - Game.SetWinningTeam()
 - Game.UnlockAchievement()
 - Game.WriteHistoryLog()
+
+
+
+### GameSummary
+
+
+GameSummary 可以获取所有玩家每回合的数据，比如每回合的金币存量（不是常说的回合金，而是每回合的账面金币）：
+
+```lua
+local dataSetIndex = 0
+local initialTurn = GameConfiguration.GetStartTurn()
+local finalTurn = Game.GetCurrentGameTurn()
+local count = GameSummary.GetDataSetCount()
+
+for i = 0, count - 1, 1 do
+    local name = GameSummary.GetDataSetName(i);
+    if name == 'REPLAYDATASET_TOTALGOLD' then
+        dataSetIndex = i
+    end
+end
+
+local gdata = GameSummary.CoalesceDataSet(dataSetIndex, initialTurn, finalTurn)
+```
+
+得到每回合的数据（类似）：
+
+```lua
+gdata = {
+    [0] = {1,2,3,4,5,6,7,8,9,10},
+    [1] = {10,9,8,7,6,5,4,2,1},
+    [2] = {1,2,3,4,5,6,7,8,9,10},
+    [3] = {1,2,3,4,5,6,7,8,9,10},
+    [4] = {1,2,3,4,5,6,7,8,9,10},
+    [62] = {1,2,3,4,5,6,7,8,9,10},
+};
+```
+
+获取玩家 0 最近一回合的账面金币：`gdata[0][#gdata[0]]` 。
+
+其他还有：
+
+| 类型                                    | 名称               |
+| --------------------------------------- | ------------------ |
+| REPLAYDATASET_SCIENCEPERTURN            | 玩家科技值         |
+| REPLAYDATASET_GOVERNORTITLES            | 总督头衔总数       |
+| REPLAYDATASET_TOTALCITIESDESTROYED      | 已摧毁的城市总数   |
+| REPLAYDATASET_CULTURE                   | 玩家文化值         |
+| REPLAYDATASET_TOTALCITIESBUILT          | 建立城市数         |
+| REPLAYDATASET_TOTALBUILDINGSBUILT       | 建造建筑数         |
+| REPLAYDATASET_TOTALWARSDECLARED         | 主动宣战次数       |
+| REPLAYDATASET_TOTALCOMBATS              | 战斗次数           |
+| REPLAYDATASET_ERASCORE                  | 玩家的时代得分     |
+| REPLAYDATASET_TOTALWARSAGAINSTPLAYER    | 被宣战次数         |
+| REPLAYDATASET_GOVERNORS                 | 总督总数           |
+| REPLAYDATASET_GREATPEOPLEEARNED         | 招募伟人数         |
+| REPLAYDATASET_TOTALDISTRICTSBUILT       | 建造区域数         |
+| REPLAYDATASET_TOTALPLAYERUNITSDESTROYED | 损失单位数         |
+| REPLAYDATASET_FAITHPERTURN              | 玩家信仰值         |
+| REPLAYDATASET_SCOREPERTURN              | 玩家分数           |
+| REPLAYDATASET_TOTALGOLD                 | 玩家金币值         |
+| REPLAYDATASET_TOTALWONDERSBUILT         | 建造奇观数         |
+| REPLAYDATASET_TOTALRELIGIONSFOUNDED     | 已创立的宗教总数   |
+| REPLAYDATASET_TOTALUNITSDESTROYED       | 击杀单位数         |
+| REPLAYDATASET_TOTALCITIESLOST           | 陷落城市数         |
+| REPLAYDATASET_TOTALPANTHEONSFOUNDED     | 已建成的万神殿总数 |
+| REPLAYDATASET_TOTALCITIESCAPTURED       | 占领城市数         |
+| REPLAYDATASET_TOTALWARSWON              | 战争获胜总数       |
+
+
 
 
 
@@ -1018,6 +1095,21 @@ function DoRandomEvent()
     GameRandomEvents.ApplyEvent(kEvent)
 end
 ```
+
+
+
+### Property
+
+
+
+```lua
+pUnit:SetProperty("age", 12)
+Game.AddWorldViewText(0, tostring(pUnit:GetProperty("age")), 
+	pUnit:GetX(), pUnit:GetY())
+```
+
+
+
 
 
 ### 建立商路（仅 UI 环境）
