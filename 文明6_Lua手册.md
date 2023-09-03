@@ -30,8 +30,8 @@ author: Hemmelfort
 获取本地玩家
 
 ```lua
-local playerID = Game.GetLocalPlayer()
-local pPlayer = Players[playerID]
+local iPlayerID = Game.GetLocalPlayer()
+local pPlayer = Players[iPlayerID]
 ```
 
 ### 常用功能
@@ -88,18 +88,29 @@ TODO:
 - GetTeam
 - GetTechs
 - GetTrade
-- GetTreasury
 - GetUnits
 - GetWMDs
 - GrantYield
 
+### 加资源
 
-### 加资源           
+增加 10 铁：
 
 ```lua
 local resourceInfo = GameInfo.Resources["RESOURCE_IRON"];
 pPlayer:GetResources():ChangeResourceAmount(resourceInfo.Index, 10);
 ```
+
+金币相关：
+
+```lua
+pPlayer:GetTreasury():GetGoldYield()		--当前回合总收入
+pPlayer:GetTreasury():GetTotalMaintenance()	--当前回合总支出（维护费）
+--以上二者相减即可得到回合金。
+pPlayer:GetTreasury():GetGoldBalance()		--当前账上金额
+```
+
+
 
 ### 加核武器
 
@@ -1100,15 +1111,24 @@ end
 
 ### Property
 
-
+在玩家、单位、格位等对象上设置一个属性用以存放数据：
 
 ```lua
 pUnit:SetProperty("age", 12)
-Game.AddWorldViewText(0, tostring(pUnit:GetProperty("age")), 
-	pUnit:GetX(), pUnit:GetY())
+Game.AddWorldViewText(0, tostring(pUnit:GetProperty("age")), pUnit:GetX(), pUnit:GetY())
 ```
 
+在全局 Game 上设置时要用冒号：
 
+```lua
+Game:SetProperty('ta', {turn=114514})
+
+local t = Game:GetProperty("ta").turn
+
+Game.AddWorldViewText(0, t, 19,18)
+```
+
+经测试，在重新加载存档后数据依然存在。
 
 
 
@@ -1266,6 +1286,13 @@ local szEffectText = Locale.Lookup("LOC_SCENARIO_AUSTRALIA_EVENT_DANGER_EFFECT_5
 ```
 
 >  判断有没有对应的文本：Locale.HasTextKey('LOC_XXXX')
+
+
+
+在为控件设置文本时有两个快捷的方法也支持带参数的文本。
+
+- `control:LocalizeAndSetText()`
+- `control:LocalizeAndSetToolTip()`
 
 
 
