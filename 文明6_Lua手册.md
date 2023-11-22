@@ -47,11 +47,21 @@ local pPlayer = Players[iPlayerID]
 | 加影响力点数      | `pPlayer:GetInfluence():ChangeTokensToGive(1)`             |        |
 | 加文化            | `pPlayer:GetCulture():ChangeCurrentCulturalProgress(1000)` | 一次性 |
 | 加信仰            | `pPlayer:GetReligion():ChangeFaithBalance(50)`             |        |
+| 获取玩家所处的时代 | `pPlayer:GetEra()` | 【1】 |
+| 获取玩家所处的时代 | `pPlayer:GetEras():GetEra()` | 【2】 |
 | 判断是否是AI      | `pPlayer:IsAI()`                                           |        |
 | 判断是否健在      | `pPlayer:IsAlive()`                                        |        |
 | 判断是否是人类玩家 | `pPlayer:IsHuman()`                                        |        |
 | 判断是否是野蛮人   | `pPlayer:IsBarbarian()`                                    |        |
 | 判断是否是主流文明 | `pPlayer:IsMajor()`                                        |        |
+
+【1】返回时代的 Index（从零开始数，古典为1）。玩家的时代和游戏的时代不一定一样，有的玩家可以会领先时代。UI环境也能用。
+
+【2】UI环境不能用。 
+
+
+
+
 
 TODO:
 
@@ -176,6 +186,25 @@ if playerCulture ~= nil then
 end
 ```
 
+### 尤里卡
+
+以科技“飞行”为例，让玩家 0 获得其尤里卡：
+
+```lua
+local index = GameInfo.Technologies["TECH_FLIGHT"].Index
+Players[0]:GetTechs():TriggerBoost(index,1)
+```
+
+### 鼓舞
+
+以市政“神学”为例，让玩家 0 获得其鼓舞：
+
+```lua
+local index = GameInfo.Civics["CIVIC_MYSTICISM"].Index
+Players[0]:GetCulture():TriggerBoost(index,1)
+```
+
+
 
 ### 判断有没有政策
 
@@ -258,6 +287,45 @@ end
 - `influence:GetLevyTurnLimit()` 【只能用于UI环境】宗主国最多可以征兵的回合数
 - `influence:GetLevyTurnCounter()` 【只能用于UI环境】宗主国征兵已过回合数
 - `influence:CanReceiveInfluence()` 查询能否接收使者（某个文明向城邦派遣使者之前要确定对方能否接收）
+
+
+
+### 间谍行动
+
+通过 `pPlayer:GetDiplomacy():GetMission(iPlayerID, iMissionID)` 可以查询间谍行动。行动序号 iMissionID 从 0 开始计数。**只适用于 UI 环境**。
+
+比如获取玩家 0 的第 2 次间谍行动：
+
+```lua
+local mission = Players[0]:GetDiplomacy():GetMission(0, 1)
+```
+
+得到的 mission 为一个 table，内容如下：
+
+| 键名           | 含义          | 示例                      |
+| -------------- | ------------- | ------------------------- |
+| Name           | 间谍名字      | LOC_CITIZEN_INCA_FEMALE_1 |
+| InitialResult  | 初始结果【1】 | 3                         |
+| EscapeResult   | 逃脱结果【1】 | -1                        |
+| PlotIndex      | 所在格位      | 540                       |
+| CityName       | 所在城市      | LOC_CITY_NAME_MAJAPAHIT   |
+| LevelAfter     | 下一等级？    | 2                         |
+| CompletionTurn | 所在回合      | 26                        |
+| Operation      | 任务内容【2】 | 58                        |
+| LootInfo       | 偷到的东西    | -1                        |
+
+【1】间谍行动的结果分为两部分，即初始结果和逃跑的结果，比如初始结果是“任务成功但间谍被发现”，逃脱结果是“间谍遇害”：
+
+- EspionageResultTypes.KILLED = 0
+- EspionageResultTypes.CAPTURED = 1
+- EspionageResultTypes.FAIL_MUST_ESCAPE = 2
+- EspionageResultTypes.FAIL_UNDETECTED = 3
+- EspionageResultTypes.SUCCESS_MUST_ESCAPE = 4
+- EspionageResultTypes.SUCCESS_UNDETECTED = 5
+
+【2】为 UnitOperations 表中的内容。比如 Operation 为 58 时表示 GameInfo.UnitOperations[59].Index 。
+
+> 间谍行动结束后会触发 Events.SpyMissionCompleted(iPlayerID, iMissionID) 事件。
 
 
 
@@ -939,7 +1007,7 @@ WorldBuilder.CityManager():CreateBuilding(pCity,
 | 获取本地玩家   | `Game.GetLocalPlayer()`                                           |            |
 |              | `Game.GetPhaseName()`                                             | ❓未知      |
 | 获取全部玩家   | `Game.GetPlayers()`                                               | 见注释【2】 |
-| 获取当前时代   | `Game.GetEras():GetCurrentEra()`                                  | 返回Index  |
+| 获取当前时代   | `Game.GetEras():GetCurrentEra()`                                  | 返回Index【3】 |
 | 加时代分      | `Game.GetEras():ChangePlayerEraScore(iPlayerID, 1)`               |            |
 | 获取当前回合数 | `Game.GetCurrentGameTurn()`                                       |            |
 | 存储数据？     | `Game:SetProperty('abc', '666')`                                  |            |
@@ -955,6 +1023,8 @@ WorldBuilder.CityManager():CreateBuilding(pCity,
 最后似乎还有一个未知参数待确认。
 
 【2】 包含城邦、自由城市、野蛮人在内。返回一个列表，其中每一项都是 pPlayer。
+
+【3】 该 Index 从零开始，古典时代为 1。
 
 其他：
 
