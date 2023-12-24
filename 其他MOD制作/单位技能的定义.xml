@@ -23,6 +23,11 @@
     <TypeTags>
         <Row Type="ABILITY_CUSTOM" Tag="CLASS_CUSTOM"/>
         <Row Type="你的单位（比如 UNIT_CRAZY_DOG）" Tag="CLASS_CUSTOM"/>
+
+        <!-- 如果要送给其他单位，可以考虑加入添加内容（分别对应战斗、平民、支援单位） -->
+		<Row Type="ABILITY_CUSTOM" Tag="CLASS_ALL_COMBAT_UNITS"/>
+		<Row Type="ABILITY_CUSTOM" Tag="CLASS_LANDCIVILIAN"/>
+		<Row Type="ABILITY_CUSTOM" Tag="CLASS_SUPPORT"/>
     </TypeTags>
 
     <!-- 后话：为技能添加修改器要加入到 UnitAbilityModifiers 表中。例如： -->

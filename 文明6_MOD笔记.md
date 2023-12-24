@@ -321,8 +321,8 @@ The civilopedia text has a tricky part, you have to start with right parameter, 
 - **FrontEndActions** are things the mod does when it's enabled to adjust the setup screen. 
 - **InGameActions** are things the mod does when the game is started.
 - You can also specify **criteria** to the actions to conditionally turn things off. 
-For example, only apply these actions if this leader is playable or if we're in a specific ruleset:
-**<Settings> == <FrontEndActions>
+  For example, only apply these actions if this leader is playable or if we're in a specific ruleset:
+  **<Settings> == <FrontEndActions>
   <Components> == <InGameActions>**
 
 Mods that don't do anything to the game aren't required when loading the saves. So if you have a bunch of leader/civ mods that affect the standard game enabled but you jump into a scenario, those extra mods won't be needed even though they were turned on. The goal was to minimize micro managing mods.
@@ -672,7 +672,7 @@ And, the Owner of the Modifier is: (as a result of being attached to a Trait) ei
 As a result, PLAYER_IS_HUMAN should properly refer to the Owner of the Modifier -- you should insert it as OwnerRequirementSetId.
 Any requirement that you wish to attach to Player Units would go in as SubjectRequirementSetId.
 
-### REQUIREMENTS vs. REQUIREMENT SETS
+
 
 Generally, you can attach two Requirement Sets to each Modifier. 
 **OwnerRequirementSet** attaches to the Owner - to the object that is the source of the modifier. 
@@ -762,7 +762,6 @@ SubjectRequirementSet：自己拥有一个修改器，想修改另一个对象�
 ### XLPs
 
 - `*.xlp`
-
 
 
 
