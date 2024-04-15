@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Mod id="1ebb9e9e-1b4c-11eb-a6f6-408d5ca2b12e" version="1">
+	<Properties>
+		<Name>Settle on the sea</Name>
+		<Teaser>xxxxxx</Teaser>
+		<Description>xxxxxxx</Description>
+		<Authors>Hemmelfort</Authors>
+		<CompatibleVersions>2.0</CompatibleVersions>
+	</Properties>
+	<Components>
+		<AddUserInterfaces id="sots_ui">
+            <Properties>
+                <Context>InGame</Context>
+                <LoadOrder>200</LoadOrder>
+            </Properties>
+			<File>sots_ui.xml</File>
+		</AddUserInterfaces>
+		<AddGameplayScripts id="sots_gameplay">
+            <File>sots_gameplay.lua</File>
+		</AddGameplayScripts>
+		<UpdateText id="sots_text">
+            <File>sots_text.xml</File>
+		</UpdateText>
+	</Components>
+	<Files>
+		<File>sots_ui.xml</File>
+		<File>sots_ui.lua</File>
+		<File>sots_gameplay.lua</File>
+		<File>sots_text.xml</File>
+	</Files>
+</Mod>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<GameData>
+	<LocalizedText>
+		<Row Tag="LOC_CITY_TOO_CLOSE" Language="en_US">
+			<Text>It's too close! (At least {1_iRange} plots away)</Text>
+		</Row>
+		<Row Tag="LOC_CITY_TOO_CLOSE" Language="zh_Hans_CN">
+			<Text>离得太近了！（至少 {1_iRange} 格）</Text>
+		</Row>
+	</LocalizedText>
+</GameData>

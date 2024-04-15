@@ -1,0 +1,7 @@
+<Context>
+    <Grid ID="SettleButtonGrid" Anchor="R,B" Size="auto,41" AutoSizePadding="6,0" Texture="SelectionPanel_ActionGroupSlot" SliceCorner="5,19" SliceSize="1,1" SliceTextureSize="12,41" ConsumeMouse="1" Alpha="0.75">
+		<Button ID="SettleButton" Anchor="C,B" Size="44,53" Texture="UnitPanel_ActionButton">
+			<Image ID="SettleButtonIcon"		Anchor="C,C" Offset="0,-2" Size="38,38"  Icon="ICON_UNITOPERATION_FOUND_CITY"/>
+		</Button>
+    </Grid>
+</Context>
