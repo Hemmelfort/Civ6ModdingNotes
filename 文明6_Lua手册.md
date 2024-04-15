@@ -6,12 +6,8 @@ author: Hemmelfort
 ---
 
 
-
-
-
 # 文明6 Lua手册
 
-[toc]
 
 ## 前言
 
