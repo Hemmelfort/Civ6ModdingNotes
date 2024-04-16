@@ -45,6 +45,7 @@ local pPlayer = Players[iPlayerID]
 | 加信仰            | `pPlayer:GetReligion():ChangeFaithBalance(50)`             |        |
 | 获取玩家所处的时代 | `pPlayer:GetEra()` | 【1】 |
 | 获取玩家所处的时代 | `pPlayer:GetEras():GetEra()` | 【2】 |
+| 获取出生位置 | `pPlayer:GetStartingPlot()` | 返回pPlot |
 | 判断是否是AI      | `pPlayer:IsAI()`                                           |        |
 | 判断是否健在      | `pPlayer:IsAlive()`                                        |        |
 | 判断是否是人类玩家 | `pPlayer:IsHuman()`                                        |        |
@@ -384,7 +385,7 @@ function FindPossibleUnits( iPlayerID )
 	local pPlayer = Players[iPlayerID];
 	for i, unit in pPlayer:GetUnits():Members() do
 		local unitInfo = GameInfo.Units[unit:GetType()];
-        local unitTypeName = unitInfo.UnitType;
+    	local unitTypeName = unitInfo.UnitType;
 
         if unitTypeName == "UNIT_TRADER" then
             print("找到一个商人单位")
@@ -717,6 +718,7 @@ InGame: -754251518	1235
 | 地块产出            | `pPlot:GetYield(yield.Index) -> int` |                      |
 | 区域ID             | `pPlot:GetDistrictID()`              |                      |
 | 区域类型（数字）     | `pPlot:GetDistrictType()`            | 返回Index            |
+| 所在大陆 | `pPlot:GetContinentType()` | 返回Index |
 | 地貌               | `pPlot:GetFeature()`                 |                      |
 | 地貌类型            | `pPlot:GetFeatureType()`             | 返回Index            |
 | 资源类型            | `pPlot:GetResourceType()`            | 返回Index            |
@@ -924,12 +926,18 @@ WorldBuilder.CityManager():SetPlotOwner(pPlot, false);	--移除所有者
 local tContinents = Map.GetContinentsInUse()
 
 for i, eContinent in ipairs(tContinents) do
-    local tContinentPlots = Map.GetContinentPlots(eContinent)   -- tContinentPlots 存放的是 iPlotIndex
+    -- tContinentPlots数组存放的是iPlotIndex
+    local tContinentPlots = Map.GetContinentPlots(eContinent)
 
     for _, plot in ipairs(tContinentPlots) do
         local pPlot = Map.GetPlotByIndex(plot)
         -- use pPlot here
+    end
+end
 ```
+
+Map.GetContinentsInUse() 返回的是一个 table，可以通过 key-value 方式访问：key 从 1 开始，value 是该大陆在 GameInfo.Continents 表中的 Index。
+
 
 
 ### 获取本城所有格位
@@ -937,43 +945,49 @@ for i, eContinent in ipairs(tContinents) do
 注意：Map.GetCityPlots() 只在 UI 环境下生效。
 
 ```lua
-local pCityPlots = Map.GetCityPlots():GetPurchasedPlots( pCity )
+local pCityPlots = Map.GetCityPlots():GetPurchasedPlots(pCity)
 for _, iPlotIndex in pairs(pCityPlots) do
 	print(_, iPlotIndex)
 end
 ```
 
-### 设置格位可见度
+### 格位能见度
 
-清除格位上的战争迷雾，让本地玩家能看得到。
+玩家 0 的能见度的 table：
 
 ```lua
-local pCurPlayerVisibility = PlayersVisibility[pPlayer:GetID()];
-if(pCurPlayerVisibility ~= nil) then
-    -- 设为1表示设为可见（设 0 无作用）
-    pCurPlayerVisibility:ChangeVisibilityCount(iPlotIndex, 1);
+local pPlayerVisibility:table = PlayersVisibility[0]
+```
+
+上面的 `pPlayerVisibility` 主要有以下方法：
+
+- `IsVisible(iPlotX, iPlotY)` （Visible：完全可见，没有迷雾）
+- `IsRevealed(iPlotX, iPlotY)` （Revealed：已探索，但可能有迷雾）
+- `ChangeVisibilityCount(iPlotIndex, iCount)` （iCount为0有迷雾，1没有）
+- `RevealAllPlots()` （探索全图，但不揭开战争迷雾）
+- `GetNumRevealedHexes()` （获取已探索的格位数量）
+
+
+
+设置某个格位 iPlotIndex 的可见度：
+
+```lua
+local pPlayerVisibility = PlayersVisibility[pPlayer:GetID()];
+if(pPlayerVisibility ~= nil) then
+    -- 设为1表示完全可见，设0则是已探索但有迷雾
+    pPlayerVisibility:ChangeVisibilityCount(iPlotIndex, 0);
 end
 ```
 
-判断格位 pPlot 是否可见的方法：
-
-```lua
-pCurPlayerVisibility:IsRevealed(pPlot:GetX(), pPlot:GetY())
-```
-
-设置全图可见（相当于命令行输入 `reveal all`）：
+设置全图可见且没有迷雾（相当于命令行输入 `reveal all`）：
 
 ```lua
 for iPlotIndex = 0, Map.GetPlotCount()-1, 1 do
-    pCurPlayerVisibility:ChangeVisibilityCount(iPlotIndex, 1);
+    pPlayerVisibility:ChangeVisibilityCount(iPlotIndex, 1);
 end
 ```
 
-如果想探索全图，但又不想揭开战争迷雾，可以用这个方法：
 
-```lua
-PlayersVisibility[iPlayerID]:RevealAllPlots()
-```
 
 ### 添加人造奇观
 
