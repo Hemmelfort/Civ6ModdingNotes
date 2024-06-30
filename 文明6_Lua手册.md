@@ -367,6 +367,8 @@ local mission = Players[0]:GetDiplomacy():GetMission(0, 1)
 
 【1】true：单位被标记为死亡状态，并被暂时移到了 (-9999, -9999)，用 `pUnit:IsDelayedDeath()` 方法判断为 true，本回合过去后则永久删除。默认为 false，立即删除。
 
+
+
 ### 获取单位类型需要注意的事情
 
 |                    方法                    |              效果               |
@@ -376,6 +378,7 @@ local mission = Players[0]:GetDiplomacy():GetMission(0, 1)
 | `pUnit.GetUnitType()`                      | ❗ 只用于 UI 环境，返回 Index      |
 | `UnitManager.GetTypeName()`                | 返回 "LOC_UNIT_SCOUT_NAME" 这种 |
 | `GameInfo.Units[pUnit:GetType()].UnitType` | ✔ 返回"UNIT_BUILDER"这种        |
+
 
 
 ### 单位的遍历
@@ -394,6 +397,8 @@ function FindPossibleUnits( iPlayerID )
 end
 ```
 
+
+
 ### 设置升级项
 
 ```lua
@@ -401,20 +406,47 @@ local promotion = GameInfo.UnitPromotions["PROMOTION_ALPINE"];
 pUnit:GetExperience():SetPromotion(promotion)
 ```
 
-### 加经验值直到升级
+
+
+### 加经验值
 
 ```lua
 local exps = pUnit:GetExperience():GetExperienceForNextLevel()
 pUnit:GetExperience():ChangeExperience(exps);
 ```
 
-### 添加能力
+
+
+### 添加技能
 
 ```lua
 pUnit:GetAbility():ChangeAbilityCount("ABILITY_XXX", 1)
+pUnit:GetAbility():GetAbilityCount("ABILITY_XXX")
 ```
 
-只能添加，不能移除，作用存疑。而且只能添加那些匹配的能力，也就是能力的 Tag 是否与此单位相同。比如 `ABILITY_ANTI_CAVALRY` 只能用于抗骑兵单位，不能用于其他类型。
+ChangeAbilityCount 有两个参数：
+
+第一个参数是技能名，位置数据库的 UnitAbilities 表中。
+
+第二个参数是数量，1 表示该技能新增一个，-1 表示该技能减少一个。
+
+而且只能添加那些匹配的能力，也就是能力的 Tag 是否与此单位相同。比如 `ABILITY_ANTI_CAVALRY` 只能用于抗骑兵单位，不能用于其他类型。
+
+GetAbilityCount 可以获取单位身上该技能的数量。
+
+
+
+如果将该技能数量减为零，可以这样写：
+
+```lua
+-- 作者：LeeS
+local pUnitAbility = pUnit:GetAbility();
+local iCurrentCount = pUnitAbility:GetAbilityCount("ABILITY_XXX");
+local iChange = (iCurrentCount ~= 0) and -iCurrentCount or 0
+pUnitAbility:ChangeAbilityCount("ABILITY_XXX", iChange);
+```
+
+
 
 ### 禁止造某单位
 
@@ -423,11 +455,15 @@ local m_ePlagueDoctorUnit : number = GameInfo.Units["UNIT_PLAGUE_DOCTOR"].Index;
 pPlayer:GetUnits():SetBuildDisabled(m_ePlagueDoctorUnit, true)
 ```
 
+
+
 ### 允许用信仰购买单位
 
 ```lua
 pCity:SetUnitFaithPurchaseEnabled(iUnitIndex, true)
 ```
+
+
 
 ### 适用于 UI 环境的功能
 
