@@ -796,7 +796,7 @@ InGame: -754251518	1235
 | 获取相邻全部格位      | `Map.GetAdjacentPlots(iX, iY)`                        |                                            |
 |                      | `Map.GetCityPlots(pCity)`                             | ❓不适用于Gameplay环境？                     |
 |                      | `Map.GetContinentCoastalPlots()`                      | ❓游戏会强退？😧                            |
-| 获取该洲所有格位      | `Map.GetContinentPlots(eContinent)`                   | 参数:Type或Index? 返回:含有iPlotIndex的table |
+| 获取该大陆所有格位  | `Map.GetContinentPlots(eContinent)`                   | 参数:Type或Index? 返回:含有iPlotIndex的table |
 | 所有格位按魅力分组     | `Map.GetContinentPlotsAppeal()`                       | 【2】                                       |
 | 所有格位根据水资源分组 | `Map.GetContinentPlotsWaterAvailability()`            | 【3】                                       |
 | 获取所有在用的大洲     | `Map.GetContinentsInUse()`                            | 返回含有iContinentIndex的table              |
@@ -830,9 +830,9 @@ InGame: -754251518	1235
 ### 获取格位上的单位
 
 ```lua
-for loop, unit in ipairs(Units.GetUnitsInPlot(pPlot)) do
-	if(unit ~= nil) then
-		if unit then
+for loop, pUnit in ipairs(Units.GetUnitsInPlot(pPlot)) do
+	if(pUnit ~= nil) then
+		if pUnit:GetType() == 2 then
             -- do your things here.
 		end
 	end
@@ -1000,7 +1000,23 @@ WorldBuilder.CityManager():CreateBuilding(pCity,
  pPlot:GetIndex());        -- 修建的位置
 ```
 
+
+
+### UI环境
+
+获取地图脚本名称： `MapConfiguration.GetScript()` ，返回一个字符串，比如特拉地图返回 `Terra.lua`。
+
+
+
+
+
 ---
+
+
+
+
+
+
 ## 其他
 
 ### Game
