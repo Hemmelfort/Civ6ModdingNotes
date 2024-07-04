@@ -99,6 +99,19 @@ TODO:
 - GetWMDs
 - GrantYield
 
+
+
+### 遍历所有玩家
+
+```lua
+local kPlayers = PlayerManager.GetAliveMajors()
+for _, pPlayer in ipairs(kPlayers) do
+    -- 在这里处理 pPlayer
+end
+```
+
+
+
 ### 加资源
 
 增加 10 铁：
@@ -126,12 +139,16 @@ local wmd = GameInfo.WMDs['WMD_THERMONUCLEAR_DEVICE']    -- WMD_NUCLEAR_DEVICE
 pPlayer:GetWMDs():ChangeWeaponCount(wmd.Index, 1)
 ```
 
+
+
 ### 加伟人点数
 
 ```lua
 local admiral = GameInfo.GreatPersonClasses['GREAT_PERSON_CLASS_ADMIRAL']
 player:GetGreatPeoplePoints():ChangePointsTotal(admiral.Index, 5)
 ```
+
+
 
 ### 根据名称完成科技
 
@@ -149,6 +166,7 @@ end
 ```
 
 
+
 ### 完成当前科技
 
 ```lua
@@ -159,6 +177,8 @@ if (playerTechs:GetResearchingTech() ~= -1) then
 end
 ```
 
+
+
 ### 完成所有科技
 
 ```lua
@@ -168,6 +188,8 @@ for tech in GameInfo.Technologies() do
 	playerTechs:SetResearchProgress(tech.Index, playerTechs:GetResearchCost(tech.Index));
 end
 ```
+
+
 
 ### 完成所有文化
 
@@ -183,6 +205,8 @@ if playerCulture ~= nil then
 end
 ```
 
+
+
 ### 尤里卡
 
 以科技“飞行”为例，让玩家 0 获得其尤里卡：
@@ -191,6 +215,8 @@ end
 local index = GameInfo.Technologies["TECH_FLIGHT"].Index
 Players[0]:GetTechs():TriggerBoost(index,1)
 ```
+
+
 
 ### 鼓舞
 
@@ -211,6 +237,8 @@ Players[0]:GetCulture():TriggerBoost(index,1)
 local i = GameInfo.Policies['POLICY_DISCIPLINE'].Index
 local a = Players[0]:GetCulture():IsPolicyActive(i)
 ```
+
+
 
 ### 根据名字送伟人
 
@@ -245,6 +273,8 @@ if Players[player1]:GetDiplomacy():CanDeclareWarOn(player2) then
 ```lua
 Players[player1]:GetDiplomacy():DeclareWarOn(player2, WarTypes.FORMAL_WAR, true)
 ```
+
+
 
 ### 观察者视角
 
@@ -559,7 +589,7 @@ UnitManager.RequestCommand( pUnit, UnitCommandTypes.PROMOTE, tParameters );
 
 |           功能            |                              代码                              |              说明               |
 | ------------------------- | ------------------------------------------------------------- | ------------------------------- |
-| 获取城市（根据ID）          | `local pCity = CityManager.GetCity(playerID, cityId)`         |                                 |
+| 获取城市（根据ID）          | `local pCity = CityManager.GetCity(playerID, cityID)`         |                                 |
 | 获取城市（根据坐标）        | `local pCity = CityManager.GetCityAt(iX, iY)`                 | 必须是市中心坐标   |
 | 获取城市（根据格位）        | `local pCity = Cities.GetCityInPlot(iPlotIndex)`              | Cities和下面的GetCities不一样    |
 | 创建城市                   | `pPlayer:GetCities():Create(iX, iY)`                          | 有最小城市距离限制                |
@@ -628,6 +658,8 @@ function GetNearestCity(PlotX, PlotY, PlayerID)
 end
 ```
 
+
+
 ### 创建区域（WorldBuilder方式）
 
 比如要在 (15,13) 的位置建造一座学院：
@@ -679,6 +711,8 @@ end
 ```lua
 pCity:SetBuildingFaithPurchaseEnabled(iBuildingIndex, true)
 ```
+
+
 
 ### UI 环境
 
@@ -744,6 +778,7 @@ InGame: -754251518	1235
 | 格位 -> 序号 | `pPlot:GetIndex()`                  | iPlotIndex |
 
 
+
 ### Plot
 
 - 获取格位信息
@@ -770,6 +805,8 @@ InGame: -754251518	1235
 
 > 地貌方向：
 > pFeature:GetDirection()
+
+
 
 ### 格位判断
 
@@ -821,6 +858,7 @@ InGame: -754251518	1235
 | 河流正西方 | `pPlot:IsWOfRiver()`  |
 
 
+
 ### Map
 
 |         功能         |                         代码                          |                    说明                    |
@@ -863,6 +901,8 @@ InGame: -754251518	1235
 【2】  BreathtakingPlots, CharmingPlots, AveragePlots, UninvitingPlots, DisgustingPlots = Map.GetContinentPlotsAppeal();  
 【3】 FullWaterPlots, CoastalWaterPlots, NoWaterPlots, NoSettlePlots = Map.GetContinentPlotsWaterAvailability();
 
+
+
 ### 获取格位上的单位
 
 ```lua
@@ -875,6 +915,8 @@ for loop, pUnit in ipairs(Units.GetUnitsInPlot(pPlot)) do
 end
 ```
 
+
+
 ### 获取相邻全部格位
 
 ```lua
@@ -886,6 +928,8 @@ for _, pNeighborPlot in ipairs(tNeighborPlots) do
 end
 ```
 
+
+
 ### 获取附近范围内的全部格位
 
 获得的格位中包含本格在内。
@@ -896,6 +940,8 @@ for i, adjPlot in ipairs(plots) do
 	print(i, adjPlot:GetIndex())
 end
 ```
+
+
 
 ### 获取格位上的奇观建筑
 
@@ -931,6 +977,7 @@ TerrainBuilder.SetTerrainType(pPlot, iTerrainType)
 ```
 
 
+
 ### 添加或移除改良设施
 
 ```lua
@@ -940,12 +987,15 @@ ImprovementBuilder.SetImprovementType(pPlot, -1, NO_PLAYER);   --移除改良
 ```
 
 
+
 ### 添加或移除资源
 
 ```lua
 ResourceBuilder.SetResourceType(pPlot, eType, 1);  --添加资源（最后的1为资源的数量）
 ResourceBuilder.SetResourceType(pPlot, -1);        --移除资源
 ```
+
+
 
 ### 格位所有者变更
 
@@ -1355,6 +1405,7 @@ pCity:AttachModifierByID(ModifierId)
 ```
 
 
+
 ### 野蛮人管理器
 
 #### 获取野蛮人管理器
@@ -1399,6 +1450,7 @@ pBarbManager:CreateTribeUnits(iTribeNumber, sPromClassType, iAmount, iPlotIndex,
 -- （注：“编号”与ID不同）
 pBarbManager:StartOperationWithCityTarget(iTribeNumber, "Barbarian City Assault", eGdansk, cityID)
 ```
+
 
 
 ### 带参数的文本
