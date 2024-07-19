@@ -590,7 +590,7 @@ UnitManager.RequestCommand( pUnit, UnitCommandTypes.PROMOTE, tParameters );
 |           功能            |                              代码                              |              说明               |
 | ------------------------- | ------------------------------------------------------------- | ------------------------------- |
 | 获取城市（根据ID）          | `local pCity = CityManager.GetCity(playerID, cityID)`         |                                 |
-| 获取城市（根据坐标）        | `local pCity = CityManager.GetCityAt(iX, iY)`                 | 必须是市中心坐标   |
+| 获取城市（根据坐标）        | `local pCity = CityManager.GetCityAt(iX, iY)`                 | 必须是**市中心**坐标 |
 | 获取城市（根据格位）        | `local pCity = Cities.GetCityInPlot(iPlotIndex)`              | Cities和下面的GetCities不一样    |
 | 创建城市                   | `pPlayer:GetCities():Create(iX, iY)`                          | 有最小城市距离限制                |
 | 改变忠诚度                 | `pCity:ChangeLoyalty(100)`                                    |                                 |
@@ -908,10 +908,26 @@ InGame: -754251518	1235
 ```lua
 for loop, pUnit in ipairs(Units.GetUnitsInPlot(pPlot)) do
 	if(pUnit ~= nil) then
-		if pUnit:GetType() == 2 then
-            -- do your things here.
+		if pUnit:GetType() == 0 then
+            -- pUnit:GetType() 返回的是单位在Units表中的序号，比如0是开拓者
 		end
 	end
+end
+```
+
+平时用得较多的是判断格位上有没有某个单位：
+
+```lua
+function PlotHasUnit(pPlot, sUnitType)
+    for loop, pUnit in ipairs(Units.GetUnitsInPlot(pPlot)) do
+        if(pUnit ~= nil) then
+            local unit = GameInfo.Units[pUnit:GetType()].UnitType
+            if (unit == sUnitType) then
+                return true
+            end
+        end
+    end
+    return false
 end
 ```
 
