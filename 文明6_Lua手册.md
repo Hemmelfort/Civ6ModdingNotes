@@ -596,6 +596,7 @@ UnitManager.RequestCommand( pUnit, UnitCommandTypes.PROMOTE, tParameters );
 | 改变忠诚度                 | `pCity:ChangeLoyalty(100)`                                    |                                 |
 | 改变人口                   | `pCity:ChangePopulation(1)`                                   |                                 |
 | 获取城市位置               | ` pCity:GetX()` 和 `pCity:GetY()`                              |                                 |
+| 获取城市ID | `pCity:GetID()` | |
 | 获取人口                   | `pCity:GetPopulation()`                                       |                                 |
 | 获取拥有者                 | `pCity:GetOwner()`                                            | 返回 iPlayerID                  |
 | 获取原始拥有者             | `pCity:GetOriginalOwner()`                                    |                                 |
@@ -609,6 +610,7 @@ UnitManager.RequestCommand( pUnit, UnitCommandTypes.PROMOTE, tParameters );
 | 设为自由城市               | `CityManager.TransferCityToFreeCities(pCity)`                 |                                 |
 | 移除城市                   | `CityManager.DestroyCity(pCity)`                              |                                 |
 | 移除城市                   | `Cities.DestroyCity(pCity)`                                   |                                 |
+| 玩家城市数量 | `pPlayer:GetCities():GetCount()` | |
 | **城市成长**              |                                                               |                                 |
 | 获取住房数量               | `pCity:GetGrowth():GetHousing()`                              |                                 |
 | 获取到下一次人口增长的回合数 | `pCity:GetGrowth():GetTurnsUntilGrowth()`                     |                                 |
@@ -656,6 +658,18 @@ function GetNearestCity(PlotX, PlotY, PlayerID)
     
     return city or pPlayerCities:GetCapitalCity()
 end
+```
+
+
+
+### 根据格位获取城市
+
+用 `Cities.GetCityInPlot(iPlotX, iPlotY)` 获取城市时，坐标必须是市中心所在格位。
+
+而下面的方法可以根据任意单元格获得所属城市。
+
+```lua
+local pCity = Cities.GetPlotPurchaseCity(pPlot)
 ```
 
 
@@ -752,11 +766,17 @@ InGame: -1188273497	1345
 InGame: -754251518	1235
 ```
 
+
+
+
+
 ---
 
 ## 格位与地图
 
-- 注意区分
+
+
+格位的表示方法有以下几种：
 
 |       变量名        |     含义      |
 | ------------------ | ------------ |
@@ -1429,11 +1449,16 @@ pCity:AttachModifierByID(ModifierId)
 local pBarbManager = Game.GetBarbarianManager()
 ```
 
+
+
 #### 待验证
+
 ```lua
 -- 用法未知
 pBarbManager:CreateSpecificTribe()
 ```
+
+
 
 #### 创建蛮族营地
 
@@ -1441,7 +1466,19 @@ pBarbManager:CreateSpecificTribe()
 pBarbManager:CreateTribeOfType(iBarb, iPlotIndex)
 ```
 
-第一个数字可能是不同蛮族阵营的编号，用于指挥它们攻击不同的城市。该方法来自 DLC *雅德维加的遗产*。
+第一个数字可能是不同蛮族阵营的编号，用于指挥它们攻击不同的文明。该方法来自 DLC 《雅德维加的遗产》。
+
+此外，由于蛮族营寨也是一种“改良设施”，所以还有另外一种添加方式：
+
+```lua
+local m_iBarbarianID = 63;	--蛮族的id
+local m_iImpBarbCamp = 
+	GameInfo.Improvements["IMPROVEMENT_BARBARIAN_CAMP"].Index;
+
+ImprovementBuilder.SetImprovementType(pPlot, m_iImpBarbCamp, m_iBarbarianID)
+```
+
+
 
 #### 根据升级类型召唤单位
 
@@ -1455,17 +1492,31 @@ pBarbManager:CreateTribeOfType(iBarb, iPlotIndex)
 pBarbManager:CreateTribeUnits(iTribeNumber, sPromClassType, iAmount, iPlotIndex, iRange)
 ```
 
+
+
 #### 野蛮人行动指导方针
 
+让指定的蛮族进攻指定的文明的城市：
+
 ```lua
--- 参数：
+-- 先创建一个蛮族部落
+-- iTribeNumber: 该部落的编号
+-- eType: 
+-- 		1: 轻骑兵
+--		2: 近战
+--		3: 重骑兵
+-- iPlotIndex: 格位序号
+local iTribeNumber = pBarbManager:CreateTribeOfType(eType, iPlotIndex);
+
+-- 然后设置蛮族的行动，参数分别为：
 -- 1. iTribeNumber: 蛮族部落编号
 -- 2. 行动类型，如 "Barbarian Attack"
--- 3. eGdansk: 目标城市编号
--- 4. cityID: 目标城市ID
--- （注：“编号”与ID不同）
-pBarbManager:StartOperationWithCityTarget(iTribeNumber, "Barbarian City Assault", eGdansk, cityID)
+-- 3. playerId: 目标文明的 ID
+-- 4. cityId: 目标城市的 ID
+pBarbManager:StartOperationWithCityTarget(iTribeNumber, "Barbarian City Assault", playerId, cityId)
 ```
+
+感谢网友 @绝妙desu 的提示。
 
 
 
