@@ -591,7 +591,7 @@ UnitManager.RequestCommand( pUnit, UnitCommandTypes.PROMOTE, tParameters );
 | ------------------------- | ------------------------------------------------------------- | ------------------------------- |
 | 获取城市（根据ID）          | `local pCity = CityManager.GetCity(playerID, cityID)`         |                                 |
 | 获取城市（根据坐标）        | `local pCity = CityManager.GetCityAt(iX, iY)`                 | 必须是**市中心**坐标 |
-| 获取城市（根据格位）        | `local pCity = Cities.GetCityInPlot(iPlotIndex)`              | Cities和下面的GetCities不一样    |
+| 获取城市（根据格位）        | `local pCity = Cities.GetCityInPlot(iPlotIndex)`              | 必须是**市中心**坐标 |
 | 创建城市                   | `pPlayer:GetCities():Create(iX, iY)`                          | 有最小城市距离限制                |
 | 改变忠诚度                 | `pCity:ChangeLoyalty(100)`                                    |                                 |
 | 改变人口                   | `pCity:ChangePopulation(1)`                                   |                                 |
